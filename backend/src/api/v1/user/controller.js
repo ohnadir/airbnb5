@@ -1,16 +1,16 @@
 const {
-    registration,
-    login,
-    loadUser,
-  } =require("./service")
+  registration,
+  login,
+  loadUser,
+} =require("./service");
 
 
 exports.Register = async (req, res) => {
-    const { status, code, message, success, token, user } = await registration({
-      body:req.body,
-      ...req.body
-    });
-    res.status(code).json({ code, status, message, success, token, user });
+  const { status, code, message, success, token, user } = await registration({
+    body:req.body,
+    ...req.body
+  });
+  res.status(code).json({ code, status, message, success, token, user });
 };
   
 exports.Login = async (req, res) => {

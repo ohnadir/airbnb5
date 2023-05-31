@@ -27,10 +27,10 @@ exports.registration = async ({ body, phone, email }) => {
                 return response;
             }
         }
-        const newUser = new User(body);
-        await newUser.save();
-        response.token = newUser.getJwtToken();
-        response.user= newUser;
+        const user = new User(body);
+        await user.save();
+        // response.token = user.getJwtToken();
+        response.user= user;
         return response;
     } catch (error) {
         response.code = 500;
@@ -44,7 +44,6 @@ exports.registration = async ({ body, phone, email }) => {
 exports.login = async ({ email, password }) => {
     const response = {
       code: 200,
-      success : true,
       status: 'success',
       message: 'login successfully',
     };
@@ -53,7 +52,6 @@ exports.login = async ({ email, password }) => {
         const user = await User.findOne({email});
         if (!user) {
             response.code = 404;
-            response.success = false;
             response.status = 'failed';
             response.message = 'Incorrect credential';
             return response;
@@ -61,18 +59,16 @@ exports.login = async ({ email, password }) => {
         const isPasswordMatched = await user.comparePassword(password);
         if (!isPasswordMatched) {
             response.code = 404;
-            response.success = false;
             response.status = 'failed';
             response.message = 'Incorrect credential';
             return response;
         }
         
-        response.token = user.getJwtToken();
+        // response.token = user.getJwtToken();
         response.user= user
         return response;
     } catch (error) {
         response.code = 500;
-        response.success = false;
         response.status = 'failed';
         response.message = 'Error. Try again';
         return response;
