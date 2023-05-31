@@ -1,4 +1,4 @@
-const  User  = require("./Modal")
+const  User  = require("./Model")
 const jwt = require('jsonwebtoken');
 
 exports.registration = async ({ body, phone, email }) => {
