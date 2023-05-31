@@ -10,9 +10,11 @@ connectDb();
 app.use(express.json());
 
 const userRoute = require("./src/api/v1/routes/user");  
+const placeRoute = require("./src/api/v1/routes/place");  
 
 
 app.use("/api/v1/user", userRoute);
+app.use("/api/v1/place", placeRoute);
 
 app.get('/', (req, res) => {
   res.send('Airbnb Testing connection')
