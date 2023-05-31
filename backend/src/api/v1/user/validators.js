@@ -4,7 +4,7 @@ const { check, param } = require('express-validator');
 const validatePhone = require('../utils/validatePhone');
 const validateEmail = require('../utils/validateEmail');
 
-exports.addUserValidator = [
+exports.userValidator = [
   check('firstName').trim().notEmpty().withMessage('First Name is required'),
 
   check('lastName').trim().notEmpty().withMessage('Last Name is required'),
@@ -31,7 +31,7 @@ exports.addUserValidator = [
     })
 ];
 
-exports.updateUserValidator = [
+exports.updateValidator = [
   check('phone')
     .trim()
     .custom(async (phone) => {
@@ -52,7 +52,7 @@ exports.updateUserValidator = [
     })
 ];
 
-exports.idValidator = [
+exports.id = [
   param('id').custom(async (id) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       throw 'No User found by the id';

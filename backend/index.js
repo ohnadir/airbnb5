@@ -7,9 +7,13 @@ const connectDb = require("./src/api/v1/config");
 dotenv.config();
 connectDb();
 
+const userRoute = require("./src/api/v1/routes//user");  
+
+
+app.use("/api/v1/user", userRoute);
 
 app.get('/', (req, res) => {
-    res.send('Airbnb Testing connection')
+  res.send('Airbnb Testing connection')
 })
 
 
