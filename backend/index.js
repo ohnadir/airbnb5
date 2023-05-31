@@ -12,11 +12,13 @@ app.use(express.json());
 const userRoute = require("./src/api/v1/routes/user");  
 const placeRoute = require("./src/api/v1/routes/place");  
 const bookingRoute = require("./src/api/v1/routes/booking");  
+const paymentRoute = require("./src/api/v1/routes/payment");  
 
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/place", placeRoute);
 app.use("/api/v1/booking", bookingRoute);
+app.use("/api/v1/payment", paymentRoute);
 
 app.get('/', (req, res) => {
   res.send('Airbnb Testing connection')
