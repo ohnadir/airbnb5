@@ -29,7 +29,7 @@ exports.registration = async ({ body, phone, email }) => {
         }
         const user = new User(body);
         await user.save();
-        // response.token = user.getJwtToken();
+        response.token = user.getJwtToken();
         response.user= user;
         return response;
     } catch (error) {
@@ -64,7 +64,7 @@ exports.login = async ({ email, password }) => {
             return response;
         }
         
-        // response.token = user.getJwtToken();
+        response.token = user.getJwtToken();
         response.user= user
         return response;
     } catch (error) {
