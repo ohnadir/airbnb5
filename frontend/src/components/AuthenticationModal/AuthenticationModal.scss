@@ -86,6 +86,34 @@
             }
         }
     }
+    // sass for registration section
+    .registration{
+        .header-container{
+            border-bottom: 1px solid #ddd;
+        }
+        .input-container{
+            input  {
+                padding: 0 15px;
+                background-color: transparent;
+                outline: none;
+                width: 100%;
+                font-family: "Trebuchet MS",sans-serif;
+                font-size: 13px;
+                height: 42px;
+            }
+        }
+        .registration-btn{
+            width: 100%;
+            padding: 8px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            border-radius: 5px;
+            opacity: 1;
+            background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%) !important;
+            transition: opacity 0.3s all;
+        }
+    }
 }
 
 .authentication-container input[type="email"]:focus ~ .input-email,
