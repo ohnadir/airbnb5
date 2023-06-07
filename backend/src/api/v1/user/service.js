@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 exports.registration = async ({ body, phone, email }) => {
     const response = {
       code: 200,
-      success : true,
       status: 'success',
       message: 'Registration successfully'
     };
@@ -12,7 +11,6 @@ exports.registration = async ({ body, phone, email }) => {
         const isPhoneExist = await User.findOne({ phone });
         if (isPhoneExist) {
             response.code = 400;
-            response.success = false;
             response.status = 'failed';
             response.message = 'User Phone Number already taken';
             return response;
@@ -21,20 +19,19 @@ exports.registration = async ({ body, phone, email }) => {
             const isEmailExist = await User.findOne({ email });
             if (isEmailExist) {
                 response.code = 400;
-                response.success = false;
                 response.status = 'failed';
-                response.message = 'User Name already taken';
+                response.message = 'Email already taken';
                 return response;
             }
         }
         const user = new User(body);
+        console.log(user);
         await user.save();
-        response.token = user.getJwtToken();
+        // response.token = user.getJwtToken();
         response.user= user;
         return response;
     } catch (error) {
         response.code = 500;
-        response.success = false;
         response.status = 'failed';
         response.message = 'Error. Try again';
         return response;
@@ -53,7 +50,7 @@ exports.login = async ({ email, password }) => {
         if (!user) {
             response.code = 404;
             response.status = 'failed';
-            response.message = 'Incorrect credential';
+            response.message = 'user not found';
             return response;
         }
         const isPasswordMatched = await user.comparePassword(password);

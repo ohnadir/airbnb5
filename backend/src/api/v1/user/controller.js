@@ -6,19 +6,19 @@ const {
 
 
 exports.Register = async (req, res) => {
-  const { status, code, message, success, token, user } = await registration({
+  const { status, code, message, token, user } = await registration({
     body:req.body,
     ...req.body
   });
-  res.status(code).json({ code, status, message, success, token, user });
+  res.status(code).json({ code, status, message, token, user });
 };
   
 exports.Login = async (req, res) => {
-    const { status, code, message, success, token, user } = await login({
+    const { status, code, message,  token, user } = await login({
       body:req.body,
       ...req.body
     });
-    res.status(code).json({ code, status, message,  success, token, user });
+    res.status(code).json({ code, status, message, token, user });
 };
 
 exports.LoadUser = async (req, res) => {

@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require("dotenv");
+const cors = require('cors');
 const app = express();
 const connectDb = require("./src/api/v1/config");
 
@@ -7,6 +8,7 @@ const connectDb = require("./src/api/v1/config");
 dotenv.config();
 connectDb();
 
+app.use(cors());
 app.use(express.json());
 
 const userRoute = require("./src/api/v1/routes/user");  
