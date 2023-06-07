@@ -4,6 +4,7 @@ import { BiMenu, BiSearch } from 'react-icons/bi';
 import { FaUserCircle } from 'react-icons/fa';
 import { useState } from "react";
 import { Modal } from 'antd';
+import AuthenticationModal from "../AuthenticationModal/AuthenticationModal";
 const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
   const [open, setOpen] = useState(false);
@@ -68,22 +69,21 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-          {
-            authModal && <Modal
-            centered
-            style ={{borderRadius:"15px", overflow:"auto"}}
-            open={authModal}
-            width={570}
-            closable={false}
-            footer={false}
-            className={{borderRadius:"30px"}}
-            bodyStyle={{margin:"0", border:"none", padding:0  }}
+        {
+          authModal && <Modal
+          centered
+          style ={{borderRadius:"15px", overflow:"auto"}}
+          open={authModal}
+          width={570}
+          closable={false}
+          footer={false}
+          className={{borderRadius:"30px"}}
+          bodyStyle={{margin:"0", border:"none", padding:0  }}
         >
-            <div className='p-6'>
-              <p>Nadir</p>
-              {/* <AuthModal setAuthModal={setAuthModal}/>  */}
-            </div>
-            </Modal>
+          <div className='p-6'>
+            <AuthenticationModal setAuthModal={setAuthModal}/> 
+          </div>
+          </Modal>
         }
       </div>
     </div>
