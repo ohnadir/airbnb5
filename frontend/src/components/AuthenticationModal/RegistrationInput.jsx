@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import { BiChevronLeft } from 'react-icons/bi';
 import { message } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from "react-router-dom"
+import { register } from "../Redux/actions/user"
 
 const RegistrationInput = ({input, passInput, setAuthModal, setIsValid}) => {
     const [messageApi, contextHolder] = message.useMessage();
     const [auth, setAuth] = useState("");
     const navigate  = useNavigate();
-    const {  messages, error } = useSelector(state => state.auth);
+    const dispatch = useDispatch();
+    const {  user, error } = useSelector(state => state.auth);
+    console.log(user);
         
     const handleChange = (e) => {
         setAuth(prev=>({...prev, [e.target.name]: e.target.value}))
@@ -19,25 +24,28 @@ const RegistrationInput = ({input, passInput, setAuthModal, setIsValid}) => {
     }
     const OnSubmit = async(e) => {
         e.preventDefault()
+        if(validUser){
+            dispatch(register(validUser))
+        }
     }
     useEffect(()=>{
-        if(messages === "Registration successfully") {
-        messageApi.info("Registration successfully");
-        setTimeout(() => {
-            setAuthModal(false)
-            navigate("/")
-        }, 1000);
+        if(user?.email) {
+            messageApi.info("Registration successfully");
+            setTimeout(() => {
+                setAuthModal(false)
+                navigate("/")
+            }, 1000);
         }
-        if(error){
-        messageApi.info(error);
-    }
-    },[error, messages])
+        if(error === "Phone Number already taken" || error === "Error. Try again"){
+            messageApi.error(error);
+        }
+    },[error, user])
     return (
         <>
         {contextHolder}
         <div className='mb-5 registration'>
-            <div className='header-container mb-4'>
-                <div className='flex items-center pb-[10px]'>
+            <div className='header-container mb-[25px]'>
+                <div className='flex items-center pb-[20px]'>
                     <BiChevronLeft onClick={() => setIsValid(false)} className='w-7 h-7 border rounded-full hover:bg-gray-100 p-1 cursor-pointer'/>
                     <p className='font-bold  mx-auto'>Finish signing up</p>
                 </div>
@@ -72,7 +80,7 @@ const RegistrationInput = ({input, passInput, setAuthModal, setIsValid}) => {
 
                     <section className='phone-number'>
                         <div className='input-container rounded-[8px]' style={{border : "1px solid #ddd"}}>
-                            <input onChange={handleChange} type="number" name='phone'  placeholder='Phone Number' />
+                            <input onChange={handleChange} type="text" name='phone'  placeholder='Phone Number' />
                         </div>
                         <p className='text-[#484848] text-[12px] mt-[2px]'>We'll send message trip confirmation and receipts.</p>
                     </section>

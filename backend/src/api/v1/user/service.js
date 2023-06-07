@@ -12,7 +12,7 @@ exports.registration = async ({ body, phone, email }) => {
         if (isPhoneExist) {
             response.code = 400;
             response.status = 'failed';
-            response.message = 'User Phone Number already taken';
+            response.message = 'Phone Number already taken';
             return response;
         }
         if(email){
@@ -25,9 +25,8 @@ exports.registration = async ({ body, phone, email }) => {
             }
         }
         const user = new User(body);
-        console.log(user);
         await user.save();
-        // response.token = user.getJwtToken();
+        response.token = user.getJwtToken();
         response.user= user;
         return response;
     } catch (error) {

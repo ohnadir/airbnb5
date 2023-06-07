@@ -10,7 +10,8 @@
                 width: 25px;
                 height: 25px;
                 border-radius: 50%;
-                background-color: rgba(215, 4, 102, 0.4);
+                background-color: transparent;
+                border: 1px solid #eee;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -18,16 +19,16 @@
                 cursor: pointer;
                 transition: all 0.1s ease;
                 .icon{
-                    color: rgb(230, 30, 77);
-                    font-size: 20px;
+                    color: black;
+                    font-size: 18px;
                     font-weight: 900;
                     transition: all 0.1s ease;
                 }
                 &:hover{
-                    background-color: rgb(230, 30, 77);
+                    background-color: rgb(243, 244, 246);
                 }
                 &:hover .icon{
-                    color: white;
+                    color: black;
                 }
             }
         }
