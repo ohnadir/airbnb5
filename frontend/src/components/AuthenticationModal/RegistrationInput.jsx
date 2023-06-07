@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
-// import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from 'react'
 import { BiChevronLeft } from 'react-icons/bi';
 import { message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom"
-import { register } from "../Redux/actions/user"
+import { register } from "../../Redux/actions/user"
 
 const RegistrationInput = ({input, passInput, setAuthModal, setIsValid}) => {
     const [messageApi, contextHolder] = message.useMessage();
@@ -12,7 +11,6 @@ const RegistrationInput = ({input, passInput, setAuthModal, setIsValid}) => {
     const navigate  = useNavigate();
     const dispatch = useDispatch();
     const {  user, error } = useSelector(state => state.auth);
-    console.log(user);
         
     const handleChange = (e) => {
         setAuth(prev=>({...prev, [e.target.name]: e.target.value}))

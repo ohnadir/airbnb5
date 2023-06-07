@@ -3,7 +3,7 @@ import "./AuthenticationModal.scss"
 import { RiCloseFill } from 'react-icons/ri';
 import SocialAuth from './SocialAuth';
 import { useDispatch, useSelector } from "react-redux"
-import { login } from "../Redux/actions/user"
+import { login } from "../../Redux/actions/user"
 import { message } from 'antd';
 import RegistrationInput from './RegistrationInput';
 const AuthenticationModal = ({ setAuthModal }) => {
