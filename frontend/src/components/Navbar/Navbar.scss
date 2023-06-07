@@ -110,4 +110,34 @@
             }
         }
     }
+
+    // profile dropdown 
+    .profile-dropdown {
+        float: left;
+        overflow: hidden;
+        position: absolute;
+        right: 12px;
+        top: 58px;
+        min-width: 100px;
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 3 ;
+        border-radius: 10px;
+        width: 200px;
+        padding: 5px 0;
+        li{
+            padding:  8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        li:hover {
+            background-color: #ddd;
+        }
+        .profile-dropdown-divider{
+            width: 100%;
+            height: 1px;
+            background-color: #ddd;
+        }
+    }
 }
