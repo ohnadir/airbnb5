@@ -1,6 +1,7 @@
 import "./Dashboard.scss";
 import CountUp from 'react-countup';
 import { FaTasks } from "react-icons/fa"
+import PieChart from "./PieChart";
 
 
 const Dashboard = () => {
@@ -102,6 +103,12 @@ const Dashboard = () => {
                         <CountUp end={29} />
                     </p>
                     </div>
+                </div>
+            </div>
+            <div className="booking-chart">
+                <div className="chart booking-table-chart"></div>
+                <div className="chart booking-pie-chart">
+                    <PieChart/>
                 </div>
             </div>
         </div>

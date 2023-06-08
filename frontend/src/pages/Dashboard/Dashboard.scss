@@ -108,7 +108,17 @@
             }
         }
     }
-    
+    .booking-chart{
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        .chart{
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+    }
 }
 @media screen and (max-width: 1279px){
     .dashboard-container{
