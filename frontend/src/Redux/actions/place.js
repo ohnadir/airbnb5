@@ -37,7 +37,6 @@ export const getPlaces = () => async (dispatch) => {
 }
 
 export const placeDetails = (id) => async (dispatch) => {
-    console.log(id)
     try {
 
         dispatch({ type: PLACE_REQUEST })

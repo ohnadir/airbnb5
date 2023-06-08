@@ -1,6 +1,7 @@
 import './Checkout.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { placeDetails } from "../../Redux/actions/place"
+import { stripeApi } from "../../Redux/actions/payment"
 import { useEffect } from 'react';
 import {  FaStar } from 'react-icons/fa';
 import Spinner from "../../components/Spinner"
@@ -21,14 +22,16 @@ const options = {
         }
     }
 }
-const stripePromise = loadStripe("pk_test_51MJynOHzN4rqAg27o1nDk5hQeHaX8cuaBkInxAzGMEnEqee4QMyeztVLqyeuAhzgK9ZRdwPAF8uWFrRX2Qj8iuQ9005XC9m0sA");
 const Checkout = () => {
     const { place, loading } = useSelector(state=> state.place);
     const { isAuthenticated} = useSelector(state => state.auth);
+    const { api } = useSelector(state => state.stripeApi);
     const dispatch = useDispatch();
     const id = "64770dde9c9a8f27aee50f5c"
+    const stripePromise = loadStripe(api);
     useEffect(()=>{
         dispatch(placeDetails(id))
+        dispatch(stripeApi())
     },[id]);
     return (
         <>
