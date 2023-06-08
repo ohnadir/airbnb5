@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Category from './components/Category';
 import Place from './components/place';
 import Footer from "./components/Footer"
+import Checkout from "./pages/Checkout"
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +22,8 @@ function App() {
     <div>
       <Navbar/>
       <Category/>
-      <Place/>
+      {/* <Place/> */}
+      <Checkout/>
       <Footer/>
       <Routes>
         <Route path='/dashboard' element={Dashboard}></Route>
