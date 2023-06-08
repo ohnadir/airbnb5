@@ -26,14 +26,8 @@ ChartJS.register(
     labels,
     datasets: [
       {
-        label: 'Booking',
-        data: [30, 50, 60, 70, 80, 90, 120, 150, 200],
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
         label: 'User',
-        data: [40, 60, 70, 80, 40, 70, 100, 120, 180],
+        data: [40, 60, 70, 80, 50, 70, 100, 120, 180],
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },

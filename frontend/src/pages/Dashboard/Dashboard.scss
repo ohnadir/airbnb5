@@ -125,13 +125,17 @@
         .booking-status{
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
-        /* .booking-chart{
+        .booking-chart{
             grid-template-columns: repeat(1, minmax(0, 1fr));
-        } */
+        }
     }
 }
 @media screen and (max-width: 767px){
-    .dashboard_container{
+    .dashboard-container{
+        .booking{
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
         .booking-status{
             grid-template-columns: repeat(1, minmax(0, 1fr));
         }
