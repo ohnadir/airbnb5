@@ -9,7 +9,7 @@ import { FiChevronDown } from "react-icons/fi";
 import { Elements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
-import AuthCheckout from './AuthCheckout';
+import AuthCheckout from './LoginCheckout';
 
 const options = {
     style: {
