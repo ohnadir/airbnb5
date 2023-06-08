@@ -18,9 +18,77 @@
             width: 150px;
             border-radius: 8px;
         }
+        .place-info{
+            width: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .place-name{
+                color: #696969;
+                padding: 0;
+                margin: 0;
+                font-size: 12px;
+            }
+            .place-des{
+                padding: 0;
+                margin: 0;
+                font-size: 16px;
+                margin-top: -5px;
+            }
+        }
     }
     .checkout-container{
-        
+        margin-top: 40px;
+        .checkout-card{
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 24px;
+            .price-heading{
+                font-size: 22px;
+                color: #222222;
+                margin: 0;
+                font-weight: 600;
+            }
+            .place-card{
+                display: flex;
+                gap: 20px;
+                img{
+                    width: 150px;
+                    border-radius: 8px;
+                }
+                .place-info{
+                    width: fit-content;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    .place-name{
+                        color: #696969;
+                        padding: 0;
+                        margin: 0;
+                        font-size: 12px;
+                    }
+                    .place-des{
+                        padding: 0;
+                        margin: 0;
+                        font-size: 16px;
+                        margin-top: -5px;
+                    }
+                }
+            }
+            .price-container{
+                color: #696969;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 16px;
+                font-weight: 400;
+            }
+            .total-price{
+                color: #404040 !important;
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
     }
 }
 
