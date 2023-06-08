@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom"
 import Dashboard from './pages/Dashboard';
 import Category from './components/Category';
 import Place from './components/place';
+import Footer from "./components/Footer"
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
       <Navbar/>
       <Category/>
       <Place/>
+      <Footer/>
       <Routes>
         <Route path='/dashboard' element={Dashboard}></Route>
       </Routes>

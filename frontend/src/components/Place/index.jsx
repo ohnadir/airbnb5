@@ -50,7 +50,7 @@ const Place = () => {
                 ?
                 <Spinner/>
                 :
-                <div className="max-w-7xl mx-auto px-10 mt-8 mb-16">
+                <div className="max-w-7xl mx-auto px-10 mt-8 pb-[55px]">
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:grid-cols-2">
                     {
                     places?.map((item)=> 
