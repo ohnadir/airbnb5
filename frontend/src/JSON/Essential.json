@@ -1,0 +1,28 @@
+[
+    {
+        "id" : 1,
+        "name" : "Wifi"
+    },
+    {
+        "id" : 2,
+        "name" : "Kitchen"
+    },
+    {
+        "id" : 3,
+        "name" : "Washer"
+    }
+    ,
+    {
+        "id" : 4,
+        "name" : "Dryer"
+    },
+    {
+        "id" : 5,
+        "name" : "Air conditioning"
+    },
+    {
+        "id" : 6,
+        "name" : "Heating"
+    }
+
+]

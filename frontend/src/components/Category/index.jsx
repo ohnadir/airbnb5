@@ -7,6 +7,7 @@ import { MdCabin, MdOutlineSurfing, MdSportsGolf, MdDownhillSkiing } from 'react
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import Slider from "react-slick";
 import { useState } from 'react';
+import FilterModal from './FilterModal';
 const Category = () => {
   const [keyword, setKeyword] = useState();
   const [open, setOpen] = useState(false);
@@ -73,9 +74,9 @@ const Category = () => {
   }
 
   return (
-    <div style={{"top" : "86px", "zIndex" : "2"}}  className='container  mx-auto px-4 mt-5  overflow-y-hidden py-2  sticky  bg-white'>
-      <div className='flex items-center gap-10 justify-between py-2'>
-        <div className='relative  px-8 m-0 overflow-y-hidden'>
+    <div className='category'>
+      <div className='category-container'>
+        <div className='relative  px-8 overflow-y-hidden '>
           <Slider {...settings}>
             {
               category.map((item)=>(
@@ -89,7 +90,15 @@ const Category = () => {
             }
           </Slider>
         </div>
+        <div className='hidden sm:block '>
+          <div onClick={()=>setOpen(!open)} className='cursor-pointer flex items-center gap-1 font-semibold border rounded-lg max-w-fit px-5 py-2'>
+            <CgOptions size={14}  /> <span className='text-center text-[13px]'>Filter</span>
+          </div>
+        </div>
       </div>
+      {
+        open && <FilterModal open={open} setOpen={setOpen}  />
+      }
     </div>
   )
 }
