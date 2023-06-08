@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux'
 import AuthenticationModal from "../AuthenticationModal/AuthenticationModal";
 const Navbar = () => {
   const { isAuthenticated, user } = useSelector(state => state.auth);
-  console.log(user);
   const [dropdown, setDropdown] = useState(false);
   const [open, setOpen] = useState(false);
   const [authModal, setAuthModal] = useState(false);

@@ -1,0 +1,35 @@
+.prev, .next{
+    top: 45%;
+    height: 26px;
+    width: 26px;
+    padding: 0 3px;
+    background-color: #f2f2f2;
+    border-radius: 50%;
+    font-size: 20px;
+    position: absolute;
+    z-index: 1 !important;
+    display: none !important;
+    transition: visibility 0.2s ease;
+  }
+  .prev{
+    float: left;
+    left: 5px;
+    /* display: none !important; */
+  }
+  .prev:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  .next{
+    float: right;
+    right: 5px;
+  }
+  .next:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  .cardItem:hover  .next, .cardItem:hover .prev{
+    display: block !important;
+    cursor: pointer;
+  }
+.cardItem img{
+    height: 250px !important;
+}

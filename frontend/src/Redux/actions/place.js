@@ -19,8 +19,7 @@ export const getPlaces = () => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-        const { data } = await axios.get(`${baseUrl}/api/v1/place`, config)
-        
+        const { data } = await axios.get(`http://localhost:5003/api/v1/place`, config)
         dispatch({
             type: PLACES_SUCCESS,
             payload: data
@@ -32,4 +31,9 @@ export const getPlaces = () => async (dispatch) => {
             payload: error.response.data.message
         })
     }
+}
+export const clearErrors = () => async (dispatch) => {
+    dispatch({
+        type: CLEAR_ERRORS
+    })
 }

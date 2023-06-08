@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { Routes, Route } from "react-router-dom"
 import Dashboard from './pages/Dashboard';
 import Category from './components/Category';
+import Place from './components/place';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
     <div>
       <Navbar/>
       <Category/>
+      <Place/>
       <Routes>
         <Route path='/dashboard' element={Dashboard}></Route>
       </Routes>
