@@ -69,6 +69,46 @@
                     margin-bottom: 20px;
                 }
             }
+            .billing-address{
+                .country-name{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 6px 12px;
+                    p{
+                        font-size: 12px;
+                        margin: 0;
+                        padding: 0;
+                        color: #808080;
+                    }
+                    h3{
+                        margin: 0;
+                        padding: 0;
+                        font-weight: 400;
+                    }
+                }
+            }
+            .cancellation-policy{
+                .heading{
+                    font-size: 20px;
+                    font-weight: 500;
+                    padding: 0;
+                    margin-bottom: 10px;
+                }
+            }
+            .confirm-btn{
+                background-color: #FF385C;
+                color: white;
+                font-weight: 400;
+                border-radius: 6px;
+                font-size: 14px;
+                padding: 10px 35px;
+                opacity: 1;
+                transition: opacity 0.1s ease;
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
         }
         .checkout-card{
             display: none;
@@ -122,6 +162,36 @@
             }
         }
     }
+}
+
+/* street address */
+input[type="text"]:focus ~ .input-text-a,
+input[type="text"]:not(:placeholder-shown) ~ .input-text-a{
+  @apply font-semibold transform -translate-y-6 -translate-x-[17px] scale-75;
+}
+
+/* city */
+input[type="text"]:focus ~ .input-text-c,
+input[type="text"]:not(:placeholder-shown) ~ .input-text-c{
+  @apply font-semibold  transform -translate-y-6 -translate-x-[3px] scale-75;
+}
+
+/* apt or suite number*/
+input[type="text"]:focus ~ .input-text,
+input[type="text"]:not(:placeholder-shown) ~ .input-text{
+  @apply font-semibold transform -translate-y-6 -translate-x-[14px] scale-75;
+}
+
+/* state */
+input[type="text"]:focus ~ .input-text-z,
+input[type="text"]:not(:placeholder-shown) ~ .input-text-z{
+  @apply  transform -translate-y-6 -translate-x-[17px] scale-75;
+}
+
+/* zip code */
+input[type="text"]:focus ~ .input-text-z,
+input[type="text"]:not(:placeholder-shown) ~ .input-text-z{
+  @apply font-semibold transform -translate-y-6 -translate-x-[7px] scale-75;
 }
 
 @media screen and (max-width : 768px) {

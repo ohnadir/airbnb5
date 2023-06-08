@@ -21,10 +21,10 @@ function App() {
   return (
     <div>
       <Navbar/>
-      <Category/>
+      {/* <Category/> */}
       {/* <Place/> */}
       <Checkout/>
-      <Footer/>
+      {/* <Footer/> */}
       <Routes>
         <Route path='/dashboard' element={Dashboard}></Route>
       </Routes>
