@@ -5,6 +5,8 @@ import { loadUser } from "./Redux/actions/user"
 import { useEffect } from 'react';
 import { Routes, Route } from "react-router-dom"
 import Dashboard from './pages/Dashboard';
+import Category from './components/Category';
+
 function App() {
   const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem("token"));
@@ -16,6 +18,7 @@ function App() {
   return (
     <div>
       <Navbar/>
+      <Category/>
       <Routes>
         <Route path='/dashboard' element={Dashboard}></Route>
       </Routes>
