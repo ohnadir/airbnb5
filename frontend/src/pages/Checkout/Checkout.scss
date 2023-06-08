@@ -111,10 +111,12 @@
             }
         }
         .checkout-card{
-            display: none;
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 24px;
+            height: fit-content;
+            position: sticky;
+            top: 150px;
             .price-heading{
                 font-size: 22px;
                 color: #222222;
