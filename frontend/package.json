@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@faker-js/faker": "^8.0.2",
+    "@stripe/react-stripe-js": "^2.1.0",
+    "@stripe/stripe-js": "^1.54.0",
     "antd": "^5.5.2",
     "axios": "^1.4.0",
     "chance": "^1.1.11",

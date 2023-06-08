@@ -39,7 +39,39 @@
     }
     .checkout-container{
         margin-top: 40px;
+        .checkout-option{
+            .date-container, .guest-container{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                h2{
+                    font-size: 16px;
+                    color: #222222;
+                    font-weight: 500;
+                    margin: 0;
+                }
+                h5{
+                    font-size: 15px;
+                    color: #222222;
+                    margin: 0;
+                }
+                .edit-button{
+                    text-decoration: underline;
+                    font-size: 15px;
+                    font-weight: 500;
+                }
+            }
+            .payment-section {
+                .payment-heading{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+                }
+            }
+        }
         .checkout-card{
+            display: none;
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 24px;
