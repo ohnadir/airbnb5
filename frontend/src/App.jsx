@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { loadUser } from "./Redux/actions/user"
 import { useEffect } from 'react';
 import { Routes, Route } from "react-router-dom"
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard/index';
 import Category from './components/Category';
 import Place from './components/place';
 import Footer from "./components/Footer"
@@ -23,10 +23,11 @@ function App() {
       <Navbar/>
       {/* <Category/> */}
       {/* <Place/> */}
-      <Checkout/>
+      {/* <Checkout/> */}
       {/* <Footer/> */}
       <Routes>
-        <Route path='/dashboard' element={Dashboard}></Route>
+        <Route path='/dashboard' element={<Dashboard/>} />
+        <Route path='/checkout' element={<Checkout/>} />
       </Routes>
     </div>
   )

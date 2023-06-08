@@ -11,7 +11,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import AuthCheckout from './LoginCheckout';
-
+import { message } from 'antd';
 const options = {
     style: {
         base: {
@@ -26,6 +26,7 @@ const Checkout = () => {
     const { place, loading } = useSelector(state=> state.place);
     const { isAuthenticated} = useSelector(state => state.auth);
     const { api } = useSelector(state => state.stripeApi);
+    const [messageApi, contextHolder] = message.useMessage();
     const dispatch = useDispatch();
     const id = "64770dde9c9a8f27aee50f5c"
     const stripePromise = loadStripe(api);
@@ -35,6 +36,7 @@ const Checkout = () => {
     },[id]);
     return (
         <>
+            {contextHolder}
             {
                 loading
                 ?
