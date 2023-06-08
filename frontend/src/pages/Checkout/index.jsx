@@ -9,6 +9,7 @@ import { FiChevronDown } from "react-icons/fi";
 import { Elements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+import AuthCheckout from './AuthCheckout';
 
 const options = {
     style: {
@@ -189,6 +190,7 @@ const Checkout = () => {
                             {/* submit button */}
                             <button   className="confirm-btn">Confirm and pay</button>
                         </div>
+                        <AuthCheckout/>
                     </div>
                 </div>
             }
