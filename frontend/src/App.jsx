@@ -16,9 +16,8 @@ function App() {
   return (
     <div>
       <Navbar/>
-      <Dashboard/>
       <Routes>
-        {/* <Route path='/dashboard' element={Dashboard}></Route> */}
+        <Route path='/dashboard' element={Dashboard}></Route>
       </Routes>
     </div>
   )

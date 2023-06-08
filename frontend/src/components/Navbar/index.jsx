@@ -4,8 +4,11 @@ import { BiMenu, BiSearch } from 'react-icons/bi';
 import { FaUserCircle } from 'react-icons/fa';
 import { useState } from "react";
 import { Modal } from 'antd';
+import { useSelector } from 'react-redux'
 import AuthenticationModal from "../AuthenticationModal/AuthenticationModal";
 const Navbar = () => {
+  const { isAuthenticated, user } = useSelector(state => state.auth);
+  console.log(user);
   const [dropdown, setDropdown] = useState(false);
   const [open, setOpen] = useState(false);
   const [authModal, setAuthModal] = useState(false);
@@ -56,8 +59,31 @@ const Navbar = () => {
               {
                 dropdown && <div className="profile-dropdown">
                   <ul>
-                    <li onClick={handleDropDown}>Login / Signup</li>
-                  </ul>
+                      {
+                        isAuthenticated 
+                        ? <li>{user?.firstName} {user?.lastName}</li> 
+                        :
+                        <li className='hidden'></li>
+                      }
+                      {
+                        isAuthenticated 
+                        ? <li className='hidden'></li>
+                        :
+                        <li onClick={handleDropDown}>Login OR Sign up </li>
+                      }
+                      {
+                        isAuthenticated 
+                        ?  <li  >Profile</li>
+                        :
+                        <li className='hidden'></li>
+                      }
+                      {
+                        isAuthenticated 
+                        ?  <li  >Your Booking</li>
+                        :
+                        <li className='hidden'></li>
+                      }
+                    </ul>
                   <div className='profile-dropdown-divider'></div>
                   <ul>
                     <li>Airbnb your home</li>
