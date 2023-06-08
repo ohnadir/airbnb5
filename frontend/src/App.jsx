@@ -9,6 +9,7 @@ import Category from './components/Category';
 import Place from './components/place';
 import Footer from "./components/Footer"
 import Checkout from "./pages/Checkout"
+import Invoice from "./pages/Invoice"
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/checkout' element={<Checkout/>} />
+        <Route path='/invoice' element={<Invoice/>} />
       </Routes>
     </div>
   )
