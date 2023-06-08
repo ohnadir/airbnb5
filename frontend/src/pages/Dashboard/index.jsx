@@ -3,6 +3,7 @@ import CountUp from 'react-countup';
 import { FaTasks } from "react-icons/fa"
 import PieChart from "./PieChart";
 import RecentBooking from "./RecentBooking"
+import LineChart from "./LineChart";
 
 const Dashboard = () => {
   return (
@@ -106,7 +107,9 @@ const Dashboard = () => {
                 </div>
             </div>
             <div className="booking-chart">
-                <div className="chart booking-table-chart"></div>
+                <div className="chart booking-table-chart">
+                    <LineChart/>
+                </div>
                 <div className="chart booking-pie-chart">
                     <PieChart/>
                 </div>

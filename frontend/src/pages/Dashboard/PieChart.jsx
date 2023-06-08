@@ -4,7 +4,7 @@ import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green'],
+  labels: ['Pending Booking', 'Total Booking', 'Complete Booking', 'Processing Booking'],
   datasets: [
     {
       label: '# of Votes',
@@ -26,7 +26,7 @@ export const data = {
   ],
 };
 const PieChart = () => {
-    return <Pie data={data} />
+  return <Pie  data={data} />
 }
 
 export default PieChart
