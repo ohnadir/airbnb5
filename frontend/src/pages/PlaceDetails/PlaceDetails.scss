@@ -2,4 +2,241 @@
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 40px;
+    margin-top: 20px;
+    .card-divider{
+        width: 100%;
+        height: 1px;
+        background-color: #ddd;
+    }
+    .mobile-version{
+        display: none;
+        overflow-x: hidden;
+        img{
+            width: 100%;
+            max-height: 300px !important;
+        }
+    }
+    .header{
+        h1{
+            font-size: 32px;
+            padding: 0;
+            margin: 0;
+        }
+        p{
+            font-size: 16px;
+            font-weight: 600;
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    .place-advantage{
+        width: 70%;
+        .room-facilities-container{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .room-facilities{
+                display: flex;
+                flex-direction: column;
+                .host-heading{
+                    margin: 0;
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+                .bed-option{
+                    display: flex;
+                    list-style-position: inside;
+                    margin: 0;
+                    font-size: 15px;
+                    p,li{
+                        margin: 0;
+                        font-size: 14px;
+                    }
+                    li::before {
+                        content: "\2022";
+                        color: #717171;
+                        font-weight: bold;
+                        display: inline-block; 
+                        width: 1em;
+                        padding-left: 8px;
+                        margin-left: 0.1em;
+                    }
+                }
+            }
+        }
+        .dive-head{
+            font-size: 14px;
+            padding: 0;
+            margin: 0;
+            color: black;
+            font-weight: 600;
+        }
+        .dive-header{
+            color: #717171;
+            font-weight: 400;
+            font-size: 13px;
+        }
+        .room-type{
+            border-radius: 10px;
+            border: 1px solid #dddddd;
+            width: 40%;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .service-container{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .service-icon{
+                color: #222222;
+                font-size: 18px !important;
+            }
+            .service-name{
+                font-size:14px;
+                color: #222222;
+            }
+        }
+        
+    }
+    .place-info-card{
+        width: 30%;
+        .reserveCard{
+            border: 1px solid #b0b0b0;
+            border-radius: 10px;
+            padding: 25px;
+            top: 2px;
+            position: sticky;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        }
+        .guest{
+            width: 100%;
+            /* border-top: 1px solid #b0b0b0; */
+            
+        }
+        .checkHead{
+            font-size: 9px;
+            font-weight: 700;
+        }
+        .checkFooter{
+            font-size: 12px;
+        }
+        .guest p{
+            padding: 0;
+            margin: 0;
+        }  
+        .checkIn{
+            width: 100%;
+            padding: 8px;
+        }
+        .checkIn p{
+            padding: 0;
+            margin: 0;
+        }
+        .checkOut p{
+            padding: 0;
+            margin: 0;
+        }
+        .checkOut{
+            width: 100%;
+            padding: 8px;
+            /* border: 1px soli; */
+            border-left: 1px solid #b0b0b0;
+        }
+        .guestContainer{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top:1px solid #b0b0b0;
+            padding: 8px;
+        }
+        .reserveBtn{
+            width: 100%;
+            padding: 8px 0;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 20px;
+            background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%) !important;
+            color: rgb(255, 255, 255)
+        }
+    }
+    
+    .review{
+        .heading{
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .review-container{
+            .empty-review{
+                height: 50px;
+                width: 50px;
+                background-color: rgb(254 202 202);
+                border-radius: 50%;
+                color: rgb(220 38 38);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 8px;
+                margin: 20px auto;
+                
+            }
+        }
+    }
+    .map{
+        .heading{
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+        p{
+            font-size: 14px;
+            margin: 0;
+        }
+    }
+    
+
+    .imageContainer{
+        display: flex;
+        gap: 20px;
+        width: 100%;
+        max-height: 500px !important;
+        margin-top: 15px;
+    }
+    .bottomCorner{
+        border-radius: 0 0 10px 0 !important;
+    }
+    .topCorner{
+        border-radius: 0 10px 0 0 !important;
+    }
+    .image{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        width: 50%;
+        height: 100% ;
+        img{
+            display: block;
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .bigSize{
+        width: 50%;
+        img{
+            height: 100% ;
+        }
+    }
+    .bigSize img{
+        height: 100% ;
+        border-radius: 10px 0 0 10px !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .place-details{
+        .place-advantage{
+            width: 100%;
+        }
+    }
 }
