@@ -10,7 +10,7 @@ import {
 } from "../constants/place";
 
 
-const baseUrl = "http://localhost:5003"
+const baseUrl = "https://airbnb5.vercel.app"
 
 export const getPlaces = () => async (dispatch) => {
     try {

@@ -12,7 +12,7 @@ import {
     CLEAR_ERRORS
 } from "../constants/user"
 
-const baseUrl = "http://localhost:5003"
+const baseUrl = "https://airbnb5.vercel.app"
 
 export const  register = (validUser)=> async(dispatch)=>{
     try {
