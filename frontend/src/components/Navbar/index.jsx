@@ -6,11 +6,13 @@ import { useState } from "react";
 import { Modal } from 'antd';
 import { useSelector } from 'react-redux'
 import AuthenticationModal from "../AuthenticationModal/AuthenticationModal";
+import { useNavigate } from "react-router-dom"
 const Navbar = () => {
   const { isAuthenticated, user } = useSelector(state => state.auth);
   const [dropdown, setDropdown] = useState(false);
   const [open, setOpen] = useState(false);
   const [authModal, setAuthModal] = useState(false);
+  const navigate= useNavigate()
   const handleDropDown = () =>{
     setAuthModal(true)
     setDropdown(false)
@@ -22,7 +24,7 @@ const Navbar = () => {
         <div className='hidden md:block desktop-navbar-container'>
           <div className='desktop-navbar-content'>
             <div className='brand-logo'>
-              <img className="cursor-pointer"  src={logo} alt="" />
+              <img className="cursor-pointer" onClick={()=>navigate('/')} src={logo} alt="" />
             </div>
             <div>
               {

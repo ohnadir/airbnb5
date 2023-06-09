@@ -5,11 +5,9 @@ import { loadUser } from "./Redux/actions/user"
 import { useEffect } from 'react';
 import { Routes, Route } from "react-router-dom"
 import Dashboard from './pages/Dashboard/index';
-import Category from './components/Category';
-import Place from './components/place';
-import Footer from "./components/Footer"
 import Checkout from "./pages/Checkout"
 import Invoice from "./pages/Invoice"
+import Home from "./pages/Home"
 
 function App() {
   const dispatch = useDispatch();
@@ -22,11 +20,8 @@ function App() {
   return (
     <div>
       <Navbar/>
-      {/* <Category/> */}
-      {/* <Place/> */}
-      {/* <Checkout/> */}
-      {/* <Footer/> */}
       <Routes>
+        <Route path='/' element={<Home/>} />
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/checkout' element={<Checkout/>} />
         <Route path='/invoice' element={<Invoice/>} />
