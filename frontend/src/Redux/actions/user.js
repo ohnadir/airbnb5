@@ -9,6 +9,9 @@ import {
     LOAD_USER_REQUEST,
     LOAD_USER_SUCCESS,
     LOAD_USER_FAIL,
+    LOGOUT_REQUEST,
+    LOGOUT_SUCCESS,
+    LOGOUT_FAIL,
     CLEAR_ERRORS
 } from "../constants/user"
 
@@ -84,6 +87,29 @@ export const loadUser = (token) => async(dispatch)=>{
     catch (error){
         dispatch({
             type: LOAD_USER_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+export const logout = () => async (dispatch) => {
+    try {
+        dispatch({ type: LOGOUT_REQUEST })
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+        localStorage.removeItem("token");
+        await axios.get(`${baseUrl}/api/v1/user/logout`, config)
+        dispatch({
+            type: LOGOUT_SUCCESS,
+        })
+
+    } catch (error) {
+        dispatch({
+            type: LOGOUT_FAIL,
             payload: error.response.data.message
         })
     }

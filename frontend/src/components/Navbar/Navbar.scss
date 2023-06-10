@@ -11,6 +11,9 @@
     margin: 0 auto;
     padding: 0 40px;
     position: relative;
+    .cursor-name{
+        cursor: not-allowed !important;
+    }
     .desktop-navbar-content{
         display: flex;
         align-items: center;

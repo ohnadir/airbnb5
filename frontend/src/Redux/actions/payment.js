@@ -7,7 +7,7 @@ import {
 } from "../constants/payment";
 
 
-const baseUrl = "http://localhost:5003"
+const baseUrl = "https://airbnb5.vercel.app"
 
 export const stripeApi = () => async (dispatch) => {
     try {
