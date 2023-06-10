@@ -5,10 +5,10 @@ import { FaUserCircle } from 'react-icons/fa';
 import { useState } from "react";
 import { Modal } from 'antd';
 import { useSelector } from 'react-redux'
-// import AuthenticationModal from "../AuthenticationModal/AuthenticationModal";
+import AuthenticationModal from "../AuthenticationModal/AuthenticationModal";
 import { useNavigate } from "react-router-dom"
 const Navbar = () => {
-  // const { isAuthenticated, user } = useSelector(state => state.auth);
+  const { isAuthenticated, user } = useSelector(state => state.auth);
   const [dropdown, setDropdown] = useState(false);
   const [open, setOpen] = useState(false);
   const [authModal, setAuthModal] = useState(false);
@@ -60,7 +60,7 @@ const Navbar = () => {
               {
                 dropdown && <div className="profile-dropdown">
                   <ul>
-                      {/* {
+                      {
                         isAuthenticated 
                         ? <li>{user?.firstName} {user?.lastName}</li> 
                         :
@@ -83,7 +83,7 @@ const Navbar = () => {
                         ?  <li  >Your Booking</li>
                         :
                         <li className='hidden'></li>
-                      } */}
+                      }
                     </ul>
                   <div className='profile-dropdown-divider'></div>
                   <ul>
@@ -96,7 +96,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        {/* {
+        {
           authModal && <Modal
           centered
           style ={{borderRadius:"15px", overflow:"auto"}}
@@ -111,7 +111,7 @@ const Navbar = () => {
             <AuthenticationModal setAuthModal={setAuthModal}/> 
           </div>
           </Modal>
-        } */}
+        }
       </div>
     </div>
   )
