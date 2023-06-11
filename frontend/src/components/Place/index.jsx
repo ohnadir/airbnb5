@@ -38,7 +38,7 @@ const Place = () => {
         nextArrow: <ArrowRight />,
         appendDots: dots => (
           <div
-            style={{position:"absolute", bottom:"8px", }}>
+            style={{position:"absolute", bottom:"8px"}}>
               <ul className="sideDots" style={{ margin: "0px" }}> <span className="dots">{dots}</span> </ul>
           </div>
         )

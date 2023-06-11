@@ -39,8 +39,33 @@
         }
     }
     .checkout-container{
-        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 25px;
         .checkout-option{
+            width: 50%;
+            .mobile-price-container{
+                display: none;
+                .price-heading{
+                    font-size: 22px;
+                    color: #222222;
+                    margin: 0;
+                    font-weight: 600;
+                }
+                .price-container{
+                    color: #696969;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-size: 16px;
+                    font-weight: 400;
+                }
+                .total-price{
+                    color: #404040 !important;
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+            }
             .date-container, .guest-container{
                 display: flex;
                 align-items: center;
@@ -94,7 +119,7 @@
                     font-size: 20px;
                     font-weight: 500;
                     padding: 0;
-                    margin-bottom: 10px;
+                    margin: 30px 0 10px 0;
                 }
             }
             .confirm-btn{
@@ -112,6 +137,8 @@
             }
         }
         .checkout-card{
+            width: 40%;
+            display: block;
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 24px;
@@ -303,11 +330,57 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text-z{
 }
 
 
-@media screen and (max-width : 768px) {
+@media screen and (max-width : 767px) {
     .checkout{
+        .heading{
+            text-align: center;
+        }
         .mobile-place-card{
             display: flex;
             gap: 20px;
         }
+        .checkout-container{
+            .checkout-option{
+                width: 100%;
+                .mobile-price-container{
+                    display: block;
+                }
+            }
+            .checkout-card{
+                display: none;
+            }
+        }
+        
+    }
+}
+@media screen and (min-width : 640px) {
+    .checkout{
+        .checkout-container{
+            .checkout-option{
+                .billing-address{
+                    .zip-container{
+                        width: 100%;
+                        border-left: 1px solid #ddd;
+                    }
+                }
+            }
+        }
+        
+    }
+
+}
+@media screen and (max-width : 639px) {
+    .checkout{
+        .checkout-container{
+            .checkout-option{
+                .billing-address{
+                    .zip-container{
+                        width: 100%;
+                        border-top: 1px solid #ddd;
+                    }
+                }
+            }
+        }
+        
     }
 }

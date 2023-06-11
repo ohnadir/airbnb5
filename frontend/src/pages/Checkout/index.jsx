@@ -61,9 +61,10 @@ const Checkout = () => {
                             </div>
                         </div>
                     </div>
+                    <div className="card-divider mt-5 md:hidden"></div>
 
                     <div className="checkout-container flex  gap-10">
-                        <div className="checkout-option pb-8 w-full md:w-1/2">
+                        <div className="checkout-option pb-8">
                             <section>
                                 <h2 className='text-[22px] text-[#222222] font-semibold font-sans '>Your trip</h2>
                                 <div className="date-container my-4">
@@ -81,6 +82,26 @@ const Checkout = () => {
                                     <span className="edit-button">Edit</span>
                                 </div>
                             </section>
+
+                            <div className="card-divider my-5 md:hidden"></div>
+                            <section className='mobile-price-container'>
+                                <h2 className='price-heading'>Price details</h2>
+                                <div className="mt-3 grid grid-cols-1 gap-1">
+                                    <div className='price-container'>
+                                        <span>$56.24 x 7 nights</span>
+                                        <span>$393.67</span>
+                                    </div>
+                                    <div className='price-container'>
+                                        <span className="text-[#696969]">Service fee</span>
+                                        <span className="text-[#54B157]">$55.58</span>
+                                    </div>
+                                    <div className='price-container total-price'>
+                                        <span>Total </span>
+                                        <span>$496.49</span>
+                                    </div>
+                                </div>
+                            </section>
+
                             <div className="card-divider my-5"></div>
                             {
                                 isAuthenticated
@@ -105,32 +126,32 @@ const Checkout = () => {
                                     <section className="billing-address">
                                         <h1 className=" mb-5 mt-6 font-semibold">Billing Address</h1>
                                         <div className="billing-address-container border rounded-[8px]">
-                                            <div className="relative" style={{borderBottom:"1px solid #B0B0B0"}}>
+                                            <div className="relative" style={{borderBottom:"1px solid #ddd"}}>
                                                 <label className='relative cursor-pointer'>
                                                     <input name='address'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
                                                     <span className='text-opacity-80  absolute left-[14px] top-[30%] text-black translate-y-[-50%] text-[15px]  transition duration-200 input-text'>Street Address</span>
                                                 </label>
                                             </div>
-                                            <div className="relative" style={{borderBottom:"1px solid #B0B0B0"}}>
+                                            <div className="relative" style={{borderBottom:"1px solid #ddd"}}>
                                                 <label className='relative cursor-pointer'>
                                                     <input name='aptNumber'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
                                                     <span className='text-opacity-80  absolute left-[14px] top-[30%] text-black translate-y-[-50%] text-[15px] transition duration-200 input-text-a'>Apt or suite number</span>
                                                 </label>
                                             </div>
-                                            <div className="" style={{borderBottom:"1px solid #B0B0B0"}}>
+                                            <div className="" style={{borderBottom:"1px solid #ddd"}}>
                                                 <label className='relative cursor-pointer'>
                                                     <input name='city'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
                                                     <span className='text-opacity-80  absolute left-[14px] top-[30%] text-black translate-y-[-50%] text-[15px] transition duration-200 input-text-c'>City</span>
                                                 </label>
                                             </div>
-                                            <div className="flex ">
+                                            <div className="sm:flex ">
                                                 <div className="w-full">
                                                     <label className='relative cursor-pointer'>
                                                         <input name='state'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
                                                         <span className='text-opacity-80  absolute left-[14px] top-[30%] text-black translate-y-[-50%] text-[15px] transition duration-200 input-text-z'>State</span>
                                                     </label>
                                                 </div>
-                                                <div className="w-full" style={{borderLeft:"1px solid #B0B0B0"}}>
+                                                <div className="zip-container">
                                                     <label className='relative cursor-pointer'>
                                                         <input name='zipCode'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
                                                         <span className='text-opacity-80  absolute left-[14px] top-[30%] text-black translate-y-[-50%] text-[14px] transition duration-200 input-text-z'>ZIP Code</span>
@@ -148,7 +169,6 @@ const Checkout = () => {
                                             <FiChevronDown size={18} />
                                         </div>
                                     </section>
-                                    <div className="card-divider my-8"></div>
 
                                     {/* cancellation policy term start */}
                                     <section className="cancellation-policy">
@@ -169,7 +189,7 @@ const Checkout = () => {
                                 <AuthCheckout/>
                             }
                         </div>
-                        <div className="checkout-card w-1/2 hidden md:block ">
+                        <div className="checkout-card">
                             <div className='place-card'>
                                 <img  src="https://a0.muscache.com/im/pictures/c1fa3691-1287-4334-981d-ef9a9a8f5a56.jpg?im_w=720" alt="" />
                                 <div className="place-info">

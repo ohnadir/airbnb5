@@ -33,3 +33,19 @@
 .cardItem img{
     height: 250px !important;
 }
+.slick-dots {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.slick-dots li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.slick-dots li button {
+  color: white !important;
+ }
+.slick-dots li.slick-active button:before {
+  color: white !important;
+}
