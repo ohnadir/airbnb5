@@ -268,32 +268,34 @@ const PlaceDetails = () => {
           &&
           <section className="top-navbar">
             <div className='top-navbar-container'>
-              <ul className='pt-[12px]'>
+              <ul>
                 <li>Photos</li>
                 <li>Amenities</li>
                 <li>Reviews</li>
                 <li>Location</li>
               </ul>
-              {
-                showReserveBtn
-                &&
-                <div className='flex items-center gap-5'>
-                  <div>
-                    <p className='m-0 text-[13px]'>
-                      <span className='font-semibold'>${place?.price} </span>
-                      <span style={{color:" #979797"}}>night</span>
-                    </p>
-                    <div className="flex items-center gap-1  text-xs">
-                      <FaStar className=""/>
-                      <p className='m-0'>
-                        <span className='font-semibold'>{place?.rating} </span>
-                        <span style={{color:" #979797"}}>reviews</span>
-                      </p>
+                <div className='w-[200px] h-[38px]'>
+                  {
+                    showReserveBtn
+                    &&
+                    <div className='flex items-center justify-between w-full'>  
+                      <div>
+                        <p className='m-0 text-[13px]'>
+                          <span className='font-semibold'>${place?.price} </span>
+                          <span style={{color:" #979797"}}>night</span>
+                        </p>
+                        <div className="flex items-center gap-1  text-xs">
+                          <FaStar className=""/>
+                          <p className='m-0'>
+                            <span className='font-semibold'>{place?.rating} </span>
+                            <span style={{color:" #979797"}}>reviews</span>
+                          </p>
+                        </div>
+                      </div>
+                      <button  className="reserve-btn">Reserve</button>
                     </div>
-                  </div>
-                  <button  className="reserve-btn">Reserve</button>
+                  }
                 </div>
-              }
             </div>
           </section>
         }
