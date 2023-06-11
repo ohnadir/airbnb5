@@ -1,7 +1,7 @@
 .place-details{
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 40px 80px 40px;
     margin-top: 20px;
     .card-divider{
         width: 100%;
@@ -29,7 +29,42 @@
             margin: 0;
         }
     }
-
+    .desktop-img-container{
+        display: flex;
+        gap: 20px;
+        width: 100%;
+        max-height: 500px !important;
+        margin-top: 15px;
+        .large-img{
+            width: 50%;
+            max-height: 500px !important;
+            img{
+                height: 100%;
+                border-radius: 10px 0 0 10px !important;
+            }
+        }
+        .grid-img{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 50%;
+            max-height: 500px !important;
+            .img{
+                width: 100%;
+                max-height: 250px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .top-corner{
+                border-radius: 0 10px 0 0 !important;
+            }
+            .bottom-corner{
+                border-radius: 0 0 10px 0 !important;
+            }
+        }
+    }
     .place-advantage{
         width: 70%;
         .room-facilities-container{
@@ -101,56 +136,59 @@
     }
     .place-info-card{
         width: 30%;
-        .reserveCard{
-            border: 1px solid #b0b0b0;
-            border-radius: 10px;
-            padding: 25px;
-            top: 2px;
-            position: sticky;
-            box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-        }
-        .guest{
-            width: 100%;
-            /* border-top: 1px solid #b0b0b0; */
-            
-        }
-        .checkHead{
-            font-size: 9px;
-            font-weight: 700;
-        }
-        .checkFooter{
-            font-size: 12px;
-        }
-        .guest p{
-            padding: 0;
-            margin: 0;
-        }  
-        .checkIn{
-            width: 100%;
-            padding: 8px;
-        }
-        .checkIn p{
-            padding: 0;
-            margin: 0;
-        }
-        .checkOut p{
-            padding: 0;
-            margin: 0;
-        }
-        .checkOut{
-            width: 100%;
-            padding: 8px;
-            /* border: 1px soli; */
-            border-left: 1px solid #b0b0b0;
-        }
-        .guestContainer{
+        height: fit-content;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 25px;
+        top: 170px;
+        position: sticky;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        .card-header{
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            border-top:1px solid #b0b0b0;
-            padding: 8px;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            .card-header-option{
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
         }
-        .reserveBtn{
+        .reserve-option{
+            position: relative;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            .date-picker, .guest-picker{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                cursor: pointer;
+                .check-in{
+                    width: 100%;
+                    padding: 8px;
+                }
+                .check-out{
+                    width: 100%;
+                    padding: 8px;
+                    border-left: 1px solid #ddd;
+                }
+                .check-head{
+                    font-size: 9px;
+                    font-weight: 700;
+                    margin: 0;
+                }
+                .check-counter{
+                    margin: 0;
+                    font-size: 13px;
+                }
+            }
+            .guest-picker{
+                position: relative;
+                padding: 8px;
+                border-top:1px solid #ddd;
+            }
+        }
+        .reserve-btn{
             width: 100%;
             padding: 8px 0;
             border-radius: 8px;
@@ -160,8 +198,8 @@
             background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%) !important;
             color: rgb(255, 255, 255)
         }
+        
     }
-    
     .review{
         .heading{
             font-size: 20px;
@@ -178,7 +216,7 @@
                 align-items: center;
                 justify-content: center;
                 padding: 8px;
-                margin: 20px auto;
+                margin: 0 auto;
                 
             }
         }
@@ -194,49 +232,90 @@
             margin: 0;
         }
     }
-    
 
-    .imageContainer{
-        display: flex;
-        gap: 20px;
+    .mobile-bottom-navbar{
+        overflow-x: hidden;
+        background-color: white;
+        border-top: 1px solid #ddd;
+        position: fixed;
+        bottom: 0;
+        left: 0;
         width: 100%;
-        max-height: 500px !important;
-        margin-top: 15px;
-    }
-    .bottomCorner{
-        border-radius: 0 0 10px 0 !important;
-    }
-    .topCorner{
-        border-radius: 0 10px 0 0 !important;
-    }
-    .image{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        width: 50%;
-        height: 100% ;
-        img{
-            display: block;
-            height: 100%;
-            width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        z-index: 1;
+        visibility: hidden;
+        .mobile-bottom-navbar-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 1280px;
+            padding: 10px 40px;
+            margin: 0 auto;
+            .mobile-reserve-btn{
+                padding: 6px 16px;
+                border: 1px solid red;
+                border-radius: 4px;
+                font-weight: 600;
+                font-size: 14px;
+                color: white;
+                background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%) !important;
+            }
         }
     }
-    .bigSize{
-        width: 50%;
-        img{
-            height: 100% ;
+
+    .top-navbar{
+        background-color: white;
+        border-bottom: 1px solid #ddd;
+        position: fixed;
+        top: 86px;
+        left: 0;
+        width: 100%;
+        z-index: 5;
+        .top-navbar-container{
+            max-width: 1280px;
+            padding: 20px 40px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            ul, li{
+                margin: 0;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+            .reserve-btn{
+                padding: 6px 16px;
+                border: 1px solid red;
+                border-radius: 4px;
+                font-weight: 600;
+                font-size: 14px;
+                color: white;
+                background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%) !important;
+            }
         }
     }
-    .bigSize img{
-        height: 100% ;
-        border-radius: 10px 0 0 10px !important;
-    }
+    
 }
 
 @media screen and (max-width: 767px) {
     .place-details{
+        .mobile-version{
+            display: block;
+        }
+        .desktop-img-container{
+            display: none;
+        }
         .place-advantage{
             width: 100%;
+        }
+        .place-info-card{
+            display: none;
+        }
+        .mobile-bottom-navbar{
+            visibility: visible;
         }
     }
 }

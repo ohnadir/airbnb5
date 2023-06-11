@@ -110,7 +110,7 @@ const Dashboard = () => {
                 <div className="chart booking-table-chart">
                     <LineChart/>
                 </div>
-                <div className="chart booking-pie-chart">
+                <div className="chart h-[500px] flex items-center justify-center md:h-full booking-pie-chart">
                     <PieChart/>
                 </div>
             </div>

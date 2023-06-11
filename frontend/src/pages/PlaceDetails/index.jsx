@@ -1,7 +1,7 @@
 import './PlaceDetails.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { placeDetails } from "../../Redux/actions/place"
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FaAirbnb, FaStar } from 'react-icons/fa';
 import Slider from "react-slick";
 import { AiOutlineStar } from 'react-icons/ai';
@@ -11,28 +11,51 @@ import { MdMonitor,  MdOutlinePostAdd } from 'react-icons/md';
 import { TbPool } from 'react-icons/tb';
 import { IoIosArrowUp } from 'react-icons/io';
 const PlaceDetails = () => {
+  const [showNavbar, setShowNavbar] = useState(false);
+  const [showReserveBtn, setShowReserveBtn] = useState(false)
   const {place} = useSelector(state=> state.place);
   const dispatch = useDispatch();
   const id = "64770dde9c9a8f27aee50f5c"
   useEffect(()=>{
     dispatch(placeDetails(id))
   },[id]);
-  console.log(place)
+
   const settings = {
     dots: false,
+    arrows: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1
-};
+  };
+  const controlNavbar = () => {
+    if (window.scrollY > 450) {
+      setShowNavbar(true)
+    } else {
+      setShowNavbar(false)
+    }
+
+    if (window.scrollY > 650) {
+      setShowReserveBtn(true)
+    } else {
+    setShowReserveBtn(false)
+    }
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', controlNavbar)
+    return () => {
+      window.removeEventListener('scroll', controlNavbar)
+    }
+  }, []);
   return (
     <div className='place-details'>
       <div className="place-details-container">
+
         <div className="mobile-version">
           <div className=''>
             <Slider {...settings}>
               {
-                place.img?.map((img, index)=> <img key={index} className='overflow-y-hidden' src={img} alt=""/>)
+                place?.img?.map((img, index)=> <img key={index} className='overflow-y-hidden' src={img} alt=""/>)
               }
             </Slider>
           </div>
@@ -48,33 +71,26 @@ const PlaceDetails = () => {
             <p >{place?.name?.split(',')[1]}</p>
           </div>
         </div>
-        <section className='imageContainer desktop-version'>
-          <div className="imageContainer">
-            <div className="bigSize">
-              {
-                place?.img ? <img src={place.img[0]}  alt=""/> : ""
-              }
+
+        <section className='desktop-img-container'>
+          <div className="large-img">
+            { place?.img ? <img src={place.img[0]}  alt=""/> : "" }
+          </div>
+          <div className="grid-img">
+            <div className='flex gap-5'>
+              <div className='img'>
+                { place?.img ? <img  src={place?.img[1]}  alt=""/> : "" }
+              </div>
+              <div className='img'>
+                { place?.img ? <img className="top-corner" src={place?.img[2]}  alt=""/> : "" }
+              </div >
             </div>
-            <div className="image">
-              <div>
-                {
-                  place?.img ? <img className="" src={place?.img[1]}  alt=""/> : ""
-                }
+            <div className='flex gap-5'>
+              <div className='img'>
+                { place?.img ? <img src={place?.img[3]}  alt=""/> : "" }
               </div>
-              <div>
-                {
-                  place?.img ? <img className="topCorner" src={place?.img[2]}  alt=""/> : ""
-                }
-              </div>
-              <div>
-                {
-                  place?.img ? <img className="" src={place?.img[3]}  alt=""/> : ""
-                }
-              </div>
-              <div>
-                {
-                  place?.img ? <img className="bottomCorner" src={place?.img[4]}  alt=""/> : ""
-                }
+              <div className='img'>
+                { place?.img ? <img className="bottom-corner" src={place?.img[4]}  alt=""/> : "" }
               </div>
             </div>
           </div>
@@ -166,67 +182,53 @@ const PlaceDetails = () => {
             <div className="card-divider my-7"></div>
           </div>
           <div className="place-info-card">
-            <div style={{"top":"170px"}} className="reserveCard">
-                                    <div className='flex items-center justify-between mb-3'>
-                                        <div className='flex items-center gap-1'>
-                                            <span className=' font-semibold'>$10</span>
-                                            <span style={{color:" #979797"}} className='text-[14px]'>night</span>
-                                        </div>
-                                        <div className="flex items-center gap-1 text-[13px] ">
-                                            <FaStar className=""/>
-                                            <span className=" font-semibold">{place?.rating}</span>
-                                            <div style={{color:" #979797"}} className='text-[14px] m-0'>
-                                                reviews 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="reserveOption relative">
-                                        <div style={{border:"1px solid #b0b0b0"}} className='  rounded-xl'>
-                                            <div className='flex justify-between'>
-                                                <div className="checkIn cursor-pointer">
-                                                    <p className="checkHead">CHECK-IN</p>
-                                                    <p className="checkFooter">10-10</p>
-                                                </div>
-                                                <div className="checkOut cursor-pointer">
-                                                    <p className="checkHead">CHECKOUT</p>
-                                                    <p className="checkFooter">10-30</p>
-                                                </div>
-                                            </div>
-                                             
-                                            <div className="guestContainer relative">
-                                                <div className="guest cursor-pointer">
-                                                    <p className="checkHead">GUESTS</p>
-                                                    <p className="checkFooter">3</p>
-                                                </div>
-                                                <IoIosArrowUp/>
-
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                      <button className="reserveBtn" type="">Check availability</button>
-                                      <button className="reserveBtn" type="">Reserve</button>
-                                    </div>
-                                    <div>
-                                        <h1 className='mt-2 text-[13px] text-center'>You won&apos;t be charged yet</h1>
-                                        <div className='flex items-center text-[14px] justify-between  mt-3'>
-                                            <span className='underline '>$ 20 x 2 nights</span>
-                                            <span>$10</span>
-                                        </div>
-                                        <div className='my-1 text-[14px] flex items-center justify-between font-[400]'>
-                                            <span className='underline '>Service fee</span>
-                                            <span>$ 24</span>
-                                        </div>
-                                        <div className="cardDivider">
-                                            <p></p>
-                                        </div>
-                                        <div className='flex items-center justify-between font-semibold text-[15px]'>
-                                            <span>Total before taxes</span>
-                                            <span>$10</span>
-                                        </div>
-                                    </div>
-            </div>
+              <div className='card-header'>
+                <div className='card-header-option'>
+                  <span className=' font-semibold'>$10</span>
+                  <span style={{color:" #979797"}} className='text-[14px]'>night</span>
+                </div>
+                <div className="text-[13px] card-header-option">
+                  <FaStar className=""/>
+                  <span className="font-semibold">{place?.rating}</span>
+                  <div style={{color:" #979797"}} className='text-[14px] m-0'>reviews</div>
+                </div>
+              </div>
+              <div className="reserve-option">
+                <div className='date-picker'>
+                  <div className="check-in">
+                    <p className="check-head">CHECK-IN</p>
+                    <p className="check-counter">10-10</p>
+                  </div>
+                  <div className="check-out">
+                    <p className="check-head">CHECKOUT</p>
+                    <p className="check-counter">10-30</p>
+                  </div>
+                </div>
+                <div className="guest-picker">
+                  <div>
+                    <p className="check-head">GUESTS</p>
+                    <p className="check-counter">10</p>
+                  </div>
+                  <IoIosArrowUp/>
+                </div>
+              </div>
+              <button className="reserve-btn" type="">Reserve</button>
+              <div>
+                  <h1 className='mt-2 text-[13px] text-center'>You won&apos;t be charged yet</h1>
+                  <div className='flex items-center text-[14px] justify-between  mt-3'>
+                      <span className='underline '>$ 20 x 2 nights</span>
+                      <span>$10</span>
+                  </div>
+                  <div className='my-1 text-[14px] flex items-center justify-between font-[400]'>
+                      <span className='underline '>Service fee</span>
+                      <span>$ 24</span>
+                  </div>
+                  <div className="card-divider my-4"></div>
+                  <div className='flex items-center justify-between font-semibold text-[15px]'>
+                      <span>Total before taxes</span>
+                      <span>$10</span>
+                  </div>
+              </div>
           </div>
         </div>
 
@@ -246,6 +248,55 @@ const PlaceDetails = () => {
             <p className='m-0 text-center'>No reviews (yet)</p>
           </div>
         </section>
+
+        <section className="mobile-bottom-navbar">
+          <div className="mobile-bottom-navbar-container">
+            <div>
+              <span className='text-[14px] font-bold'>$ {place.price} </span> <span className='text-[14px]'>night</span>
+              <div className='flex items-center gap-1 text-[14px]'>
+                <FaStar className=""/>
+                <span className=" font-semibold">{place?.rating}</span>
+              </div>  
+            </div>
+            <div>
+              <button className="mobile-reserve-btn" type="">Reserve</button>
+            </div>
+          </div>
+        </section>
+        {
+          showNavbar 
+          &&
+          <section className="top-navbar">
+            <div className='top-navbar-container'>
+              <ul className='pt-[12px]'>
+                <li>Photos</li>
+                <li>Amenities</li>
+                <li>Reviews</li>
+                <li>Location</li>
+              </ul>
+              {
+                showReserveBtn
+                &&
+                <div className='flex items-center gap-5'>
+                  <div>
+                    <p className='m-0 text-[13px]'>
+                      <span className='font-semibold'>${place?.price} </span>
+                      <span style={{color:" #979797"}}>night</span>
+                    </p>
+                    <div className="flex items-center gap-1  text-xs">
+                      <FaStar className=""/>
+                      <p className='m-0'>
+                        <span className='font-semibold'>{place?.rating} </span>
+                        <span style={{color:" #979797"}}>reviews</span>
+                      </p>
+                    </div>
+                  </div>
+                  <button  className="reserve-btn">Reserve</button>
+                </div>
+              }
+            </div>
+          </section>
+        }
       </div>
     </div>
   )
