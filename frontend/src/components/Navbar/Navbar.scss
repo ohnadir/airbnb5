@@ -186,3 +186,33 @@
         padding: 8px;
     }
 }
+
+.mobile-bottom-nav{
+    background-color: white;
+    border-top: 1px solid #eee;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    .mobile-bottom-nav-container{
+        max-width: 1280px;
+        padding: 12px 40px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        .nav-item{
+            color : #b0b0b0;
+            .icon{
+                font-size: 24px;
+                margin: 0 auto;
+            }
+            p{
+                font-size: 11px;
+                margin: 0;
+                font-weight: 400;
+            }
+        }
+    }
+}

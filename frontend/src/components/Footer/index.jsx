@@ -4,7 +4,7 @@ import { TbWorld } from 'react-icons/tb';
 
 const index = () => {
     return (
-        <div className="footer">
+        <div className="footer hidden md:block">
             <div className="footer-container">
                 <div className="flex text-sm  items-center justify-between">
                     <div className="flex gap-5 items-center ">
