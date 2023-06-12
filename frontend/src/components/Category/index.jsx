@@ -6,11 +6,12 @@ import { GiIsland, GiCampingTent, GiGrandPiano,
 import { MdCabin, MdOutlineSurfing, MdSportsGolf, MdDownhillSkiing } from 'react-icons/md';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import Slider from "react-slick";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FilterModal from './FilterModal';
 const Category = () => {
   const [keyword, setKeyword] = useState("");
   const [open, setOpen] = useState(false);
+  const [shadow, setShadow] = useState(false)
   const category = [
     {id: 1, name: "Pool", icon: <TbPool /> },
     { id: 2,  name: "Beach", icon: <TbBeach /> },
@@ -72,10 +73,22 @@ const Category = () => {
       }
     ]
   }
-
+  const controlNavbar = () => {
+    if (window.scrollY > 150) {
+      setShadow(true)
+    }else{
+      setShadow(false)
+    }
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', controlNavbar)
+    return () => {
+      window.removeEventListener('scroll', controlNavbar)
+    }
+  }, []);
   return (
-    <div className='category'>
-      <div className='category-container'>
+    <div className={`category ${shadow ? "box-shadow" : 0}`}>
+      <div className="category-container" >
         <div className='relative  px-8 overflow-y-hidden'>
           <Slider {...settings}>
             {

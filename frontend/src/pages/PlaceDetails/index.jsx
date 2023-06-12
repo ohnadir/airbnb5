@@ -73,7 +73,7 @@ const PlaceDetails = () => {
           </div>
         </div>
 
-        <section className='desktop-img-container'>
+        <section className='desktop-img-container' id="photos">
           <div className="large-img">
             { place?.img ? <img src={place.img[0]}  alt=""/> : "" }
           </div>
@@ -154,7 +154,7 @@ const PlaceDetails = () => {
               </div> 
             </div> 
             <div className="card-divider my-6"></div>
-            <div>
+            <div id="amenities">
                 <h2 className='text-xl font-bold font-sans mb-2'>What this place offers</h2>
                 <div className='grid grid-cols-1 gap-3'>
                     <div className="service-container">
@@ -233,14 +233,14 @@ const PlaceDetails = () => {
           </div>
         </div>
 
-        <section className='map'>
+        <section className='map' id="location">
           <h2 className='heading'>Where you&apos;ll be</h2>
           <p>Maldives</p>
           <div></div>
         </section>
 
         <div className="card-divider my-6"></div>
-        <section className='review'>
+        <section className='review' id="review">
           <h2  className='heading'>Reviews</h2>
           <div className='review-container'>
             <div className='empty-review'>
@@ -270,10 +270,18 @@ const PlaceDetails = () => {
           <section className="top-navbar">
             <div className='top-navbar-container'>
               <ul>
-                <li>Photos</li>
-                <li>Amenities</li>
-                <li>Reviews</li>
-                <li>Location</li>
+                <a href="#photos">
+                  <li>Photos</li>
+                </a>
+                <a href="#amenities">
+                  <li>Amenities</li>
+                </a>
+                <a href="#review">
+                  <li>Reviews</li>
+                </a>
+                <a href="#location">
+                  <li>Location</li>
+                </a>
               </ul>
                 <div className='w-[200px] h-[38px]'>
                   {
