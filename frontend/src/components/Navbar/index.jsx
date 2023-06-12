@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import AuthenticationModal from "../AuthenticationModal/AuthenticationModal";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../Redux/actions/user"
+import MobileNavbar from "./MobileNavbar";
 const Navbar = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const { isAuthenticated, user } = useSelector(state => state.auth);
@@ -128,6 +129,7 @@ const Navbar = () => {
             </Modal>
           }
         </div>
+        <MobileNavbar/>
       </div>
     </>
   )
