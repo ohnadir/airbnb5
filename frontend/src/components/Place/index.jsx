@@ -53,40 +53,38 @@ const Place = () => {
                 ?
                 <Spinner/>
                 :
-                <div className="max-w-7xl mx-auto px-10 mt-8 pb-[55px]">
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:grid-cols-2">
+                <div className="place">
+                    <div className="place-container">
                         {
-                        places?.map((item, index)=> 
-                            <div  key={index}  className="cardItem" >
-                                <div className="relative">
-                                    <div style={{"zIndex":"1"}} className="absolute text-white transition-all hover:text-[#ddd] right-2 top-2">
-                                        <button ><IoMdHeartEmpty size={26}/></button>
+                            places?.map((item, index)=> 
+                                <div  key={index}  className="place-card" >
+                                    <div className="img-container">
+                                        <button className='wish-btn'><IoMdHeartEmpty size={26}/></button>
+                                        <Slider {...settings}>
+                                            {
+                                                item.img.map((another, index)=>
+                                                    <img key={index} src={another} alt="place-img" />
+                                                )
+                                            }
+                                        </Slider>
                                     </div>
-                                    <Slider {...settings}>
-                                    {
-                                        item.img.map((another, index)=>
-                                        <img key={index}  className="rounded-xl" src={another} alt="" />
-                                        )
-                                    }
-                                    </Slider>
+                                    <div className='info-container' onClick={()=>navigate(`/placeDetails/${item._id}`)}>
+                                        <div className="flex mt-3 items-center justify-between">
+                                            <h1>{item.name}</h1>
+                                            <div className="flex items-center gap-1 font-bold">
+                                                <FaStar className="text-[13px]"/>
+                                                <span className="text-[14px] font-semibold">{item.rating}</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <p>Nov 7-12</p>
+                                        <div className="flex items-center gap-1">
+                                        <span className="text-[14px] font-bold">${item.price}</span>
+                                        <span className='text-[14px]'>night </span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className='informationContainer' onClick={()=>navigate(`/placeDetails/${item._id}`)}>
-                                    <div className="flex mt-3 items-center justify-between  font-bold">
-                                    <p style={{"fontSize":"15px"}}  className="m-0">{item.name}</p>
-                                    <div className="flex items-center gap-1">
-                                        <FaStar className="text-[13px]"/>
-                                        <span className="text-[14px] font-semibold">{item.rating}</span>
-                                    </div>
-                                    </div>
-                                    
-                                    <p style={{"fontSize":"14px", "color": "#717175"}} className="m-0">Nov 7-12</p>
-                                    <div className="flex items-center gap-1">
-                                    <span className="text-[14px] font-bold">{item.price}</span>
-                                    <span className='text-[14px]'>night </span>
-                                    </div>
-                                </div>
-                            </div>
-                        )
+                            )
                         }
                     </div>
                 </div>
