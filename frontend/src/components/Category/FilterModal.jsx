@@ -14,12 +14,16 @@ const FilterModal = ( {open , setOpen}) => {
     const [BathRoom, setBathRoom] = useState("any")
     const [Min, setMin] = useState(0)
     const [Max, setMax] = useState(100)
+    const [auth, setAuth] = useState('');
     const handleRange=(e)=>{
         setMin(e[0]);
         setMax(e[1]);
     }
     const handleSubmit=()=>{
         // dispatch(getPlace(price(Min, Max), ))
+    }
+    const handleChange = (e) => {
+        setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
     }
     const handleClear=()=>{
         setProperty("")
@@ -28,6 +32,15 @@ const FilterModal = ( {open , setOpen}) => {
         setBathRoom("any")
         setMax(100)
         setMin(0);
+        document.getElementById('input').checked = false;
+        document.getElementById('input2').checked = false;
+        document.getElementById('input3').checked = false;
+        document.getElementById('input4').checked = false;
+        document.getElementById('input5').checked = false;
+        document.getElementById('input6').checked = false;
+        document.getElementById('input7').checked = false;
+        document.getElementById('input8').checked = false;
+        document.getElementById('input9').checked = false;
     }
     return (
         <Modal
@@ -75,21 +88,21 @@ const FilterModal = ( {open , setOpen}) => {
                             <p className="text-[18px] font-semibold text-black m-0">Type of place</p>
                             <div className='grid grid-cols-1 md:grid-cols-2 mt-4'>
                                 <div className="check relative">
-                                    <input type="checkbox" onChange={()=>setRoom("entire-place")} style={{fontSize : "30px"}} className='h-5 w-5 m-0 p-0 absolute top-1 ' name="" id="" />
+                                    <input id="input" name="place" type="checkbox" onChange={handleChange} value="entire" style={{fontSize : "30px"}} className='h-5 w-5 m-0 p-0 absolute top-1 '   />
                                     <div className=' ml-10'>
                                         <p className='m-0 text-[14px] text-[px]'>Entire place</p>
                                         <p className='m-0 text-[13px] text-[#717171]'>A place to yourself</p>
                                     </div>
                                 </div>
                                 <div className="check relative">
-                                    <input onChange={()=>setRoom("entire-place")} type="checkbox" style={{fontSize : "30px"}} className='h-5 w-5 m-0 p-0 absolute top-1 ' name="" id="" />
+                                    <input id="input2" name="place" onChange={handleChange} value="private" type="checkbox" style={{fontSize : "30px"}} className='h-5 w-5 m-0 p-0 absolute top-1 '   />
                                     <div className='ml-10'>
                                         <p>Private room</p>
                                         <p className='m-0 text-[13px] text-[#717171]'>Your own room in a home or a hotel, plus some shared common spaces</p>
                                     </div>
                                 </div>
                                 <div className="check relative">
-                                    <input onChange={()=>setRoom("entire-place")} type="checkbox" style={{fontSize : "30px"}} className='h-5 w-5 m-0 p-0 absolute top-1 ' name="" id="" />
+                                    <input id="input3" name="place" onChange={handleChange} value="shared" type="checkbox" style={{fontSize : "30px"}} className='h-5 w-5 m-0 p-0 absolute top-1 '  />
                                     <div className='ml-10'>
                                         <p>Shared room</p>
                                         <p className='m-0 text-[13px] text-[#717171]'>A sleeping space and common areas that may be shared with others</p>
@@ -105,7 +118,7 @@ const FilterModal = ( {open , setOpen}) => {
                                 <div className='flex gap-2 my-3'>
                                     <p style={{backgroundColor : "any" === BedRooms ? "black" : null, color : "any" === BedRooms ? "white" : "black"}} onClick={()=>setBedRooms("any")} className='button text-[13px]'>Any</p>
                                     {
-                                        [...Array(8).keys()].map((item)=> <p style={{backgroundColor : item === BedRooms ? "black" : null, color : item === BedRooms ? "white" : "black"}} onClick={()=>setBedRooms(item)} className='button'>{item + 1}</p>)
+                                        [...Array(8).keys()].map((item, index)=> <p key={index} style={{backgroundColor : item === BedRooms ? "black" : null, color : item === BedRooms ? "white" : "black"}} onClick={()=>setBedRooms(item)} className='button'>{item + 1}</p>)
                                     }
                                 </div>
 
@@ -113,7 +126,7 @@ const FilterModal = ( {open , setOpen}) => {
                                 <div className='flex gap-2 my-3'>
                                     <p className='button text-[13px]' style={{backgroundColor : "any" === Bed ? "black" : null, color : "any" === Bed ? "white" : "black"}} onClick={()=>setBed("any")}>Any</p>
                                     {
-                                        [...Array(8).keys()].map((item)=> <p style={{backgroundColor : item === Bed ? "black" : null, color : item === Bed ? "white" : "black"}} onClick={()=>setBed(item)} className='button'>{item + 1}</p>)
+                                        [...Array(8).keys()].map((item, index)=> <p key={index} style={{backgroundColor : item === Bed ? "black" : null, color : item === Bed ? "white" : "black"}} onClick={()=>setBed(item)} className='button'>{item + 1}</p>)
                                     }
                                 </div>
 
@@ -121,7 +134,7 @@ const FilterModal = ( {open , setOpen}) => {
                                 <div className='flex gap-2 my-3'>
                                     <p className='button text-[13px]' style={{backgroundColor : "any" === BathRoom ? "black" : null, color : "any" === BathRoom ? "white" : "black"}} onClick={()=>setBathRoom("any")}>Any</p>
                                     {
-                                        [...Array(8).keys()].map((item)=> <p style={{backgroundColor : item === BathRoom ? "black" : null, color : item === BathRoom ? "white" : "black"}} onClick={()=>setBathRoom(item)} className='button'>{item + 1}</p>)
+                                        [...Array(8).keys()].map((item, index)=> <p key={index} style={{backgroundColor : item === BathRoom ? "black" : null, color : item === BathRoom ? "white" : "black"}} onClick={()=>setBathRoom(item)} className='button'>{item + 1}</p>)
                                     }
                                 </div>
                             </div>
@@ -132,8 +145,8 @@ const FilterModal = ( {open , setOpen}) => {
                             <div className='mt-3'>
                                 <div className="types flex items-center justify-between gap-5">
                                     {
-                                        Property.map((item) => 
-                                            <div key={item.id} onClick={()=>setProperty(item.name)} className="contain" style={{border: item.name === property ? "1px solid black " : null}}>
+                                        Property.map((item, index) => 
+                                            <div key={index} onClick={()=>setProperty(item.name)} className="contain" style={{border: item.name === property ? "1px solid black " : null}}>
                                                 <img src={item.img} alt="" />
                                                 <p className='m-0 text-[13px]'>{item.name}</p>
                                             </div>
@@ -144,16 +157,16 @@ const FilterModal = ( {open , setOpen}) => {
                         </div>
                         <div className="w-full h-[1px] bg-[#717171] my-10"></div>
                         <div className="amenities mb-5">
-                            <p className="text-[18px] font-semibold text-black m-0">Rooms and beds</p>
+                            <p className="text-[18px] font-semibold text-black m-0">Amenities</p>
                             <div className='mt-5'>
                                 <p className=''>Essentials</p>
                             </div>
                             <div>
                                 <div className='grid grid-cols-1 md:grid-cols-2 mt-4 gap-4'>
                                     {
-                                        Essential.map((item)=>
-                                            <div className="check relative">
-                                                <input type="checkbox" onChange={()=>setEssentials(item)} style={{fontSize : "30px"}} className='h-5 w-5 m-0 p-0 absolute top-0 ' name="" id="" />
+                                        Essential.map((item, index)=>
+                                            <div key={index} className="check relative">
+                                                <input id={`input${index + 4}`} type="checkbox" onChange={handleChange} value={`${item.name}`} style={{fontSize : "30px"}} className='h-5 w-5 m-0 p-0 absolute top-0 ' name="essential" />
                                                 <div className=' ml-9'>
                                                     <p className='m-0 text-[13px]'>{item.name}</p>
                                                 </div>

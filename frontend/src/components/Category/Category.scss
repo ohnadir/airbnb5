@@ -6,30 +6,28 @@
   position: sticky;
   background-color: white;
   top: 86px;
-  z-index: 1;
+  z-index: 3;
   .category-container{
     display: flex;
     align-items: center;
     gap: 40px;
-    padding: 16px 0;
+    .icon-container{
+      position: relative;
+      color: #838383;
+      cursor: pointer;
+      padding: 16px 0 8px 0;
+      width: fit-content;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+      margin: 0 auto;
+      &:hover{
+        border-bottom: 2px solid black;
+      }
+    }
   }
 }
-.iconContainer{
-  color: #838383;
-  cursor: pointer;
-  padding-bottom: 8px;
-  width: fit-content;
-  border-bottom: 2px solid transparent;
-  transition: all 0.3s ease;
-  margin: 0 auto;
-}
-.iconContainer:hover{
-  color: black;
-  width: fit-content;
-  border-bottom: 2px solid #838383;
-}
 .cPrev, .cNext{
-  top: 25% ;
+  top: 30% ;
   height: 26px;
   width: 26px;
   padding: 0 3px;
@@ -93,6 +91,12 @@
   border-radius: 8px;
   padding: 10px;
   transition: border 0.3s ease;
+  img{
+    margin: 0 auto;
+  }
+  p{
+    text-align: center;
+  }
 }
 .filter-modal .types .contain:hover{
   border: 1px solid black;

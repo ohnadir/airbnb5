@@ -12,6 +12,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import AuthCheckout from './LoginCheckout';
 import { message } from 'antd';
+import { useNavigate } from "react-router-dom"
 const options = {
     style: {
         base: {
@@ -28,6 +29,7 @@ const Checkout = () => {
     const { api } = useSelector(state => state.stripeApi);
     const [messageApi, contextHolder] = message.useMessage();
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const id = "64770dde9c9a8f27aee50f5c"
     const stripePromise = loadStripe(api);
     useEffect(()=>{
@@ -183,7 +185,7 @@ const Checkout = () => {
                                     </section>
 
                                     {/* submit button */}
-                                    <button   className="confirm-btn">Confirm and pay</button>
+                                    <button onClick={()=>navigate('/invoice')}  className="confirm-btn">Confirm and pay</button>
                                 </>
                                 :
                                 <AuthCheckout/>

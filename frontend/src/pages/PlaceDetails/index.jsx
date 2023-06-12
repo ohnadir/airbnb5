@@ -2,7 +2,7 @@ import './PlaceDetails.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { placeDetails } from "../../Redux/actions/place"
 import { useEffect, useState } from 'react';
-import { FaAirbnb, FaStar } from 'react-icons/fa';
+import {  FaStar } from 'react-icons/fa';
 import Slider from "react-slick";
 import { AiOutlineStar } from 'react-icons/ai';
 import { BiBed } from 'react-icons/bi';
@@ -10,12 +10,13 @@ import { BsWifi } from 'react-icons/bs';
 import { MdMonitor,  MdOutlinePostAdd } from 'react-icons/md';
 import { TbPool } from 'react-icons/tb';
 import { IoIosArrowUp } from 'react-icons/io';
+import { useParams  } from 'react-router-dom';
 const PlaceDetails = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const [showReserveBtn, setShowReserveBtn] = useState(false)
   const {place} = useSelector(state=> state.place);
   const dispatch = useDispatch();
-  const id = "64770dde9c9a8f27aee50f5c"
+  const { id } = useParams();
   useEffect(()=>{
     dispatch(placeDetails(id))
   },[id]);

@@ -47,7 +47,6 @@ export const placeDetails = (id) => async (dispatch) => {
             }
         }
         const { data } = await axios.get(`${baseUrl}/api/v1/place/${id}`, config)
-        console.log(data)
         dispatch({
             type: PLACE_SUCCESS,
             payload: data

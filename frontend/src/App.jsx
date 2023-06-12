@@ -23,7 +23,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>} />
-        <Route path='/placeDetails' element={<PlaceDetails/>} />
+        <Route path='/placeDetails/:id' element={<PlaceDetails/>} />
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/checkout' element={<Checkout/>} />
         <Route path='/invoice' element={<Invoice/>} />
