@@ -1,0 +1,132 @@
+
+.mobile-profile{
+    max-width: 1280px;
+    padding: 30px;
+    margin: 0 auto;
+    .divider{
+        width: 100%;
+        height: 1px;
+        background-color: #ddd;
+    }
+    .mobile-profile-container{
+        .profile-heading{
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 0 25px 0;
+        }
+        .user-info{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            .user-img{
+                background-color: black;
+                width: 50px;
+                height: 45px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                color: white;
+            }
+            .navigate{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                h1{
+                    margin: 0;
+                    font-size: 16px;
+                }
+                p{
+                    margin: 0;
+                    font-size: 13px;
+                    color: #808080;
+                }
+            }
+        }
+        .host-home{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            margin-bottom: 40px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            h1{
+                font-size: 20px;
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+            p{
+                font-size: 15px;
+                margin: 0;
+            }
+            img{
+                max-width: 150px;
+            }
+        }
+        .host-a-home h1, .referral h1, .support h1{
+            margin-bottom: 20px;
+            font-size: 17px;
+            font-weight: 600;
+            color: black;
+        }
+        .personal-info p, .account-info p, .host-a-home p, .referral p, .support p {
+            margin: 0;
+            color: #808080;
+            font-size: 17px;
+        }
+        .personal-info , .account-info, .host-a-home-container, .referral-container, .support-item{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logout-btn{
+            width: 100%;
+            border: 1px solid black;
+            padding: 8px 0;
+            border-radius: 8px;
+            color: black;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .support-container{
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 20px;
+        }
+        .mobile-footer{
+            padding-bottom: 40px;
+            ul{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                li, p{
+                    font-size: 12px;
+                    color: black;
+                    margin: 0;
+                    position: relative;
+                }
+                li::before{
+                    content: '';
+                    width: 3px;
+                    height: 3px;
+                    border-radius: 50%;
+                    background-color: gray;
+                    position: absolute;
+                    left: -8px;
+                    top: 50%;
+                    z-index: 2;
+                }
+            }
+            .copy-right{
+                text-align: center;
+                font-size: 11px;
+                color: #808080;
+            }
+        }
+    }
+}
