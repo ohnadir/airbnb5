@@ -10,6 +10,7 @@ import Invoice from "./pages/Invoice"
 import Home from "./pages/Home"
 import PlaceDetails from './pages/PlaceDetails';
 import MobileProfile from './pages/MobileProfile';
+import Trip from './pages/Trip';
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
         <Route path='/checkout' element={<Checkout/>} />
         <Route path='/invoice' element={<Invoice/>} />
         <Route path='/mobileProfile' element={<MobileProfile/>} />
+        <Route path='/trip' element={<Trip/>} />
       </Routes>
     </div>
   )
