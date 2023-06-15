@@ -4,6 +4,8 @@ import App from './App.jsx'
 import './index.css'
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import "react-date-range/dist/styles.css"; // main css file
+
 
 // redux
 import { Provider } from "react-redux"

@@ -110,42 +110,48 @@
                 cursor: pointer;
                 gap: 5px;
                 transition: box-shadow 0.3s ease ;
+                
             }
             .profile-menu:hover{
                 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
             }
+            // profile dropdown 
+            .profile-dropdown {
+                float: left;
+                display: none;
+                overflow: hidden;
+                position: absolute;
+                right: 12px;
+                top: 58px;
+                min-width: 100px;
+                background-color: #f9f9f9;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 20;
+                border-radius: 10px;
+                width: 200px;
+                padding: 5px 0;
+                li{
+                    padding:  8px 16px;
+                    font-size: 14px;
+                    cursor: pointer;
+                    font-weight: 600;
+                }
+                li:hover {
+                    background-color: #ddd;
+                }
+                .profile-dropdown-divider{
+                    width: 100%;
+                    height: 1px;
+                    background-color: #ddd;
+                }
+            }
+            &:focus .profile-dropdown{
+                display: block;
+            }
         }
     }
 
-    // profile dropdown 
-    .profile-dropdown {
-        float: left;
-        overflow: hidden;
-        position: absolute;
-        right: 12px;
-        top: 58px;
-        min-width: 100px;
-        background-color: #f9f9f9;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 20;
-        border-radius: 10px;
-        width: 200px;
-        padding: 5px 0;
-        li{
-            padding:  8px 16px;
-            font-size: 14px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        li:hover {
-            background-color: #ddd;
-        }
-        .profile-dropdown-divider{
-            width: 100%;
-            height: 1px;
-            background-color: #ddd;
-        }
-    }
+    
 }
 
 .mobile-navbar-content{
@@ -223,4 +229,179 @@
             }
         }
     }
+}
+
+// navbar float bar
+.destination-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #6666;
+    margin: 12px auto 0 auto;
+    border-radius: 42px;
+    transition: all 0.3s ease;
+    position: relative;
+    .destination-item{
+        cursor: pointer;
+        .search-option{
+            margin: 0;
+            padding: 5px 10px 5px 20px;
+        }
+        .option-header{
+            margin: 0;
+            padding: 0;
+            font-size: 13px !important;
+            font-weight: 600;
+        }
+        .footer-input{
+            margin: 0px;
+            padding: 0;
+            padding-top: -2px;
+            color: #929292;
+            font-size: 13px;
+            outline: none;
+            background-color: transparent;
+            border: none;
+        }
+        .footer-option{
+            margin: 0px;
+            color: #929292;
+            font-size: 12px;
+        }
+        .search-close-icon{
+            margin-right: 20px;
+            background-color: white;
+            padding: 2px;
+            border-radius: 50%;
+        }
+        .location{
+            position: absolute;
+            top: 72px;
+            left: 0;
+            z-index: 2;
+            width: fit-content !important;
+            background-color: white;
+            border-radius: 30px;
+            color: black;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+            img:hover{
+                border: 1px solid black;
+            }   
+        }
+        .date-picker{
+            margin: 0;
+            padding: 8px 10px 8px 20px;
+        }
+        
+
+        // calender for date pick 
+        .calender{
+            position: absolute;
+            width: 100%;
+            top: 72px;
+            left: 0;
+            z-index: 2;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        // guest counter option sass 
+        .guest-counter{
+            margin: 0;
+            padding: 7px 10px 6px 20px;
+            .guest-input-option{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .search-btn{
+                    background-color: #ff385c;
+                    color: white;
+                    width: fit-content;
+                    padding: 8px 14px;
+                    border-radius: 50px;
+                    display: flex;
+                    // justify-content: space-between;
+                    gap: 6px;
+                    align-items: center;
+                    .search-icon{
+                        font-size: 18px;
+                        font-weight: 900 !important;
+                    }
+                }
+            }
+            
+            .options {
+                z-index: 2;
+                position: absolute;
+                top: 72px;
+                right: 8px;
+                background-color: white;
+                color: gray;
+                border-radius: 5px;
+                box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+                .counter-item{
+                    width: 300px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin: 25px;
+                    .counter-heading{
+                        font-weight: 600;
+                        color: black;
+                        font-size: 16px;
+                    }
+                    .counter-criteria{
+                        padding: 0;
+                    }
+
+                    // button container
+                    .counter-btn-container{
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        font-size: 12px;
+                        color: black;
+                        .counter-btn{
+                            width: 35px;
+                            height: 35px;
+                            border: 1px solid #666;
+                            color: #666;
+                            border-radius: 50%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            padding-top: -8px; 
+                            font-size: 22px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            background-color: white;
+                        }
+                        .counter-btn:disabled {
+                            cursor: not-allowed;
+                        }
+                        .counter-number{}
+                    }
+                }
+            }
+        }
+    }
+    .destination-item:hover{
+        background-color: #dddddd;
+        border-radius: 42px;
+    }
+}
+
+// custom ant design sass
+.navbar-container .rdrDateDisplayWrapper{
+    display: none !important;
+}
+.navbar-container .rdrMonthAndYearWrapper{
+    display: none !important;
+}
+.navbar-container .rdrMonthName{
+    font-size: 16px;
+    font-weight: 700 ;
+    color: black ;
+    text-align: center !important;
 }

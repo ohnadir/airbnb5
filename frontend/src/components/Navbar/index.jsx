@@ -59,8 +59,8 @@ const Navbar = () => {
                     </div>
                   }
               </div>
-              <div className='profile-menu-container pb-[7px] '>
-                <div className="profile-menu" onClick={()=>setDropdown(!dropdown)}>
+              <div className='profile-menu-container' tabIndex="1">
+                <div className="profile-menu"  onClick={()=>setDropdown(!dropdown)}>
                   <BiMenu className='cursor-pointer text-2xl '/>
                   <span >
                     <FaUserCircle size={30} />
@@ -68,7 +68,7 @@ const Navbar = () => {
                 </div>
 
                 {/* dropdown option */}
-                {
+                {/* {
                   dropdown && <div className="profile-dropdown">
                     <ul>
                         {
@@ -108,8 +108,46 @@ const Navbar = () => {
                       }
                     </ul>
                   </div>
-                }
-                
+                } */}
+                <div className="profile-dropdown">
+                  <ul>
+                    {
+                      isAuthenticated 
+                      ? <li className="cursor-name">{user?.firstName} {user?.lastName}</li> 
+                      :
+                      <li className='hidden'></li>
+                    }
+                    {
+                      isAuthenticated 
+                      ? <li className='hidden'></li>
+                      :
+                      <li onClick={handleDropDown}>Login OR Sign up </li>
+                    }
+                    {
+                      isAuthenticated 
+                      ?  <li onClick={()=>navigate('/dashboard')}>Dashboard</li>
+                      :
+                      <li className='hidden'></li>
+                    }
+                    {
+                      isAuthenticated 
+                      ?  <li  >Your Booking</li>
+                      :
+                      <li className='hidden'></li>
+                    }
+                  </ul>
+                  <div className='profile-dropdown-divider'></div>
+                  <ul>
+                    <li>Airbnb your home</li>
+                    <li>Help</li>
+                    {
+                      isAuthenticated 
+                      ? <li onClick={handleLogOut}>Logout</li> 
+                      :
+                      <li className='hidden'></li>
+                    }
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
