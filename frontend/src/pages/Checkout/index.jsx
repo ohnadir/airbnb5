@@ -2,17 +2,21 @@ import './Checkout.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { placeDetails } from "../../Redux/actions/place"
 import { stripeApi } from "../../Redux/actions/payment"
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {  FaStar } from 'react-icons/fa';
 import Spinner from "../../components/Spinner"
 import { FiChevronDown } from "react-icons/fi";
+import {  RiCloseFill } from 'react-icons/ri';
 // stripe
 import { Elements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import AuthCheckout from './LoginCheckout';
 import { message } from 'antd';
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import { getDate } from "../../utils/LocalStorage"
+import { Modal } from 'antd';
+import ChangeDate from './ChangeDate';
 const options = {
     style: {
         base: {
@@ -30,12 +34,19 @@ const Checkout = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const dispatch = useDispatch();
     const navigate = useNavigate()
-    const id = "64770dde9c9a8f27aee50f5c"
+    const { id } = useParams();
+    const [modal1Open, setModal1Open] = useState(false);
     const stripePromise = loadStripe(api);
     useEffect(()=>{
         dispatch(placeDetails(id))
         dispatch(stripeApi())
     },[id]);
+
+    const date = getDate();
+    // const
+    const handleSubmit=()=>{
+        navigate('/invoice') 
+    }
     return (
         <>
             {contextHolder}
@@ -72,14 +83,14 @@ const Checkout = () => {
                                 <div className="date-container my-4">
                                     <div >
                                         <h2>Dates</h2>
-                                        <h5>Jun 8 – 15</h5>
+                                        <h5>{date?.check_in} – {date?.check_out}</h5>
                                     </div>
-                                    <span className="edit-button">Edit</span>
+                                    <span className="edit-button" onClick={() => setModal1Open(true)}>Edit</span>
                                 </div>
                                 <div className="guest-container">
                                     <div>
                                         <h2>Guests</h2>
-                                        <h5>3 guests</h5>
+                                        <h5>{date?.guests} guests</h5>
                                     </div>
                                     <span className="edit-button">Edit</span>
                                 </div>
@@ -185,7 +196,7 @@ const Checkout = () => {
                                     </section>
 
                                     {/* submit button */}
-                                    <button onClick={()=>navigate('/invoice')}  className="confirm-btn">Confirm and pay</button>
+                                    <button onClick={handleSubmit}  className="confirm-btn">Confirm and pay</button>
                                 </>
                                 :
                                 <AuthCheckout/>
@@ -193,7 +204,13 @@ const Checkout = () => {
                         </div>
                         <div className="checkout-card">
                             <div className='place-card'>
-                                <img  src="https://a0.muscache.com/im/pictures/c1fa3691-1287-4334-981d-ef9a9a8f5a56.jpg?im_w=720" alt="" />
+                                {
+                                    loading
+                                    ?
+                                    <Spinner/>
+                                    : <img  src={place?.img[0]} alt="" /> 
+                                }
+                                {/* <img  src={place?.img[0]} alt="" /> */}
                                 <div className="place-info">
                                     <div>
                                         <p className="place-name">{place?.name}</p>
@@ -211,21 +228,35 @@ const Checkout = () => {
                             <h2 className='price-heading'>Price details</h2>
                             <div className="mt-3 grid grid-cols-1 gap-2">
                                 <div className='price-container'>
-                                    <span>$56.24 x 7 nights</span>
-                                    <span>$393.67</span>
+                                    <span>${place?.price} x {date?.night} nights</span>
+                                    <span>${place?.price * date?.night}</span>
                                 </div>
                                 <div className='price-container'>
                                     <span className="text-[#696969]">Service fee</span>
-                                    <span className="text-[#54B157]">$55.58</span>
+                                    <span className="text-[#54B157]">${place?.serviceCharge}</span>
                                 </div>
                                 <div className="card-divider my-4"></div>
                                 <div className='price-container total-price'>
                                     <span>Total </span>
-                                    <span>$496.49</span>
+                                    <span>${(place?.price * date?.night) + place?.serviceCharge}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <Modal
+                        open={modal1Open}
+                        centered
+                        width={570}
+                        style={{borderRadius:"30px"}}
+                        closable={false}
+                        footer={false}
+                        className={{borderRadius:"30px"}}
+                        bodyStyle={{margin:"0", border:"none", padding:0, borderRadius:"30px"}}
+                    >
+                        <div className='p-5 relative '>
+                            <ChangeDate dates={date} setModal1Open={setModal1Open}/>
+                        </div>
+                    </Modal>
                 </div>
             }
         </>

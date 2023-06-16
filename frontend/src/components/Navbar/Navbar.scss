@@ -232,174 +232,248 @@
 }
 
 // navbar float bar
-.destination-container{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid #6666;
-    margin: 12px auto 0 auto;
-    border-radius: 42px;
-    transition: all 0.3s ease;
-    position: relative;
-    .destination-item{
-        cursor: pointer;
-        .search-option{
-            margin: 0;
-            padding: 5px 10px 5px 20px;
-        }
-        .option-header{
-            margin: 0;
-            padding: 0;
-            font-size: 13px !important;
-            font-weight: 600;
-        }
-        .footer-input{
-            margin: 0px;
-            padding: 0;
-            padding-top: -2px;
-            color: #929292;
-            font-size: 13px;
-            outline: none;
-            background-color: transparent;
-            border: none;
-        }
-        .footer-option{
-            margin: 0px;
-            color: #929292;
-            font-size: 12px;
-        }
-        .search-close-icon{
-            margin-right: 20px;
-            background-color: white;
-            padding: 2px;
-            border-radius: 50%;
-        }
-        .location{
-            position: absolute;
-            top: 72px;
-            left: 0;
-            z-index: 2;
-            width: fit-content !important;
-            background-color: white;
-            border-radius: 30px;
-            color: black;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
-            img:hover{
-                border: 1px solid black;
-            }   
-        }
-        .date-picker{
-            margin: 0;
-            padding: 8px 10px 8px 20px;
-        }
-        
-
-        // calender for date pick 
-        .calender{
-            position: absolute;
-            width: 100%;
-            top: 72px;
-            left: 0;
-            z-index: 2;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
-        }
-
-        // guest counter option sass 
-        .guest-counter{
-            margin: 0;
-            padding: 7px 10px 6px 20px;
-            .guest-input-option{
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                .search-btn{
-                    background-color: #ff385c;
-                    color: white;
-                    width: fit-content;
-                    padding: 8px 14px;
-                    border-radius: 50px;
-                    display: flex;
-                    // justify-content: space-between;
-                    gap: 6px;
-                    align-items: center;
-                    .search-icon{
-                        font-size: 18px;
-                        font-weight: 900 !important;
-                    }
-                }
+.destination{
+    max-width: 1280px;
+    margin: 0 auto;
+    .destination-container{
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #6666;
+        margin: 12px auto 0 auto;
+        border-radius: 42px;
+        transition: all 0.3s ease;
+        position: relative;
+        .destination-item{
+            cursor: pointer;
+            .search-option{
+                margin: 0;
+                padding: 5px 10px 5px 20px;
             }
-            
-            .options {
-                z-index: 2;
+            .option-header{
+                margin: 0;
+                padding: 0;
+                font-size: 13px !important;
+                font-weight: 600;
+            }
+            .footer-input{
+                margin: 0px;
+                padding: 0;
+                padding-top: -2px;
+                color: #929292;
+                font-size: 13px;
+                outline: none;
+                background-color: transparent;
+                border: none;
+            }
+            .footer-option{
+                margin: 0px;
+                color: #929292;
+                font-size: 12px;
+            }
+            .search-close-icon{
+                margin-right: 20px;
+                background-color: white;
+                padding: 2px;
+                border-radius: 50%;
+            }
+            .location{
                 position: absolute;
                 top: 72px;
-                right: 8px;
+                left: 0;
+                z-index: 2;
+                width: fit-content !important;
                 background-color: white;
-                color: gray;
+                border-radius: 30px;
+                color: black;
                 border-radius: 5px;
                 box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
-                .counter-item{
-                    width: 300px;
+                img:hover{
+                    border: 1px solid black;
+                }   
+            }
+            .date-picker{
+                margin: 0;
+                padding: 8px 10px 8px 20px;
+            }
+            
+    
+            // calender for date pick 
+            .calender{
+                position: absolute;
+                width: 100%;
+                top: 72px;
+                left: 0;
+                z-index: 2;
+                border-radius: 12px;
+                box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+                padding: 15px;
+            }
+    
+            // guest counter option sass 
+            .guest-counter{
+                margin: 0;
+                padding: 7px 10px 6px 20px;
+                .guest-input-option{
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    margin: 25px;
-                    .counter-heading{
-                        font-weight: 600;
-                        color: black;
-                        font-size: 16px;
+                    .search-btn{
+                        background-color: #ff385c;
+                        color: white;
+                        width: fit-content;
+                        padding: 8px 14px;
+                        border-radius: 50px;
+                        display: flex;
+                        // justify-content: space-between;
+                        gap: 6px;
+                        align-items: center;
+                        .search-icon{
+                            font-size: 18px;
+                            font-weight: 900 !important;
+                        }
                     }
-                    .counter-criteria{
-                        padding: 0;
-                    }
-
-                    // button container
-                    .counter-btn-container{
+                    .small-search-icon{
+                        background-color: #ff385c;
+                        color: white;
+                        width: 38px;
+                        height: 38px;
+                        padding: 8px;
+                        border-radius: 50%;
                         display: flex;
                         align-items: center;
-                        gap: 10px;
-                        font-size: 12px;
-                        color: black;
-                        .counter-btn{
-                            width: 35px;
-                            height: 35px;
-                            border: 1px solid #666;
-                            color: #666;
-                            border-radius: 50%;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            padding-top: -8px; 
-                            font-size: 22px;
+                        justify-content: center;
+                        .icon{
+                            font-weight: 900;
+                            font-size: 20px;
+                        }
+                    }
+                }
+                
+                .options {
+                    z-index: 2;
+                    position: absolute;
+                    top: 72px;
+                    right: 8px;
+                    background-color: white;
+                    color: gray;
+                    border-radius: 5px;
+                    box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+                    .counter-item{
+                        width: 300px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin: 25px;
+                        .counter-heading{
                             font-weight: 600;
-                            cursor: pointer;
-                            background-color: white;
+                            color: black;
+                            font-size: 16px;
                         }
-                        .counter-btn:disabled {
-                            cursor: not-allowed;
+                        .counter-criteria{
+                            padding: 0;
                         }
-                        .counter-number{}
+    
+                        // button container
+                        .counter-btn-container{
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            font-size: 12px;
+                            color: black;
+                            .counter-btn{
+                                width: 35px;
+                                height: 35px;
+                                border: 1px solid #666;
+                                color: #666;
+                                border-radius: 50%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                padding-top: -8px; 
+                                font-size: 22px;
+                                font-weight: 600;
+                                cursor: pointer;
+                                background-color: white;
+                            }
+                            .counter-btn:disabled {
+                                cursor: not-allowed;
+                            }
+                            .counter-number{}
+                        }
                     }
                 }
             }
+            &:hover{
+                background-color: #dddddd;
+                border-radius: 42px;
+            }
         }
-    }
-    .destination-item:hover{
-        background-color: #dddddd;
-        border-radius: 42px;
+        .location{
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 30% ;
+        }
+        .check-in{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 20% ;
+        }
+        .check-out{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 20% ;
+        }
+        .guest-option{
+            width: 30%;
+        }
     }
 }
 
+
+
+@media screen and (min-width: 768px) and (max-width : 900px) {
+    .destination{
+        .destination-container{
+            width: 85%;
+        }
+    }
+    
+}
+
+
+
+
 // custom ant design sass
-.navbar-container .rdrDateDisplayWrapper{
+ .rdrDateDisplayWrapper{
     display: none !important;
 }
-.navbar-container .rdrMonthAndYearWrapper{
+.rdrMonthAndYearWrapper{
+    
+}
+ .rdrMonthAndYearPickers{
     display: none !important;
 }
-.navbar-container .rdrMonthName{
+.rdrNextPrevButton{
+    background: none !important;
+}
+
+.rdrWeekDay{
+    font-weight: 600 !important;
+}
+.rdrDayNumber{
+    color: black !important;
+    font-weight: 600 !important;
+}
+.rdrMonth{
+    width: 50% !important;
+}
+ .rdrMonthName{
     font-size: 16px;
     font-weight: 700 ;
     color: black ;

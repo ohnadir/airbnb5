@@ -10,12 +10,14 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../../Redux/actions/user"
 import MobileNavbar from "./MobileNavbar";
 import MobileBottomNav from "./MobileBottomNav";
+import FloatNavContent from "./FloatNavContent";
 const Navbar = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const { isAuthenticated, user } = useSelector(state => state.auth);
   const [dropdown, setDropdown] = useState(false);
   const [open, setOpen] = useState(false);
   const [authModal, setAuthModal] = useState(false);
+  const [click, setClick] = useState('')
   const dispatch= useDispatch();
   const navigate= useNavigate()
   const handleDropDown = () =>{
@@ -26,6 +28,20 @@ const Navbar = () => {
     messageApi.success("Logout Successful")
     dispatch(logout())
   }
+  const handleOptions=(e)=>{
+    if(e === "anywhere"){
+      setOpen(true)
+      setClick("destination")
+    }
+    if(e === "anyweek"){
+      setOpen(true)
+      setClick("date")
+    }
+    if(e === "addguests"){
+      setOpen(true)
+      setClick("options")
+    }
+}
   return (
     <>
       {contextHolder}
@@ -47,12 +63,12 @@ const Navbar = () => {
                     : 
                     <div className="search-label pb-[7px]">
                       <div className='flex items-center gap-4 text-[14px]'>
-                        <div>Anywhere</div>
+                        <div onClick={()=> handleOptions('anywhere')}>Anywhere</div>
                         <div className="search-option-divider"></div>
-                        <div >Any week</div>
+                        <div onClick={()=>handleOptions("anyweek")}>Any week</div>
                         <div className="search-option-divider"></div>
-                        <div >Add guest</div>
-                        <div className="search-btn" onClick={()=>setOpen(!open)}>
+                        <div onClick={()=>handleOptions("addguests")}>Add guest</div>
+                        <div tabIndex="1" className="search-btn" onClick={()=>setOpen(!open)}>
                           <BiSearch className="search-icon" />
                         </div>
                       </div>
@@ -170,6 +186,12 @@ const Navbar = () => {
         </div>
         <MobileNavbar/>
         <MobileBottomNav/>
+        {
+          open && 
+          <div data-aos="fade-down" className='hidden md:block'>
+              <FloatNavContent  open={open} setOpen={setOpen} click={click} setClick={setClick}/>
+          </div>
+        }
       </div>
     </>
   )

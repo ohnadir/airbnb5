@@ -1,5 +1,5 @@
 import './PlaceDetails.scss'
-import { useDispatch, useSelector } from "react-redux";
+ 
 import { placeDetails } from "../../Redux/actions/place"
 import { useEffect, useState } from 'react';
 import {  FaStar } from 'react-icons/fa';
@@ -10,12 +10,14 @@ import { BsWifi } from 'react-icons/bs';
 import { MdMonitor,  MdOutlinePostAdd } from 'react-icons/md';
 import { TbPool } from 'react-icons/tb';
 import { IoIosArrowUp } from 'react-icons/io';
-import { useParams  } from 'react-router-dom';
+import { useParams, useNavigate  } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 const PlaceDetails = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const [showReserveBtn, setShowReserveBtn] = useState(false)
   const {place} = useSelector(state=> state.place);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   useEffect(()=>{
     dispatch(placeDetails(id))
@@ -213,7 +215,7 @@ const PlaceDetails = () => {
                   <IoIosArrowUp/>
                 </div>
               </div>
-              <button className="reserve-btn" type="">Reserve</button>
+              <button className="reserve-btn" type="" onClick={()=>navigate(`/checkout/${place._id}`)}>Reserve</button>
               <div>
                   <h1 className='mt-2 text-[13px] text-center'>You won&apos;t be charged yet</h1>
                   <div className='flex items-center text-[14px] justify-between  mt-3'>
