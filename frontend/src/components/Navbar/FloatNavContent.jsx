@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState } from 'react';
 import './Navbar.scss'
 import { GrFormClose } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom';
@@ -6,10 +6,9 @@ import { format, differenceInDays  } from "date-fns";
 import Area from "../../JSON/Area.json";
 import { DateRange } from "react-date-range";
 import { BiSearch } from 'react-icons/bi';
-import {MyBooking} from "../../App";
+
 import {addDate } from "../../utils/LocalStorage"
 const FloatNavContent = ({open, setOpen, click, setClick}) => {
-    const [booking,setBooking]= useContext(MyBooking)
     const [search, setSearch] = useState("")
     const navigate = useNavigate()
     const [date, setDate] = useState([
@@ -47,8 +46,8 @@ const FloatNavContent = ({open, setOpen, click, setClick}) => {
         }
         setClick('')
         const booking = {
-            check_in: date[0]?.startDate, 
-            check_out: date[0]?.endDate,
+            check_in: String(date[0]?.startDate)?.slice(4, 16), 
+            check_out: String(date[0]?.endDate)?.slice(4, 16),
             night: differenceInDays(date[0].endDate, date[0].startDate),
             guest: Number(options.adult) + Number(options.children) 
         }

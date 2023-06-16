@@ -15,8 +15,8 @@ import AuthCheckout from './LoginCheckout';
 import { message } from 'antd';
 import { useNavigate, useParams } from "react-router-dom"
 import { getDate } from "../../utils/LocalStorage"
-import { Modal } from 'antd';
 import ChangeDate from './ChangeDate';
+import ChangeGuest from './ChangeGuest';
 const options = {
     style: {
         base: {
@@ -35,7 +35,7 @@ const Checkout = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const { id } = useParams();
-    const [modal1Open, setModal1Open] = useState(false);
+    const [modal1Open, setModal1Open] = useState('');
     const stripePromise = loadStripe(api);
     useEffect(()=>{
         dispatch(placeDetails(id))
@@ -85,14 +85,14 @@ const Checkout = () => {
                                         <h2>Dates</h2>
                                         <h5>{date?.check_in} – {date?.check_out}</h5>
                                     </div>
-                                    <span className="edit-button" onClick={() => setModal1Open(true)}>Edit</span>
+                                    <span className="edit-button cursor-pointer" onClick={() => setModal1Open("date")}>Edit</span>
                                 </div>
                                 <div className="guest-container">
                                     <div>
                                         <h2>Guests</h2>
                                         <h5>{date?.guests} guests</h5>
                                     </div>
-                                    <span className="edit-button">Edit</span>
+                                    <span className="edit-button cursor-pointer" onClick={() => setModal1Open("guest")}>Edit</span>
                                 </div>
                             </section>
 
@@ -243,20 +243,15 @@ const Checkout = () => {
                             </div>
                         </div>
                     </div>
-                    <Modal
-                        open={modal1Open}
-                        centered
-                        width={570}
-                        style={{borderRadius:"30px"}}
-                        closable={false}
-                        footer={false}
-                        className={{borderRadius:"30px"}}
-                        bodyStyle={{margin:"0", border:"none", padding:0, borderRadius:"30px"}}
-                    >
-                        <div className='p-5 relative '>
-                            <ChangeDate dates={date} setModal1Open={setModal1Open}/>
-                        </div>
-                    </Modal>
+                    
+                    {
+                        modal1Open === "date" && 
+                        <ChangeDate modal1Open={modal1Open}  setModal1Open={setModal1Open}/>
+                    }
+                    {
+                        modal1Open === "guest" &&
+                        <ChangeGuest modal1Open={modal1Open} setModal1Open={setModal1Open} />
+                    }
                 </div>
             }
         </>

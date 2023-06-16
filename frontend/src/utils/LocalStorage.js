@@ -1,8 +1,9 @@
 
 const addDate=(booking)=>{
+    console.log(booking)
     const newBooking = {
-        check_in : String(booking?.check_in)?.slice(4, 16),
-        check_out : String(booking?.check_out)?.slice(4, 16),
+        check_in : booking?.check_in,
+        check_out : booking.check_out,
         night: booking?.night,
         guests : booking?.guest
     }
