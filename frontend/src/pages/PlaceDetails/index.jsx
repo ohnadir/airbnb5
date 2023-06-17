@@ -1,5 +1,4 @@
 import './PlaceDetails.scss'
- 
 import { placeDetails } from "../../Redux/actions/place"
 import { useEffect, useState } from 'react';
 import {  FaStar } from 'react-icons/fa';
@@ -12,8 +11,15 @@ import { TbPool } from 'react-icons/tb';
 import { IoIosArrowUp } from 'react-icons/io';
 import { useParams, useNavigate  } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import ChangeDate from '../Checkout/ChangeDate';
+import ChangeGuest from '../Checkout/ChangeGuest';
+import { getDate } from "../../utils/LocalStorage"
+
+
+
 const PlaceDetails = () => {
   const [showNavbar, setShowNavbar] = useState(false);
+  const [modal1Open, setModal1Open] = useState('')
   const [showReserveBtn, setShowReserveBtn] = useState(false)
   const {place} = useSelector(state=> state.place);
   const dispatch = useDispatch();
@@ -50,6 +56,7 @@ const PlaceDetails = () => {
       window.removeEventListener('scroll', controlNavbar)
     }
   }, []);
+  const date = getDate();
   return (
     <div className='place-details'>
       <div className="place-details-container">
@@ -187,7 +194,7 @@ const PlaceDetails = () => {
           <div className="place-info-card">
               <div className='card-header'>
                 <div className='card-header-option'>
-                  <span className=' font-semibold'>$10</span>
+                  <span className=' font-semibold'>${place?.price}</span>
                   <span style={{color:" #979797"}} className='text-[14px]'>night</span>
                 </div>
                 <div className="text-[13px] card-header-option">
@@ -198,19 +205,19 @@ const PlaceDetails = () => {
               </div>
               <div className="reserve-option">
                 <div className='date-picker'>
-                  <div className="check-in">
+                  <div className="check-in" onClick={()=>setModal1Open("date")}>
                     <p className="check-head">CHECK-IN</p>
-                    <p className="check-counter">10-10</p>
+                    <p className="check-counter">{date?.check_in}  </p>
                   </div>
-                  <div className="check-out">
+                  <div className="check-out" onClick={()=>setModal1Open("date")}>
                     <p className="check-head">CHECKOUT</p>
-                    <p className="check-counter">10-30</p>
+                    <p className="check-counter">{date?.check_out}</p>
                   </div>
                 </div>
-                <div className="guest-picker">
+                <div className="guest-picker" onClick={()=>setModal1Open("guest")}>
                   <div>
                     <p className="check-head">GUESTS</p>
-                    <p className="check-counter">10</p>
+                    <p className="check-counter">{date?.guests} guest</p>
                   </div>
                   <IoIosArrowUp/>
                 </div>
@@ -219,17 +226,17 @@ const PlaceDetails = () => {
               <div>
                   <h1 className='mt-2 text-[13px] text-center'>You won&apos;t be charged yet</h1>
                   <div className='flex items-center text-[14px] justify-between  mt-3'>
-                      <span className='underline '>$ 20 x 2 nights</span>
-                      <span>$10</span>
+                      <span className='underline '>$ {place?.price} x {date?.night} nights</span>
+                      <span>$ {place?.price * date?.night}</span>
                   </div>
                   <div className='my-1 text-[14px] flex items-center justify-between font-[400]'>
                       <span className='underline '>Service fee</span>
-                      <span>$ 24</span>
+                      <span>$ {place?.serviceCharge}</span>
                   </div>
                   <div className="card-divider my-4"></div>
                   <div className='flex items-center justify-between font-semibold text-[15px]'>
                       <span>Total before taxes</span>
-                      <span>$10</span>
+                      <span>$ {(place?.price * date?.night) + place?.serviceCharge }</span>
                   </div>
               </div>
           </div>
@@ -309,6 +316,14 @@ const PlaceDetails = () => {
                 </div>
             </div>
           </section>
+        }
+        {
+          modal1Open === "date" && 
+          <ChangeDate modal1Open={modal1Open}  setModal1Open={setModal1Open}/>
+        }
+        {
+          modal1Open === "guest" &&
+            <ChangeGuest modal1Open={modal1Open} setModal1Open={setModal1Open} />
         }
       </div>
     </div>
