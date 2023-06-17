@@ -83,14 +83,14 @@ const Checkout = () => {
                                 <div className="date-container my-4">
                                     <div >
                                         <h2>Dates</h2>
-                                        <h5>{date?.check_in} – {date?.check_out}</h5>
+                                        <h5>{date?.check_in ? date?.check_in : "Add date"} – {date?.check_out ? date?.check_out : "Add date"}</h5>
                                     </div>
                                     <span className="edit-button cursor-pointer" onClick={() => setModal1Open("date")}>Edit</span>
                                 </div>
                                 <div className="guest-container">
                                     <div>
                                         <h2>Guests</h2>
-                                        <h5>{date?.guests} guests</h5>
+                                        <h5>{date?.guests ? date?.guests : "Add guest"} guests</h5>
                                     </div>
                                     <span className="edit-button cursor-pointer" onClick={() => setModal1Open("guest")}>Edit</span>
                                 </div>
@@ -228,8 +228,8 @@ const Checkout = () => {
                             <h2 className='price-heading'>Price details</h2>
                             <div className="mt-3 grid grid-cols-1 gap-2">
                                 <div className='price-container'>
-                                    <span>${place?.price} x {date?.night} nights</span>
-                                    <span>${place?.price * date?.night}</span>
+                                    <span>${place?.price} x {date?.night ? date?.night : 1} nights</span>
+                                    <span>${place?.price * (date?.night ? date?.night : 1)}</span>
                                 </div>
                                 <div className='price-container'>
                                     <span className="text-[#696969]">Service fee</span>
@@ -238,7 +238,7 @@ const Checkout = () => {
                                 <div className="card-divider my-4"></div>
                                 <div className='price-container total-price'>
                                     <span>Total </span>
-                                    <span>${(place?.price * date?.night) + place?.serviceCharge}</span>
+                                    <span>${(place?.price * (date?.night ? date?.night : 1)) + place?.serviceCharge}</span>
                                 </div>
                             </div>
                         </div>

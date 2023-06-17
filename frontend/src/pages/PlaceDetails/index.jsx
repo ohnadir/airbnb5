@@ -207,17 +207,17 @@ const PlaceDetails = () => {
                 <div className='date-picker'>
                   <div className="check-in" onClick={()=>setModal1Open("date")}>
                     <p className="check-head">CHECK-IN</p>
-                    <p className="check-counter">{date?.check_in}  </p>
+                    <p className="check-counter">{date?.check_in ? date?.check_in : "Add date"}  </p>
                   </div>
                   <div className="check-out" onClick={()=>setModal1Open("date")}>
                     <p className="check-head">CHECKOUT</p>
-                    <p className="check-counter">{date?.check_out}</p>
+                    <p className="check-counter">{date?.check_out ? date?.check_out : "Add date"}</p>
                   </div>
                 </div>
                 <div className="guest-picker" onClick={()=>setModal1Open("guest")}>
                   <div>
                     <p className="check-head">GUESTS</p>
-                    <p className="check-counter">{date?.guests} guest</p>
+                    <p className="check-counter">{date?.guests ? date?.guests : "Add guest"} guest</p>
                   </div>
                   <IoIosArrowUp/>
                 </div>
