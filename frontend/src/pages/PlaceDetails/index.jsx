@@ -15,20 +15,31 @@ import ChangeDate from '../Checkout/ChangeDate';
 import ChangeGuest from '../Checkout/ChangeGuest';
 import { getDate } from "../../utils/LocalStorage"
 import SingleMap from './SingleMap';
-
+import { mapApi } from '../../Redux/actions/map';
+import ReactMapGL, { Marker } from "react-map-gl";
+import { MdHome } from 'react-icons/md';
+import Spinner from "../../components/Spinner"
 
 
 const PlaceDetails = () => {
+  const { loading, place} = useSelector(state=> state.place);
+  const {api}=useSelector(state=> state.mapApi)
   const [showNavbar, setShowNavbar] = useState(false);
   const [modal1Open, setModal1Open] = useState('')
+  const [viewport, setViewport] = useState({
+    latitude: place?.latitude && place?.latitude,
+    longitude: place?.longitude &&  place?.longitude,
+    zoom: 15
+  });
+  console.log(viewport, loading)
   const [showReserveBtn, setShowReserveBtn] = useState(false)
-  const {place} = useSelector(state=> state.place);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   useEffect(()=>{
     dispatch(placeDetails(id))
-  },[id]);
+    dispatch(mapApi())
+  },[id, dispatch]);
 
   const settings = {
     dots: false,
@@ -227,8 +238,8 @@ const PlaceDetails = () => {
               <div>
                   <h1 className='mt-2 text-[13px] text-center'>You won&apos;t be charged yet</h1>
                   <div className='flex items-center text-[14px] justify-between  mt-3'>
-                      <span className='underline '>$ {place?.price} x {date?.night} nights</span>
-                      <span>$ {place?.price * date?.night}</span>
+                      <span className='underline '>$ {place?.price} x {date?.night ? date?.night : 1} nights</span>
+                      <span>$ {place?.price * (date?.night ? date?.night : 1)}</span>
                   </div>
                   <div className='my-1 text-[14px] flex items-center justify-between font-[400]'>
                       <span className='underline '>Service fee</span>
@@ -237,7 +248,7 @@ const PlaceDetails = () => {
                   <div className="card-divider my-4"></div>
                   <div className='flex items-center justify-between font-semibold text-[15px]'>
                       <span>Total before taxes</span>
-                      <span>$ {(place?.price * date?.night) + place?.serviceCharge }</span>
+                      <span>$ {(place?.price * (date?.night ? date?.night : 1)) + place?.serviceCharge }</span>
                   </div>
               </div>
           </div>
@@ -247,7 +258,30 @@ const PlaceDetails = () => {
           <h2 className='heading'>Where you&apos;ll be</h2>
           <p>Maldives</p>
           <div>
-            <SingleMap id={id} />
+            {
+                viewport?.latitude || viewport?.longitude
+                ?
+                <ReactMapGL
+                    {...viewport}
+                        style={{width: "100%", height: 500}}
+                        mapboxAccessToken={api}
+                        mapStyle="mapbox://styles/mapbox/streets-v9">
+                        <Marker
+                            latitude={viewport?.latitude}
+                            longitude={viewport?.longitude}
+                            
+                        >
+                            <div className='singleMap' style={{backgroundColor : "#F2D4DC", padding: "20px", borderRadius : "100%", opacity : "0.9"}}>
+                                <div className=' rounded-full' style={{backgroundColor : "#FF385C", color: "white"}}>
+                                    <MdHome  className='p-[4px] ' size={35}/>
+                                </div>
+                            </div>
+                        </Marker>   
+                </ReactMapGL>
+                :
+                <Spinner/>
+
+            }
           </div>
         </section>
 

@@ -10,8 +10,6 @@ const MobileBottomNav = () => {
     const [show, setShow] = useState(false);
     const { isAuthenticated } = useSelector(state=>state.auth)
     const controlNavbar = () => {
-        // console.log(window.scrollY)
-        console.log(document.documentElement.scrollHeight)
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         if(scrollTop){
             // setShow(true);
