@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ChangeDate from '../Checkout/ChangeDate';
 import ChangeGuest from '../Checkout/ChangeGuest';
 import { getDate } from "../../utils/LocalStorage"
+import SingleMap from './SingleMap';
 
 
 
@@ -245,7 +246,9 @@ const PlaceDetails = () => {
         <section className='map' id="location">
           <h2 className='heading'>Where you&apos;ll be</h2>
           <p>Maldives</p>
-          <div></div>
+          <div>
+            <SingleMap id={id} />
+          </div>
         </section>
 
         <div className="card-divider my-6"></div>
