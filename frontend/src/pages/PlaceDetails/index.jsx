@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import ChangeDate from '../Checkout/ChangeDate';
 import ChangeGuest from '../Checkout/ChangeGuest';
 import { getDate } from "../../utils/LocalStorage"
-import SingleMap from './SingleMap';
 import { mapApi } from '../../Redux/actions/map';
 import ReactMapGL, { Marker } from "react-map-gl";
 import { MdHome } from 'react-icons/md';
@@ -256,11 +255,11 @@ const PlaceDetails = () => {
 
         <section className='map' id="location">
           <h2 className='heading'>Where you&apos;ll be</h2>
-          <p>Maldives</p>
+          <p>{place?.name}</p>
           <div>
             {
-                viewport?.latitude || viewport?.longitude
-                ?
+              viewport?.latitude || viewport?.longitude
+              ?
                 <ReactMapGL
                     {...viewport}
                         style={{width: "100%", height: 500}}
