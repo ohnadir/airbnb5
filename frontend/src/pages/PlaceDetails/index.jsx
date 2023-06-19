@@ -26,8 +26,8 @@ const PlaceDetails = () => {
   const [showNavbar, setShowNavbar] = useState(false);
   const [modal1Open, setModal1Open] = useState('')
   const [viewport, setViewport] = useState({
-    latitude: place?.latitude && place?.latitude,
-    longitude: place?.longitude &&  place?.longitude,
+    latitude: place?.latitude || 37.742828,
+    longitude: place?.longitude  || -25.680588,
     zoom: 15
   });
   console.log(viewport, loading)
