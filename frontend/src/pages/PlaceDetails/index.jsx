@@ -30,7 +30,6 @@ const PlaceDetails = () => {
     longitude: place?.longitude  || -25.680588,
     zoom: 15
   });
-  console.log(viewport, loading)
   const [showReserveBtn, setShowReserveBtn] = useState(false)
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -262,28 +261,27 @@ const PlaceDetails = () => {
           <p className='pb-5'>{place?.name}</p>
           <div>
             {
-              viewport?.latitude || viewport?.longitude
+              loading
               ?
-                <ReactMapGL
-                  {...viewport}
-                    style={{width: "100%", height: 500}}
-                    mapboxAccessToken={api}
-                    mapStyle="mapbox://styles/mapbox/streets-v9">
-                    <Marker
-                      latitude={viewport?.latitude}
-                      longitude={viewport?.longitude}
-                        
-                    >
-                      <div className='singleMap'>
-                        <div className=' rounded-full' style={{backgroundColor : "#FF385C", color: "white"}}>
-                          <MdHome  className='p-[4px] ' size={35}/>
-                        </div>
+              <Spinner/>
+              :
+              <ReactMapGL
+                {...viewport}
+                  style={{width: "100%", height: 500}}
+                  mapboxAccessToken={api}
+                  mapStyle="mapbox://styles/mapbox/streets-v9">
+                  <Marker
+                    latitude={viewport.latitude}
+                    longitude={viewport.longitude}
+                      
+                  >
+                    <div className='singleMap'>
+                      <div className=' rounded-full' style={{backgroundColor : "#FF385C", color: "white"}}>
+                        <MdHome  className='p-[4px] ' size={35}/>
                       </div>
-                    </Marker>   
-                </ReactMapGL>
-                :
-                <Spinner/>
-
+                    </div>
+                  </Marker>   
+              </ReactMapGL>
             }
           </div>
         </section>

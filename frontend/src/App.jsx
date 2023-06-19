@@ -34,6 +34,7 @@ function App() {
         <Route path='/mobileProfile' element={<MobileProfile/>} />
         <Route path='/trip' element={<Trip/>} />
         <Route path='/search-place/:keyword' element={<SearchPlace/>} />
+        <Route path='/search-place' element={<SearchPlace/>} />
       </Routes>
     </>
   )

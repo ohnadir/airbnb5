@@ -67,7 +67,7 @@ const Navbar = () => {
                         <div className="search-option-divider"></div>
                         <div onClick={()=>handleOptions("anyweek")}>Any week</div>
                         <div className="search-option-divider"></div>
-                        <div onClick={()=>handleOptions("addguests")}>Add guest</div>
+                        <div onClick={()=>handleOptions("addguests")} className="text-[#717171]">Add guest</div>
                         <div tabIndex="1" className="search-btn" onClick={()=>setOpen(!open)}>
                           <BiSearch className="search-icon" />
                         </div>
@@ -189,7 +189,7 @@ const Navbar = () => {
         {
           open && 
           <div data-aos="fade-down" className='hidden md:block'>
-              <FloatNavContent  open={open} setOpen={setOpen} click={click} setClick={setClick}/>
+            <FloatNavContent  open={open} setOpen={setOpen} click={click} setClick={setClick}/>
           </div>
         }
       </div>

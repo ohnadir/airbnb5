@@ -19,10 +19,10 @@ const FloatNavContent = ({open, setOpen, click, setClick}) => {
         }
     ]);
     const [options, setOptions] = useState({
-        adult: 1,
+        adult: 0,
         children: 0
     });
-    let guest = options.adult ? options.adult + options.children + " guest" : "Add guest"
+    let guest = options.adult + options.children
     const handleOption = (name, operation) => {
         setOptions((prev) => {
           return {
@@ -31,15 +31,18 @@ const FloatNavContent = ({open, setOpen, click, setClick}) => {
           };
         });
     };
+    
+    const startDate = `${format(date[0].startDate, "dd/MM/yyyy")}`
+    const today = `${format(new Date(), "dd/MM/yyyy")}`
+    const endDate = `${format(date[0].endDate,"dd/MM/yyyy")}`
+
     const handleSearch=()=>{
-        if(search ){
-            if(guest !== "Add guest"){
-                navigate(`/search-place/${search}`)
-                setOpen(false)
-            }
-            else{
-                setOpen(!open)
-            }
+        if(guest > 0 || startDate){
+            navigate('/search-place')
+            setOpen(false)
+        } else if(search){
+            navigate(`/search-place/${search}`)
+            setOpen(false)
         }
         else{
             setOpen(!open)
@@ -58,8 +61,7 @@ const FloatNavContent = ({open, setOpen, click, setClick}) => {
         setClick(e)
     }
     
-    const startDate = `${format(date[0].startDate, "dd/MM/yyyy")}`
-    const endDate = `${format(date[0].endDate,"dd/MM/yyyy")}`
+    
     return (
         <div className="destination">
             <div className="destination-container" style={{backgroundColor : open ? "#ebebeb" : "white"}}>
@@ -99,7 +101,7 @@ const FloatNavContent = ({open, setOpen, click, setClick}) => {
                         <p className="option-header">Check in</p>
                         <p className="optionFooter footer-option">
                             {
-                            startDate == endDate ?  "Add dates" : startDate
+                                startDate === today ?  "Add dates" : startDate
                             }
                         </p>
                     </div>
@@ -124,7 +126,7 @@ const FloatNavContent = ({open, setOpen, click, setClick}) => {
                         <p className="option-header">Check out</p>
                         <p className="footer-option">
                             {
-                            startDate == endDate ?  "Add dates" : endDate
+                                endDate === today || endDate === startDate  ?  "Add dates" : endDate
                             }
                         </p>
                     </div>
@@ -145,12 +147,12 @@ const FloatNavContent = ({open, setOpen, click, setClick}) => {
                         : ""
                     }
                 </div>
-                <div onClick={()=> handleClick("options")} style={{backgroundColor : click === "options" ? "white" : "",  borderRadius : click === "options" ? "42px" : "", boxShadow:click === "options" ? "rgba(0, 0, 0, 0.35) 0px 5px 15px" : ""}} className="destination-item guest-option">
+                <div  style={{backgroundColor : click === "options" ? "white" : "",  borderRadius : click === "options" ? "42px" : "", boxShadow:click === "options" ? "rgba(0, 0, 0, 0.35) 0px 5px 15px" : ""}} className="destination-item guest-option">
                     <div className="guest-counter" >
                         <div className="guest-input-option" >
-                            <div className=''  >
+                            <div onClick={()=> handleClick("options")}>
                                 <p className="option-header">Who</p>
-                                <p className="footer-option">{guest}</p>
+                                <p className="footer-option">{guest ? guest : "Add guest"}</p>
                             </div>
                             {
                                 click
