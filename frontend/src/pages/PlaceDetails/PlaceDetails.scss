@@ -231,6 +231,25 @@
             font-size: 14px;
             margin: 0;
         }
+        .singleMap{
+            background-color : #F2D4DC;
+            // background-clip: content-box;
+            border-radius : 50%; 
+            opacity : 0.9;
+            animation: animation 2.5s linear infinite;
+        }
+        @keyframes animation {
+            0% {
+                padding: 0; 
+            }
+            50% {
+                padding: 20px;
+            }
+            100% {
+                padding: 0;
+            }
+          }
+          
     }
 
     .mobile-bottom-navbar{

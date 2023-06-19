@@ -39,6 +39,10 @@ const PlaceDetails = () => {
     dispatch(placeDetails(id))
     dispatch(mapApi())
   },[id, dispatch]);
+  
+  if(place?.latitude === "undefined" && place?.longitude === "undefined"){
+    dispatch(placeDetails(id))
+  }
 
   const settings = {
     dots: false,
@@ -255,27 +259,27 @@ const PlaceDetails = () => {
 
         <section className='map' id="location">
           <h2 className='heading'>Where you&apos;ll be</h2>
-          <p>{place?.name}</p>
+          <p className='pb-5'>{place?.name}</p>
           <div>
             {
               viewport?.latitude || viewport?.longitude
               ?
                 <ReactMapGL
-                    {...viewport}
-                        style={{width: "100%", height: 500}}
-                        mapboxAccessToken={api}
-                        mapStyle="mapbox://styles/mapbox/streets-v9">
-                        <Marker
-                            latitude={viewport?.latitude}
-                            longitude={viewport?.longitude}
-                            
-                        >
-                            <div className='singleMap' style={{backgroundColor : "#F2D4DC", padding: "20px", borderRadius : "100%", opacity : "0.9"}}>
-                                <div className=' rounded-full' style={{backgroundColor : "#FF385C", color: "white"}}>
-                                    <MdHome  className='p-[4px] ' size={35}/>
-                                </div>
-                            </div>
-                        </Marker>   
+                  {...viewport}
+                    style={{width: "100%", height: 500}}
+                    mapboxAccessToken={api}
+                    mapStyle="mapbox://styles/mapbox/streets-v9">
+                    <Marker
+                      latitude={viewport?.latitude}
+                      longitude={viewport?.longitude}
+                        
+                    >
+                      <div className='singleMap'>
+                        <div className=' rounded-full' style={{backgroundColor : "#FF385C", color: "white"}}>
+                          <MdHome  className='p-[4px] ' size={35}/>
+                        </div>
+                      </div>
+                    </Marker>   
                 </ReactMapGL>
                 :
                 <Spinner/>

@@ -40,14 +40,16 @@ const Map = ({places}) => {
                                             latitude={p.latitude}
                                             longitude={p.longitude}
                                         >
-                                            <div >
-                                                <BiMapPin 
-                                                    style={{
-                                                        height: `${10 * viewport.zoom}px`,
-                                                        width: `${10 * viewport.zoom}px`,
-                                                        color: "#ff385c"
-                                                    }}
-                                                />
+                                            <div
+                                                className='flex items-center justify-center font-bold text-center text-[16px] rounded-[42px]'
+                                                style={{
+                                                    height: `${12 * viewport.zoom}px`,
+                                                    width: `${30 * viewport.zoom}px`,
+                                                    color: "black",
+                                                    backgroundColor : "white"
+                                                }}
+                                                >
+                                                    <p>${p?.price}</p>
                                             </div>
                                         </Marker>
                                     </>
