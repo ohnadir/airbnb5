@@ -13,4 +13,17 @@
         padding: 0 40px;
         font-size: 15px;
     }
+    .drawer-container{
+        max-width: 1280px !important;
+        padding: 0 30px !important;
+        margin: 0 auto !important;
+        background-color: red;
+    }
+    
+}
+.ant-drawer-header{
+    display: none !important;
+}
+.ant-drawer-body{
+    // padding: 0 !important;
 }

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import './SearchPlace.scss'
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import { BiMapPin } from "react-icons/bi"
+import  Map, { Marker, Popup } from "react-map-gl";
 import { useDispatch, useSelector } from "react-redux"
 import { mapApi } from "../../Redux/actions/map"
 import Spinner from "../../components/Spinner"
 
-const Map = ({places}) => {
+
+const Maps = ({places}) => {
     const dispatch = useDispatch();
     const {loading, api} = useSelector(state=> state.mapApi)
     const [viewport, setViewport] = useState({
@@ -25,7 +25,7 @@ const Map = ({places}) => {
                 <Spinner/>
                 :
                 <div>
-                    <ReactMapGL
+                    <Map
                             {...viewport}
                             style={{width: "100%", height: "85vh"}}
                             mapboxAccessToken={api}
@@ -54,7 +54,7 @@ const Map = ({places}) => {
                                         </Marker>
                                     </>
                                 ))}
-                    </ReactMapGL>
+                    </Map>
                 </div>
             }
         
@@ -62,4 +62,4 @@ const Map = ({places}) => {
     )
 }
 
-export default Map
+export default Maps

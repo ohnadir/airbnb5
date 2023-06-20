@@ -2,7 +2,7 @@ import './Footer.scss'
 import { IoIosArrowUp } from 'react-icons/io';
 import { TbWorld } from 'react-icons/tb';
 
-const index = () => {
+const Footer = () => {
     return (
         <div className="footer hidden md:block">
             <div className="footer-container">
@@ -16,20 +16,20 @@ const index = () => {
                         </ul>
                     </div>
                     <div className="flex items-center gap-5 text-sm font-semibold">
-                        <div  className='flex cursor-pointer items-center gap-2'>
+                        <div className='flex cursor-pointer items-center gap-2'>
                             <TbWorld />  
                             <div className="footerOption">
-                                <span >Eng</span>
-                                <span>+880</span>
+                                <span >English</span>
+                                <span>(US)</span>
                             </div>
                         </div>
-                        <div  className='cursor-pointer flex gap-1'>
-                            <span className='text-center'>+008</span> 
+                        <div className='cursor-pointer flex gap-1'>
+                            <span className='text-center'>$ </span> 
                             <div className="footerOption">
-                                <span className='text-center'>Ind</span>
+                                <span className='text-center'>USD</span>
                             </div>
                         </div>
-                        <div  className='flex gap-1 cursor-pointer items-center'>
+                        <div  className='flex gap-2 cursor-pointer items-center'>
                             <div className="footerOption">
                                 <span >Support & resources</span> 
                             </div>
@@ -42,4 +42,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Footer

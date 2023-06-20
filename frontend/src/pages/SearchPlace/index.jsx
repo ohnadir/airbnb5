@@ -8,11 +8,12 @@ import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { FaStar } from 'react-icons/fa';
 import Spinner from "../../components/Spinner"
 import Map from './Map';
-
+import {useNavigate} from "react-router-dom"
 
 const SearchPlace = () => {
     const [Switch, setSwitch] = useState(false)
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const { loading, places } = useSelector(state => state.places);
     useEffect(() => {
       const inputElement = document.getElementById('switch');
@@ -90,7 +91,7 @@ const SearchPlace = () => {
                                                     }
                                                 </Slider>
                                             </div>
-                                            <div className='info-container'>
+                                            <div className='info-container' onClick={()=>navigate(`/placeDetails/${item?._id}`)}>
                                                 <div className="flex mt-3 items-center justify-between">
                                                     <h1>{item.name}</h1>
                                                     <div className="flex items-center gap-1 font-bold">
