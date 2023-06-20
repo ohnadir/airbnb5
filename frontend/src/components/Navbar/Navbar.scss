@@ -191,6 +191,148 @@
         border: 1px solid #eee;
         padding: 8px;
     }
+    
+}
+.navbar-mask{
+    background-color: #f7f7f7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    height: 100vh;
+    width: 100%;
+    .navbar-mask-container{
+        max-width: 1280px;
+        margin: 32px auto 0 auto;
+        padding: 0 24px;
+        .close-icon{
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            border: 1px solid #818181;
+            transition: border 0.1s ease;
+            cursor: pointer;
+            &:hover{
+                border: 1px solid transparent;
+            }
+        }
+        .mask-content{
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            position: relative;
+            .options{
+                background-color: white;
+                padding: 16px;
+                border-radius: 8px;
+                cursor: pointer;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                .options-item{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .name, .add-option{
+                        font-size: 15px;
+                        font-weight: 500;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .name{
+                        color: #666;
+                    }
+                    .add-option{
+                        color: black;
+                    }
+                }
+                .option-heading{
+                    font-size: 22px;
+                    font-weight: 500;
+                    margin-bottom: 16px;
+                }
+                .options-container{
+                    .counter-item{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        .counter-heading{
+                            font-weight: 600;
+                            color: black;
+                            font-size: 16px;
+                        }
+                        .counter-criteria{
+                            padding: 0;
+                        }
+    
+                        // button container
+                        .counter-btn-container{
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            font-size: 12px;
+                            color: black;
+                            .counter-btn{
+                                width: 35px;
+                                height: 35px;
+                                border: 1px solid #666;
+                                border-radius: 50%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                cursor: pointer;
+                                background-color: white;
+                                p{
+                                    color: #666;
+                                    font-size: 22px;
+                                    font-weight: 600;
+                                    margin: 0;
+                                    padding: 0;
+                                }
+                            }
+                            .counter-btn:disabled {
+                                cursor: not-allowed;
+                            }
+                        }
+                    }
+                    .divider{
+                        width: 100%;
+                        height: 1px;
+                        background-color: #ddd;
+                    }
+                }
+            }
+        }
+        .bottom-content{
+            width: 100%;
+            background-color: white;
+            border-top: 1px solid #ddd;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 0;
+            margin: 0;
+            .bottom-container{
+                max-width: 1280px;
+                padding: 16px 24px;
+                margin: 0 auto;
+                .search-btn{
+                    background-color: rgb(255, 56, 92);
+                    color: white;
+                    padding: 6px 20px;
+                    border-radius: 6px;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
 }
 
 .mobile-bottom-nav{

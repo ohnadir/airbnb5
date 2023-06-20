@@ -15,6 +15,10 @@ import SearchPlace from './pages/SearchPlace';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import PrivateRoute from './components/PrivateRoute';
 
+// aos animation
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+
 function App() {
   const [authModal, setAuthModal] = useState(false);
   const dispatch = useDispatch();
@@ -23,7 +27,8 @@ function App() {
     if(token){
       dispatch(loadUser(token));
     }
-  },[token])
+  },[token]);
+  AOS.init({ duration : 1000});
   return (
     <>
       <Navbar authModal={authModal} setAuthModal={setAuthModal} />
