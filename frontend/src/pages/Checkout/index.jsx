@@ -1,16 +1,14 @@
 import './Checkout.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { placeDetails } from "../../Redux/actions/place"
-import { stripeApi } from "../../Redux/actions/payment"
+import { makePayment } from "../../Redux/actions/payment"
 import { useEffect, useState } from 'react';
 import {  FaStar } from 'react-icons/fa';
 import Spinner from "../../components/Spinner"
 import { FiChevronDown } from "react-icons/fi";
-import {  RiCloseFill } from 'react-icons/ri';
 // stripe
-import { Elements } from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
-import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+import { useElements, useStripe } from '@stripe/react-stripe-js';
+import {CardElement} from '@stripe/react-stripe-js';
 import AuthCheckout from './LoginCheckout';
 import { message } from 'antd';
 import { useNavigate, useParams } from "react-router-dom"
@@ -28,25 +26,96 @@ const options = {
     }
 }
 const Checkout = () => {
+    const [address, setAddress] = useState('');
     const { place, loading } = useSelector(state=> state.place);
-    const { isAuthenticated} = useSelector(state => state.auth);
-    const { api } = useSelector(state => state.stripeApi);
+    const { isAuthenticated, user} = useSelector(state => state.auth);
+    const { client_secret } = useSelector(state => state.payment);
     const [messageApi, contextHolder] = message.useMessage();
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const stripe = useStripe();
+    const elements = useElements();
+    const navigate = useNavigate();
     const { id } = useParams();
     const [modal1Open, setModal1Open] = useState('');
-    const stripePromise = loadStripe(api);
+
+    const handleChange = (e) => {
+        setAddress(prev=>({...prev, [e.target.name]:e.target.value}))
+    }
     useEffect(()=>{
         dispatch(placeDetails(id))
-        dispatch(stripeApi())
-    },[id]);
+    },[id, dispatch]);
+    
 
     const date = getDate();
-    // const
-    const handleSubmit=()=>{
-        navigate('/invoice') 
+    
+    const total = ((place?.price * (date?.night ? date?.night : 1)) + place?.serviceCharge)
+    
+    useEffect(() => {
+        if(total){
+            dispatch(makePayment(1000));
+        }
+    }, [dispatch]);
+
+    const paymentAmount = {
+        amount: Math.round(total * 100)
     }
+
+    const stripeCall= async()=>{
+        if (!stripe || !elements) {
+            return;
+        }
+        const card = elements.getElement(CardElement);
+
+        if (card == null) {
+          return;
+        }
+        
+        // confirm payment 
+        const result = await stripe.confirmCardPayment(
+            client_secret,
+            {
+              payment_method: {
+                card: card,
+                billing_details: {
+                    name: user.name,
+                    email: user.email,
+                    phone: user?.phone,
+                    address: user?.address
+                },
+                
+              },
+            },
+        );
+        return result;
+    }
+    const handleSubmit= async()=>{
+        const data = await stripeCall();
+        const booking = {
+            placeName: place?.name,
+            placeImg : place?.img[0],
+            check_in: date?.check_in,
+            check_out: date?.check_out,
+            guest : date?.guest,
+            name: user?.name,
+            email: user?.email,
+            phone: user?.phone,
+            totalPrice : paymentAmount,
+            address : address,
+            transactionId : data?.paymentIntent?.id,
+            paymentStatus : data?.paymentIntent?.status
+        }
+        console.log(booking);
+        // dispatch(makeBooking(booking))
+    }
+    useEffect(()=>{
+        /* if(booking?._id){
+            messageApi.success("Booking is successful")
+            setTimeout(() => {
+                localStorage.removeItem("date");
+                navigate(`/invoice/${booking?._id}`)
+              }, 1000);
+        } */
+    },[])
     return (
         <>
             {contextHolder}
@@ -130,9 +199,7 @@ const Checkout = () => {
                                             </div>
                                         </div>
                                         <div className='border m-0 p-3 rounded-[4px]'>
-                                            <Elements stripe={stripePromise}>
-                                                <CardElement options={options}/>
-                                            </Elements>
+                                            <CardElement options={options}/>
                                         </div>
                                     </section>
                                     {/* Billing address start */}
@@ -141,32 +208,32 @@ const Checkout = () => {
                                         <div className="billing-address-container border rounded-[8px]">
                                             <div className="relative" style={{borderBottom:"1px solid #ddd"}}>
                                                 <label className='relative cursor-pointer'>
-                                                    <input name='address'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
+                                                    <input onChange={handleChange} name='address'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
                                                     <span className='text-opacity-80  absolute left-[14px] top-[30%] text-black translate-y-[-50%] text-[15px]  transition duration-200 input-text'>Street Address</span>
                                                 </label>
                                             </div>
                                             <div className="relative" style={{borderBottom:"1px solid #ddd"}}>
                                                 <label className='relative cursor-pointer'>
-                                                    <input name='aptNumber'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
+                                                    <input onChange={handleChange} name='aptNumber'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
                                                     <span className='text-opacity-80  absolute left-[14px] top-[30%] text-black translate-y-[-50%] text-[15px] transition duration-200 input-text-a'>Apt or suite number</span>
                                                 </label>
                                             </div>
                                             <div className="" style={{borderBottom:"1px solid #ddd"}}>
                                                 <label className='relative cursor-pointer'>
-                                                    <input name='city'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
+                                                    <input onChange={handleChange} name='city'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
                                                     <span className='text-opacity-80  absolute left-[14px] top-[30%] text-black translate-y-[-50%] text-[15px] transition duration-200 input-text-c'>City</span>
                                                 </label>
                                             </div>
                                             <div className="sm:flex ">
                                                 <div className="w-full">
-                                                    <label className='relative cursor-pointer'>
-                                                        <input name='state'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
+                                                    <label  className='relative cursor-pointer'>
+                                                        <input onChange={handleChange} name='state'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
                                                         <span className='text-opacity-80  absolute left-[14px] top-[30%] text-black translate-y-[-50%] text-[15px] transition duration-200 input-text-z'>State</span>
                                                     </label>
                                                 </div>
                                                 <div className="zip-container">
                                                     <label className='relative cursor-pointer'>
-                                                        <input name='zipCode'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
+                                                        <input onChange={handleChange} name='zipCode'  type="text" placeholder="Input" className='pt-5 pb-3 w-full px-[14px] text-[14px]  border-none rounded-lg border-opacity-50 outline-none  placeholder-gray-300 placeholder-opacity-0 transition duration-200' />
                                                         <span className='text-opacity-80  absolute left-[14px] top-[30%] text-black translate-y-[-50%] text-[14px] transition duration-200 input-text-z'>ZIP Code</span>
                                                     </label>
                                                 </div>
@@ -196,6 +263,7 @@ const Checkout = () => {
                                     </section>
 
                                     {/* submit button */}
+                                    {/* <ConfirmButton place={place} total={total} CardElement={CardElement} client_secret={client_secret} /> */}
                                     <button onClick={handleSubmit}  className="confirm-btn">Confirm and pay</button>
                                 </>
                                 :
@@ -238,7 +306,7 @@ const Checkout = () => {
                                 <div className="card-divider my-4"></div>
                                 <div className='price-container total-price'>
                                     <span>Total </span>
-                                    <span>${(place?.price * (date?.night ? date?.night : 1)) + place?.serviceCharge}</span>
+                                    <span>${total}</span>
                                 </div>
                             </div>
                         </div>

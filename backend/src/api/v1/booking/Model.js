@@ -3,8 +3,9 @@ const { Schema, model } = require("mongoose")
 const bookingSchema = Schema({
     placeName : String,
     placeImg : String,
-    bookingDate : String ,
-    totalGuest : Number,
+    check_in : String ,
+    check_out : String ,
+    guest : Number,
     total : Number,
     name : String,
     phone : String,
