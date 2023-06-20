@@ -11,12 +11,12 @@ import { logout } from "../../Redux/actions/user"
 import MobileNavbar from "./MobileNavbar";
 import MobileBottomNav from "./MobileBottomNav";
 import FloatNavContent from "./FloatNavContent";
-const Navbar = () => {
+const Navbar = ({authModal, setAuthModal}) => {
   const [messageApi, contextHolder] = message.useMessage();
   const { isAuthenticated, user } = useSelector(state => state.auth);
   const [dropdown, setDropdown] = useState(false);
   const [open, setOpen] = useState(false);
-  const [authModal, setAuthModal] = useState(false);
+  // const [authModal, setAuthModal] = useState(false);
   const [click, setClick] = useState('')
   const dispatch= useDispatch();
   const navigate= useNavigate()

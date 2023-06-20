@@ -87,7 +87,7 @@ const AuthenticationModal = ({ setAuthModal }) => {
                             }
                             
                         </div>
-                        <span className='text-xs'>We'll call or text you to confirm your number. Standard message and data rates apply. <span className='underline font-bold'>Privacy Policy</span></span>    
+                        <span className='text-xs'>We&apos;ll call or text you to confirm your number. Standard message and data rates apply. <span className='underline font-bold'>Privacy Policy</span></span>    
                         <div className=" mt-4 flex">
                             <button onClick={handleSubmit} className="login-btn">Continue</button>
                         </div>
