@@ -30,6 +30,7 @@ const Checkout = () => {
     const { place, loading } = useSelector(state=> state.place);
     const { isAuthenticated, user} = useSelector(state => state.auth);
     const { client_secret } = useSelector(state => state.payment);
+    console.log(client_secret)
     const [messageApi, contextHolder] = message.useMessage();
     const dispatch = useDispatch();
     const stripe = useStripe();
@@ -49,16 +50,16 @@ const Checkout = () => {
     const date = getDate();
     
     const total = ((place?.price * (date?.night ? date?.night : 1)) + place?.serviceCharge)
-    
-    useEffect(() => {
-        if(total){
-            dispatch(makePayment(1000));
-        }
-    }, [dispatch]);
-
     const paymentAmount = {
         amount: Math.round(total * 100)
     }
+    useEffect(() => {
+        if(total){
+            dispatch(makePayment(paymentAmount));
+        }
+    }, [dispatch, total]);
+
+    
 
     const stripeCall= async()=>{
         if (!stripe || !elements) {
@@ -95,17 +96,20 @@ const Checkout = () => {
             placeImg : place?.img[0],
             check_in: date?.check_in,
             check_out: date?.check_out,
-            guest : date?.guest,
-            name: user?.name,
+            guest : date?.guests,
+            name: user?.firstName + " " + user?.lastName,
             email: user?.email,
             phone: user?.phone,
-            totalPrice : paymentAmount,
+            totalPrice : total,
             address : address,
             transactionId : data?.paymentIntent?.id,
             paymentStatus : data?.paymentIntent?.status
         }
-        console.log(booking);
-        // dispatch(makeBooking(booking))
+        if(data.paymentIntent?.id){
+            console.log(booking);
+            // dispatch(makeBooking(booking))
+        }
+        console.log(data);
     }
     useEffect(()=>{
         /* if(booking?._id){

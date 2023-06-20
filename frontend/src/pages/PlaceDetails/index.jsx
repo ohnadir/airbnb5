@@ -307,7 +307,7 @@ const PlaceDetails = () => {
               </div>  
             </div>
             <div>
-              <button className="mobile-reserve-btn" type="">Reserve</button>
+              <button onClick={()=>navigate(`/checkout/${place._id}`)} className="mobile-reserve-btn" type="">Reserve</button>
             </div>
           </div>
         </section>
