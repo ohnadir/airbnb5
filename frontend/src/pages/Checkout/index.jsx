@@ -2,6 +2,7 @@ import './Checkout.scss'
 import { useDispatch, useSelector } from "react-redux";
 import { placeDetails } from "../../Redux/actions/place"
 import { makePayment } from "../../Redux/actions/payment"
+import { makeBooking } from "../../Redux/actions/booking"
 import { useEffect, useState } from 'react';
 import {  FaStar } from 'react-icons/fa';
 import Spinner from "../../components/Spinner"
@@ -30,7 +31,7 @@ const Checkout = () => {
     const { place, loading } = useSelector(state=> state.place);
     const { isAuthenticated, user} = useSelector(state => state.auth);
     const { client_secret } = useSelector(state => state.payment);
-    console.log(client_secret)
+    const { booking } = useSelector(state => state.booking);
     const [messageApi, contextHolder] = message.useMessage();
     const dispatch = useDispatch();
     const stripe = useStripe();
@@ -106,20 +107,18 @@ const Checkout = () => {
             paymentStatus : data?.paymentIntent?.status
         }
         if(data.paymentIntent?.id){
-            console.log(booking);
-            // dispatch(makeBooking(booking))
+            dispatch(makeBooking(booking))
         }
-        console.log(data);
     }
     useEffect(()=>{
-        /* if(booking?._id){
+        if(booking?.newBooking?._id){
             messageApi.success("Booking is successful")
             setTimeout(() => {
                 localStorage.removeItem("date");
-                navigate(`/invoice/${booking?._id}`)
+                navigate(`/invoice/${booking?.newBooking?._id}`)
               }, 1000);
-        } */
-    },[])
+        }
+    },[booking])
     return (
         <>
             {contextHolder}
@@ -280,7 +279,7 @@ const Checkout = () => {
                                     loading
                                     ?
                                     <Spinner/>
-                                    : <img  src={place?.img[0]} alt="" /> 
+                                    : place?.img ? <img  src={place?.img[0]} alt="" /> : null 
                                 }
                                 {/* <img  src={place?.img[0]} alt="" /> */}
                                 <div className="place-info">

@@ -4,15 +4,15 @@ const {
     emailBooking
 } = require("./service")
 
-exports.newBooking = async (req, res, next) => {
-    const { status, code, message } = await booking({...req.body});
-    res.status(code).json({ code, status, message });
+exports.newBooking = async (req, res) => {
+    const { status, code, message, newBooking } = await booking({booking :req.body});
+    res.status(code).json({ code, status, message, newBooking });
 };
-exports.bookings = async (req, res, next) => {
-    const { status, code, message, places } = await getBookings({...req.body});
-    res.status(code).json({ code, status, message, places });
+exports.bookings = async (req, res) => {
+    const { status, code, message, bookings } = await getBookings({...req.body});
+    res.status(code).json({ code, status, message, bookings });
 };
-exports.emailBooking = async (req, res, next) => {
-    const { status, code, message, place } = await emailBooking({...req.params});
-    res.status(code).json({ code, status, message, place });
+exports.emailBooking = async (req, res) => {
+    const { status, code, message, booking } = await emailBooking({...req.params});
+    res.status(code).json({ code, status, message, booking });
 };

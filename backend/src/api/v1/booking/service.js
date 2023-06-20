@@ -1,16 +1,15 @@
 const Booking = require('./Model');
 
-exports.booking=async(productInfo, shippingInfo, paymentInfo)=>{
+exports.booking=async({booking})=>{
     const response = {
         code: 200,
         status: true,
-        message:"Add place Successfully"
+        message:"Booking Successfully"
     };
     try {
-        const result = await Booking.create({
-            ...productInfo, ...shippingInfo, ...paymentInfo
-        });
+        const result = await Booking.create(booking);
         await result.save();
+        response.newBooking = result;
         return response;
     } catch (error) {
         response.code = 500;
@@ -23,7 +22,7 @@ exports.getBookings =async()=>{
     const response = {
         code: 200,
         status: true,
-        message:"Email based Place Successfully"
+        message:"Fetch all booking"
     };
     try {
         const result = await Booking.find({});
@@ -33,7 +32,7 @@ exports.getBookings =async()=>{
             response.message = 'No Place found';
             return response;
         }
-        response.place = result
+        response.bookings = result
         return response;
     } catch (error) {
         response.code = 500;
@@ -46,17 +45,17 @@ exports.emailBooking=async({email})=>{
     const response = {
         code: 200,
         status: true,
-        message:"Email based Place Successfully"
+        message:"Email based Booking"
     };
     try {
         const result = await Booking.find({email: email});
         if(!result){
             response.code = 404;
             response.status = 'failed';
-            response.message = 'No Place found by this id';
+            response.message = 'No Booking found by this email';
             return response;
         }
-        response.place = result
+        response.booking = result
         return response;
     } catch (error) {
         response.code = 500;
