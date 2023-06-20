@@ -2,7 +2,7 @@
   background-color: white;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 24px;
   overflow-y: hidden;
   position: sticky;
   top: 86px;
@@ -12,16 +12,37 @@
     align-items: center;
     gap: 40px;
     .icon-container{
+      overflow-y: hidden;
       position: relative;
-      color: #838383;
-      cursor: pointer;
-      padding: 16px 0 8px 0;
-      width: fit-content;
-      border-bottom: 2px solid transparent;
-      transition: all 0.3s ease;
-      margin: 0 auto;
-      &:hover{
-        border-bottom: 2px solid black;
+      padding: 0 32px;
+      .icon{
+        position: relative;
+        color: #838383;
+        cursor: pointer;
+        padding: 16px 0 8px 0;
+        width: fit-content;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s ease;
+        margin: 0 auto;
+        &:hover{
+          border-bottom: 2px solid black;
+        }
+      }
+    }
+    
+  }
+}
+@media screen and (max-width: 641px) {
+  .filter-container{
+    display: none;
+  }
+  .cPrev, .cNext{
+    display: none !important;
+  }
+  .category{
+    .category-container{
+      .icon-container{
+        padding: 0;
       }
     }
   }

@@ -89,12 +89,12 @@ const Category = () => {
   return (
     <div className={`category ${shadow ? "box-shadow" : 0}`}>
       <div className="category-container" >
-        <div className='relative  px-8 overflow-y-hidden'>
+        <div className='icon-container relative  px-8 overflow-y-hidden'>
           <Slider {...settings}>
             {
               category.map((item)=>(
                 <div key={item.id}>
-                  <div className="icon-container" style={{color :keyword === item.name  ? " black" : "", borderBottom :keyword === item.name  ? " 2px solid  black" : ""}} onClick={()=>setKeyword(item.name) }>
+                  <div className="icon" style={{color :keyword === item.name  ? " black" : "", borderBottom :keyword === item.name  ? " 2px solid  black" : ""}} onClick={()=>setKeyword(item.name) }>
                     <div className='text-xl flex justify-center'>{item.icon}</div>
                     <p className='m-0 text-[14px] text-center'>{item.name}</p>
                     <div className='overlay'></div>
@@ -104,7 +104,7 @@ const Category = () => {
             }
           </Slider>
         </div>
-        <div className='hidden sm:block '>
+        <div className='filter-container'>
           <div onClick={()=>setOpen(!open)} className='cursor-pointer flex items-center gap-1 font-semibold border rounded-lg max-w-fit px-5 py-2'>
             <CgOptions size={14}  /> <span className='text-center text-[13px]'>Filter</span>
           </div>
