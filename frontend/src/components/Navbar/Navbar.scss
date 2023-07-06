@@ -195,13 +195,13 @@
 }
 .navbar-mask{
     background-color: #f7f7f7;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 2;
-    height: 100vh;
+    z-index: 1000;
+    max-height: 100vh;
     width: 100%;
     .navbar-mask-container{
         max-width: 1280px;
@@ -227,8 +227,10 @@
             display: grid;
             grid-template-columns: repeat(1, minmax(0, 1fr));
             gap: 20px;
-            margin-top: 30px;
+            margin-top: 20px;
             position: relative;
+            // height: fit-content;
+            // overflow: auto !important;
             .options{
                 background-color: white;
                 padding: 16px;
@@ -265,10 +267,11 @@
                         .counter-heading{
                             font-weight: 600;
                             color: black;
-                            font-size: 16px;
+                            font-size: 15px;
                         }
                         .counter-criteria{
                             padding: 0;
+                            font-size: 14px;
                         }
     
                         // button container
@@ -332,8 +335,50 @@
                 }
             }
         }
+        .destinations{
+            input{
+                border: none;
+                outline: none;
+                font-weight: 600;
+                color: #2b2727;
+                &:focus{
+                    font-weight: normal;
+                }
+            }
+            .search-container{
+                border: 1px solid #808080;
+                padding: 12px;
+                border-radius: 8px;
+            }
+            .region-map-container{
+                
+                margin-top: 30px;
+                .region-map {
+                    width: 150px;
+                    margin: 0 auto;
+                    img{
+                        max-width: 100px;
+                        border: 1px solid #ddd;
+                        border-radius: 12px;
+                        transition: border 0.1s ease;
+                        &:hover{
+                            border: 1px solid black;
+                        }
+                    }
+                    p{
+                        padding: 0;
+                        margin: 0;
+                        font-size: 14px;
+                    }
+                }
+            }
+            .calender{
+                width: 100% !important;
+            }
+        }
     }
 }
+  
 
 .mobile-bottom-nav{
     background-color: white;
@@ -512,7 +557,7 @@
                         .counter-heading{
                             font-weight: 600;
                             color: black;
-                            font-size: 16px;
+                            font-size: 15px;
                         }
                         .counter-criteria{
                             padding: 0;
@@ -600,8 +645,14 @@
  .rdrDateDisplayWrapper{
     display: none !important;
 }
-.rdrMonthAndYearWrapper{
-    
+
+.calender-container .rdrMonthAndYearPickers{
+    display: block !important;
+    width: 100% !important;
+}
+.calender-container .rdrMonthAndYearPickers select {
+    width: 30% !important;
+    margin: 0 auto !important;
 }
  .rdrMonthAndYearPickers{
     display: none !important;
@@ -609,13 +660,25 @@
 .rdrNextPrevButton{
     background: none !important;
 }
-
+.rdrCalendarWrapper{
+    width: 100% !important;
+}
+.react-datepicker__input-container {
+    width: inherit;
+  }
+  
+  .react-datepicker-wrapper {
+    width: 100%;
+  }
 .rdrWeekDay{
     font-weight: 600 !important;
 }
 .rdrDayNumber{
     color: black !important;
     font-weight: 600 !important;
+}
+.calender-container .rdrMonth{
+    width: 100% !important;
 }
 .rdrMonth{
     width: 50% !important;
