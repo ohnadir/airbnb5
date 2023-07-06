@@ -3,7 +3,7 @@ import Navbar from './components/Navbar'
 import { useDispatch } from 'react-redux';
 import { loadUser } from "./Redux/actions/user"
 import { useEffect, useState } from 'react';
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 import Dashboard from './pages/Dashboard/index';
 import Checkout from "./pages/Checkout"
 import Invoice from "./pages/Invoice"
@@ -21,6 +21,7 @@ import AOS from 'aos';
 
 function App() {
   const [authModal, setAuthModal] = useState(false);
+  const [navPosition, setNavPosition] = useState("")
   const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem("token"));
   useEffect(()=>{
@@ -29,9 +30,20 @@ function App() {
     }
   },[token]);
   AOS.init({ duration : 1000});
+
+  const id = JSON.parse(localStorage.getItem("placeId"));
+  let location = useLocation();
+  useEffect(() => {
+    if (location.pathname === `/placeDetails/${id}`) {
+      setNavPosition("static")
+    }
+    else{
+      setNavPosition("sticky");
+    }
+  }, [location, id]);
   return (
     <>
-      <Navbar authModal={authModal} setAuthModal={setAuthModal} />
+      <Navbar navPosition={navPosition} authModal={authModal} setAuthModal={setAuthModal} />
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/placeDetails/:id' element={<PlaceDetails/>} />

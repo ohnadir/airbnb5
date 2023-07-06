@@ -11,7 +11,7 @@ import { logout } from "../../Redux/actions/user"
 import MobileNavbar from "./MobileNavbar";
 import MobileBottomNav from "./MobileBottomNav";
 import FloatNavContent from "./FloatNavContent";
-const Navbar = ({authModal, setAuthModal}) => {
+const Navbar = ({authModal, setAuthModal, navPosition}) => {
   const [messageApi, contextHolder] = message.useMessage();
   const { isAuthenticated, user } = useSelector(state => state.auth);
   const [dropdown, setDropdown] = useState(false);
@@ -45,8 +45,8 @@ const Navbar = ({authModal, setAuthModal}) => {
   return (
     <>
       {contextHolder}
-      <div className='navbar'>
-        <div className='relative navbar-container'>
+      <div className='navbar' style={{ position: navPosition, top: 0, zIndex: 5,  }}>
+        <div className='relative navbar-container'  >
           {/* desktop navbar */}
           <div className='hidden md:block desktop-navbar-container'>
             <div className='desktop-navbar-content'>

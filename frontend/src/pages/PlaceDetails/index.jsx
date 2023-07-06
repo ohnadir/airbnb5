@@ -38,6 +38,11 @@ const PlaceDetails = () => {
     dispatch(placeDetails(id))
     dispatch(mapApi())
   },[id, dispatch]);
+  useEffect(()=>{
+    if(id){
+      localStorage.setItem('placeId', JSON.stringify(id));
+    }
+  },[id]);
   
   if(place?.latitude === "undefined" && place?.longitude === "undefined"){
     dispatch(placeDetails(id))

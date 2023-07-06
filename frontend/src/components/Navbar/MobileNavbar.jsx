@@ -10,11 +10,13 @@ import { format, differenceInDays  } from "date-fns";
 import { DateRange } from "react-date-range";
 import FilterModal from '../Category/FilterModal'
 import Slider from "react-slick";
+import {addDate } from "../../utils/LocalStorage"
 
 const MobileNavbar = () => {
     const [open1, setOpen1] = useState(false);
     const [open, setOpen] = useState(false);
     const [item, setItem] = useState("")
+    const [search, setSearch] = useState("")
     const [date, setDate] = useState([
         {
         startDate: new Date(), 
@@ -22,12 +24,16 @@ const MobileNavbar = () => {
         key: "selection",
         }
     ]);
+    const navigate = useNavigate()
     const [options, setOptions] = useState({
         adult: 0,
         children: 0,
         infants : 0,
         pets: 0
     });
+
+    const startDate = `${format(date[0].startDate, "dd/MM/yyyy")}`
+
     const handleOption = (name, operation) => {
         setOptions((prev) => {
           return {
@@ -36,9 +42,31 @@ const MobileNavbar = () => {
           };
         });
     };
+    let guest = options.adult + options.children
     const handleSearch=()=>{
-        setItem("")
-        setOpen1(false)
+        if(guest > 0 && startDate){
+            navigate('/search-place')
+            setOpen1(false)
+            setItem("")
+        } else if(search){
+            console.log(search)
+            navigate(`/search-place/${search}`)
+            setOpen1(false)
+            setItem("")
+        }
+        else{
+            setOpen1(!open)
+            setItem("")
+        }
+        const booking = {
+            check_in: String(date[0]?.startDate)?.slice(4, 16), 
+            check_out: String(date[0]?.endDate)?.slice(4, 16),
+            night: differenceInDays(date[0].endDate, date[0].startDate),
+            guest: Number(options.adult) + Number(options.children) 
+        }
+        if(booking){
+            addDate(booking);
+        }
     }
     
       const settings = {
@@ -118,7 +146,7 @@ const MobileNavbar = () => {
                                         <h1 className='option-heading'>Where to?</h1>
                                         <div className='search-container flex items-center gap-3'>
                                             <TbSearch size={20}/>
-                                            <input type="text" placeholder='Search destinations' />
+                                            <input type="text" onChange={(e)=>setSearch(e.target.value)} placeholder='Search destinations' />
                                         </div>
                                         <div className="region-map-container overflow-hidden">
                                             <Slider {...settings}>
