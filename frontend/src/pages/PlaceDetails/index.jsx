@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ChangeDate from '../Checkout/ChangeDate';
 import ChangeGuest from '../Checkout/ChangeGuest';
 import { getDate } from "../../utils/LocalStorage"
-import { mapApi } from '../../Redux/actions/map';
+// import { mapApi } from '../../Redux/actions/map';
 import ReactMapGL, { Marker } from "react-map-gl";
 import { MdHome } from 'react-icons/md';
 import Spinner from "../../components/Spinner"
@@ -22,7 +22,7 @@ import Spinner from "../../components/Spinner"
 
 const PlaceDetails = () => {
   const { loading, place} = useSelector(state=> state.place);
-  const {api}=useSelector(state=> state.mapApi)
+  // const {api}=useSelector(state=> state.mapApi)
   const [showNavbar, setShowNavbar] = useState(false);
   const [modal1Open, setModal1Open] = useState('')
   const [viewport, setViewport] = useState({
@@ -36,7 +36,7 @@ const PlaceDetails = () => {
   const { id } = useParams();
   useEffect(()=>{
     dispatch(placeDetails(id))
-    dispatch(mapApi())
+    // dispatch(mapApi())
   },[id, dispatch]);
   useEffect(()=>{
     if(id){
@@ -75,7 +75,15 @@ const PlaceDetails = () => {
       window.removeEventListener('scroll', controlNavbar)
     }
   }, []);
+
   const date = getDate();
+  const handleCheckout=(id)=>{
+    if(date?.check_in === ""){
+      setModal1Open("date");
+    }else{
+      navigate(`/checkout/${id}`)
+    }
+  }
   return (
     <div className='place-details'>
       <div className="place-details-container">
@@ -236,12 +244,12 @@ const PlaceDetails = () => {
                 <div className="guest-picker" onClick={()=>setModal1Open("guest")}>
                   <div>
                     <p className="check-head">GUESTS</p>
-                    <p className="check-counter">{date?.guests ? date?.guests : "Add guest"} guest</p>
+                    <p className="check-counter">{date?.guests ? date?.guests : "Add "} guest</p>
                   </div>
                   <IoIosArrowUp/>
                 </div>
               </div>
-              <button className="reserve-btn" type="" onClick={()=>navigate(`/checkout/${place._id}`)}>Reserve</button>
+              <button  className="reserve-btn" type="" onClick={()=>handleCheckout(place._id)}>Reserve</button>
               <div>
                   <h1 className='mt-2 text-[13px] text-center'>You won&apos;t be charged yet</h1>
                   <div className='flex items-center text-[14px] justify-between  mt-3'>
@@ -273,7 +281,7 @@ const PlaceDetails = () => {
               <ReactMapGL
                 {...viewport}
                   style={{width: "100%", height: 500}}
-                  mapboxAccessToken={api}
+                  mapboxAccessToken="pk.eyJ1Ijoib2huYWRpciIsImEiOiJjbGYzbXB2cG4wcjNsM3FuZGkyeXgzaGp3In0.UW7J5lIaWc-P3nXa2WmRxQ"
                   mapStyle="mapbox://styles/mapbox/streets-v9">
                   <Marker
                     latitude={viewport.latitude}
@@ -312,7 +320,7 @@ const PlaceDetails = () => {
               </div>  
             </div>
             <div>
-              <button onClick={()=>navigate(`/checkout/${place._id}`)} className="mobile-reserve-btn" type="">Reserve</button>
+              <button  onClick={()=>handleCheckout(place._id)} className="mobile-reserve-btn" type="">Reserve</button>
             </div>
           </div>
         </section>
@@ -353,7 +361,7 @@ const PlaceDetails = () => {
                           </p>
                         </div>
                       </div>
-                      <button  className="reserve-btn">Reserve</button>
+                      <button onClick={()=>handleCheckout(place._id)} className="reserve-btn">Reserve</button>
                     </div>
                   }
                 </div>

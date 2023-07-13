@@ -115,7 +115,7 @@ const Checkout = () => {
             messageApi.success("Booking is successful")
             setTimeout(() => {
                 localStorage.removeItem("date");
-                navigate(`/invoice/${booking?.newBooking?._id}`)
+                navigate(`/confirmation/${booking?.newBooking?._id}`)
               }, 1000);
         }
     },[booking])
@@ -162,7 +162,7 @@ const Checkout = () => {
                                 <div className="guest-container">
                                     <div>
                                         <h2>Guests</h2>
-                                        <h5>{date?.guests ? date?.guests : "Add guest"} guests</h5>
+                                        <h5>{date?.guests ? date?.guests : "Add "} guests</h5>
                                     </div>
                                     <span className="edit-button cursor-pointer" onClick={() => setModal1Open("guest")}>Edit</span>
                                 </div>
@@ -173,16 +173,16 @@ const Checkout = () => {
                                 <h2 className='price-heading'>Price details</h2>
                                 <div className="mt-3 grid grid-cols-1 gap-1">
                                     <div className='price-container'>
-                                        <span>$56.24 x 7 nights</span>
-                                        <span>$393.67</span>
+                                        <span>${place?.price} x {date?.night ? date?.night : 1} nights</span>
+                                        <span>${Number(place?.price) * Number(date?.night ? date?.night : 1)}</span>
                                     </div>
                                     <div className='price-container'>
                                         <span className="text-[#696969]">Service fee</span>
-                                        <span className="text-[#54B157]">$55.58</span>
+                                        <span className="text-[#54B157]">${place?.serviceCharge}</span>
                                     </div>
                                     <div className='price-container total-price'>
                                         <span>Total </span>
-                                        <span>$496.49</span>
+                                        <span>${total}</span>
                                     </div>
                                 </div>
                             </section>

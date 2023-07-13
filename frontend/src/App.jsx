@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from "react-router-dom"
 import Dashboard from './pages/Dashboard/index';
 import Checkout from "./pages/Checkout"
-import Invoice from "./pages/Invoice"
+import Confirmation from "./pages/Confirmation"
 import Home from "./pages/Home"
 import PlaceDetails from './pages/PlaceDetails';
 import MobileProfile from './pages/MobileProfile';
@@ -54,9 +54,9 @@ function App() {
         } />
         
         <Route path='/checkout/:id' element={<Checkout/>} />
-        <Route path='/invoice' element={
+        <Route path='/confirmation/:id' element={
           <PrivateRoute setAuthModal={setAuthModal}>
-            <Invoice/>
+            <Confirmation/>
           </PrivateRoute>
         } />
         <Route path='/mobileProfile' element={
