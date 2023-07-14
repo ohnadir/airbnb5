@@ -1,4 +1,5 @@
 const Place = require('./Model');
+const APIFeatures = require('../utils/APIFeatures');
 
 exports.getPlaces = async () => {
     const response = {
@@ -47,3 +48,30 @@ exports.getPlace = async ({id}) => {
         return response;
     }
 }
+
+exports.search= async ({ q }) => {
+    const response = {
+      code: 200,
+      status: 'success',
+      message: 'Search data found successfully'
+    };
+  
+    try {
+        const apiFeatures = new APIFeatures(Place.find(), q).search().filter()
+  
+        const data = await apiFeatures.query
+        if (data.length === 0) {
+            response.code = 404;
+            response.status = 'failed';
+            response.message = 'No Search data found';
+            return response
+        }
+        response.places = data;
+        return response;
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+};

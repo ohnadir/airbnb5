@@ -41,6 +41,31 @@ exports.getBookings =async()=>{
         return response;
     }
 }
+
+exports.getBooking =async({id})=>{
+    const response = {
+        code: 200,
+        status: true,
+        message:"Fetch booking details"
+    };
+    try {
+        const result = await Booking.findOne({ _id : id});
+        if(!result){
+            response.code = 404;
+            response.status = 'failed';
+            response.message = 'No Place found by this id';
+            return response;
+        }
+        response.booking = result
+        return response;
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+}
+
 exports.emailBooking=async({email})=>{
     const response = {
         code: 200,

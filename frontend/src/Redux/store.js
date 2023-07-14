@@ -5,14 +5,18 @@ import { authReducer } from "./reducers/user";
 import { placesReducer, placeReducer } from "./reducers/place";
 import { paymentReducer } from "./reducers/payment";
 import { mapReducer } from "./reducers/map";
-import { bookingReducer } from "./reducers/booking";
+import { bookingReducer, bookingListReducer, bookingDetailsReducer, emailBookingReducer } from "./reducers/booking";
 const reducer = combineReducers({
     auth : authReducer,
     places : placesReducer,
     place : placeReducer,
     payment : paymentReducer,
     mapApi : mapReducer,
-    booking : bookingReducer
+    booking : bookingReducer,
+    bookings : bookingListReducer,
+    bookingDetails : bookingDetailsReducer,
+    emailBooking : emailBookingReducer,
+
 })
 const middleware = [thunk];
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(...middleware)))  
