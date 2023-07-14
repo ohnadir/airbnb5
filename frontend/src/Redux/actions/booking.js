@@ -16,6 +16,7 @@ import {
 } from "../constants/booking";
 
 const baseUrl = "https://airbnb5.vercel.app"
+// const baseUrl = "http://localhost:5003"
 export const makeBooking = (booking) => async (dispatch) => {
     try {
 
@@ -97,7 +98,8 @@ export const emailBooking = (email) => async (dispatch) => {
         const config = {
             headers:{
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
         const { data } = await axios.get(`${baseUrl}/api/v1/booking/email/${email}`, config)

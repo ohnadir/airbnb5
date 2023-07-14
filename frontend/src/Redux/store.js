@@ -15,7 +15,7 @@ const reducer = combineReducers({
     booking : bookingReducer,
     bookings : bookingListReducer,
     bookingDetails : bookingDetailsReducer,
-    emailBooking : emailBookingReducer,
+    emailBookings: emailBookingReducer,
 
 })
 const middleware = [thunk];

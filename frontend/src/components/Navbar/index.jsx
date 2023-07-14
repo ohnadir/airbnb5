@@ -147,7 +147,7 @@ const Navbar = ({authModal, setAuthModal, navPosition}) => {
                     }
                     {
                       isAuthenticated 
-                      ?  <li  >Your Booking</li>
+                      ?  <li onClick={()=>navigate('/trip')}>Your Booking</li>
                       :
                       <li className='hidden'></li>
                     }

@@ -80,7 +80,7 @@ exports.emailBooking=async({email})=>{
             response.message = 'No Booking found by this email';
             return response;
         }
-        response.booking = result
+        response.bookings = result
         return response;
     } catch (error) {
         response.code = 500;

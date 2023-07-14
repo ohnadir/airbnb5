@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux';
 import { loadUser } from "./Redux/actions/user"
 import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from "react-router-dom"
-import Dashboard from './pages/Dashboard/index';
+import Dashboard from './pages/Profile/Dashboard';
 import Checkout from "./pages/Checkout"
 import Confirmation from "./pages/Confirmation"
 import Home from "./pages/Home"
 import PlaceDetails from './pages/PlaceDetails';
 import MobileProfile from './pages/MobileProfile';
-import Trip from './pages/Trip';
+import Trip from './pages/Profile/Trip';
 import SearchPlace from './pages/SearchPlace';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import PrivateRoute from './components/PrivateRoute';

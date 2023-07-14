@@ -13,7 +13,8 @@ export const  makePayment = (amount)=> async(dispatch)=>{
         const config = {
             headers:{
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
             }
         }
         const { data } = await axios.post(`${baseUrl}/payment/process`, amount, config) 

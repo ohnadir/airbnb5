@@ -1,6 +1,6 @@
 .trip{
     max-width: 1280px;
-    padding: 30px 24px;
+    padding: 32px 0;
     margin: 0 auto;
     .divider{
         width: 100%;
@@ -27,5 +27,23 @@
                 margin-top: 15px;
             } 
         }
+        .trip-table{
+            overflow-x: auto;
+            .trip-table-container{
+                width: 1500px;
+                border: 1px solid #dddddd;
+                margin-bottom: 10px;
+                td, th {
+                    border-bottom: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1279px){
+    .trip{
+        padding: 32px 25px;
     }
 }
