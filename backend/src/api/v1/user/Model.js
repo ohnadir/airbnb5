@@ -12,7 +12,11 @@ const userSchema = Schema({
   avatar: String,
   nid:String,
   address: {},
-  eContact: {}
+  eContact: {},
+  role: {
+    type: String,
+    default: 'user'
+  }
 }, { timestamps: true });
 
 // Encrypting Password before saving user 

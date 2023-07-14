@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { authReducer } from "./reducers/user";
+import { authReducer, allUsersReducer } from "./reducers/user";
 import { placesReducer, placeReducer } from "./reducers/place";
 import { paymentReducer } from "./reducers/payment";
 import { mapReducer } from "./reducers/map";
@@ -11,6 +11,7 @@ const reducer = combineReducers({
     places : placesReducer,
     place : placeReducer,
     payment : paymentReducer,
+    users: allUsersReducer,
     mapApi : mapReducer,
     booking : bookingReducer,
     bookings : bookingListReducer,

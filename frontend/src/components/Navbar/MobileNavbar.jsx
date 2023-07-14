@@ -11,6 +11,7 @@ import { DateRange } from "react-date-range";
 import FilterModal from '../Category/FilterModal'
 import Slider from "react-slick";
 import {addDate } from "../../utils/LocalStorage"
+import { HiMenuAlt1 } from 'react-icons/hi';
 
 const MobileNavbar = () => {
     const [open1, setOpen1] = useState(false);
@@ -109,8 +110,11 @@ const MobileNavbar = () => {
         ]
       }
     return (
-        <div className='block md:hidden mobile-navbar-container px-5'>
-            <div className='mobile-navbar-content'>
+        <div className=' md:hidden mobile-navbar-container px-5 flex gap-5 items-center'>
+            <div>
+                <HiMenuAlt1 size={30} className='cursor-pointer'/>
+            </div>
+            <div className='mobile-navbar-content w-full'>
                 <div className='mobile-search-label cursor-pointer w-full' onClick={()=>setOpen1(true)}>
                     <BiSearch className='text-xl'/>
                     <div className='py-2 ' >

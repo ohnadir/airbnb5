@@ -129,7 +129,7 @@ const Navbar = ({authModal, setAuthModal, navPosition}) => {
                   <ul>
                     {
                       isAuthenticated 
-                      ? <li className="cursor-name">{user?.firstName} {user?.lastName}</li> 
+                      ? <li onClick={()=>navigate('/profile')}>{user?.firstName} {user?.lastName}</li> 
                       :
                       <li className='hidden'></li>
                     }
@@ -140,13 +140,13 @@ const Navbar = ({authModal, setAuthModal, navPosition}) => {
                       <li onClick={handleDropDown}>Login OR Sign up </li>
                     }
                     {
-                      isAuthenticated 
+                      user?.role === "admin" 
                       ?  <li onClick={()=>navigate('/dashboard')}>Dashboard</li>
                       :
                       <li className='hidden'></li>
                     }
                     {
-                      isAuthenticated 
+                      user?.role === "user" 
                       ?  <li onClick={()=>navigate('/trip')}>Your Booking</li>
                       :
                       <li className='hidden'></li>

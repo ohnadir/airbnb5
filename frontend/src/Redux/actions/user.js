@@ -6,6 +6,9 @@ import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
+    ALL_USERS_REQUEST,
+    ALL_USERS_SUCCESS,
+    ALL_USERS_FAIL,
     LOAD_USER_REQUEST,
     LOAD_USER_SUCCESS,
     LOAD_USER_FAIL,
@@ -15,7 +18,8 @@ import {
     CLEAR_ERRORS
 } from "../constants/user"
 
-const baseUrl = "https://airbnb5.vercel.app"
+// const baseUrl = "https://airbnb5.vercel.app"
+const baseUrl = "http://localhost:5003"
 
 export const  register = (validUser)=> async(dispatch)=>{
     try {
@@ -68,6 +72,32 @@ export const  login = (auth)=> async(dispatch)=>{
         })
     }
 }
+
+// all user
+export const allUser = () => async (dispatch) => {
+    try {
+        dispatch({ type: ALL_USERS_REQUEST })
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
+            }
+        }
+        const { data } = await axios.get(`${baseUrl}/api/v1/user`, config)
+        dispatch({
+            type: ALL_USERS_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: ALL_USERS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
 
 export const loadUser = (token) => async(dispatch)=>{
     try{

@@ -59,7 +59,7 @@ function App() {
             <Confirmation/>
           </PrivateRoute>
         } />
-        <Route path='/mobileProfile' element={
+        <Route path='/profile' element={
           <PrivateRoute setAuthModal={setAuthModal}>
             <MobileProfile/>
           </PrivateRoute>

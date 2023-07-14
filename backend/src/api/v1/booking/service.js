@@ -25,7 +25,7 @@ exports.getBookings =async()=>{
         message:"Fetch all booking"
     };
     try {
-        const result = await Booking.find({});
+        const result = await Booking.find({}).sort({ _id:-1});;
         if(!result){
             response.code = 404;
             response.status = 'failed';

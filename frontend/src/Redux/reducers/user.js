@@ -5,6 +5,9 @@ import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
+    ALL_USERS_REQUEST,
+    ALL_USERS_SUCCESS,
+    ALL_USERS_FAIL,
     LOAD_USER_REQUEST,
     LOAD_USER_SUCCESS,
     LOAD_USER_FAIL,
@@ -66,5 +69,39 @@ export const authReducer = (state = { user: {} }, action) => {
 
         default:
             return state
+    }
+}
+
+export const allUsersReducer = (state = { users: [] }, action) => {
+    switch (action.type) {
+
+        case ALL_USERS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            }
+
+        case ALL_USERS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                users: action.payload.users
+            }
+
+        case ALL_USERS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state;
     }
 }
