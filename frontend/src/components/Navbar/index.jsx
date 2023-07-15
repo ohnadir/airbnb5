@@ -9,7 +9,6 @@ import AuthenticationModal from "../AuthenticationModal/AuthenticationModal";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../Redux/actions/user"
 import MobileNavbar from "./MobileNavbar";
-import MobileBottomNav from "./MobileBottomNav";
 import FloatNavContent from "./FloatNavContent";
 const Navbar = ({authModal, setAuthModal, navPosition}) => {
   const [messageApi, contextHolder] = message.useMessage();
@@ -184,8 +183,7 @@ const Navbar = ({authModal, setAuthModal, navPosition}) => {
             </Modal>
           }
         </div>
-        <MobileNavbar/>
-        <MobileBottomNav/>
+        <MobileNavbar setAuthModal={setAuthModal}/>
         {
           open && 
           <div data-aos="fade-down" className='hidden md:block'>

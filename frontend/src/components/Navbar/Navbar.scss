@@ -375,22 +375,44 @@
 }
   
 
-.mobile-bottom-nav{
-    background-color: white;
-    border-top: 1px solid #eee;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+.mobile-drawer{
     width: 100%;
-    display: none;
-    .mobile-bottom-nav-container{
-        max-width: 1280px;
-        padding: 12px 40px;
-        margin: 0 auto;
+    height: 100vh;
+    position: relative;
+    background-color: white;
+    
+    .brand{
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 50px;
+        justify-content: space-between;
+        border-bottom: 1px solid #eee;
+        padding: 10px 30px;
+        .close-icon{
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            &:hover{
+                background-color: #ff385c;
+                color: white !important;
+            }
+        }
+    }
+    .drawer-links{
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid #eee;
+        padding: 10px 20px;
         .nav-item{
             color : #b0b0b0;
             cursor: pointer;
@@ -627,14 +649,6 @@
         }
     } 
 }
-
-@media screen and (max-width : 767px) {
-    .mobile-bottom-nav{
-        display: block;
-    } 
-}
-
-
 
 // custom ant design sass
  .rdrDateDisplayWrapper{
