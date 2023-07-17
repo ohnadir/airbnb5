@@ -71,7 +71,8 @@ function App() {
           </PrivateRoute>
         }/>
         <Route path='/regional/:region' element={<RegionalPlace/>} />
-        <Route path='/search-place' element={<SearchPlace/>} />
+        <Route path='/search-place/:keyword' element={<SearchPlace/>} />
+        <Route path='/search' element={<SearchPlace/>} />
       </Routes>
     </>
   )

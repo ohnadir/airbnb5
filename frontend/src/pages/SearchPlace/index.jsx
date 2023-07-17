@@ -12,11 +12,9 @@ import {useNavigate, useParams} from "react-router-dom"
 
 const SearchPlace = () => {
     const [Switch, setSwitch] = useState(false)
-    const [zone, setZone] = useState("")
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { keyword } = useParams();
-    console.log(keyword);
     const { loading, places } = useSelector(state => state.places);
     useEffect(() => {
       const inputElement = document.getElementById('switch');
@@ -25,8 +23,8 @@ const SearchPlace = () => {
       });
     }, []);
     useEffect(() => {
-        dispatch(getPlaces());
-    }, [dispatch]);
+        dispatch(getPlaces(keyword));
+    }, [keyword, dispatch]);
     const ArrowLeft = ({ currentSlide, slideCount, ...props }) => (
         <button
             {...props}
@@ -58,6 +56,7 @@ const SearchPlace = () => {
     };
     return (
         <div className='search'>
+            <h1 className='heading'>Search Place for <span>{keyword}</span> Keyword</h1>
             <div className="search-container">
                 <section className="places w-1/2">
                     <h1 className='total-place'>{places?.length} places</h1>

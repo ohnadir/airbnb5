@@ -37,12 +37,11 @@ const FloatNavContent = ({open, setOpen, click, setClick}) => {
     const endDate = `${format(date[0].endDate,"dd/MM/yyyy")}`
 
     const handleSearch=()=>{
-        if(guest > 0 || startDate){
-            navigate('/search-place')
-            setOpen(false)
-        } else if(search){
+        if(search){
             navigate(`/search-place/${search}`)
             setOpen(false)
+        }else if(startDate || endDate){
+            navigate('/search')
         }
         else{
             setOpen(!open)

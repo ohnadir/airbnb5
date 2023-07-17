@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 const placeSchema = Schema({
   name: { type: String, required: true},
   img: [],
-  price: { type: String, required: true},
+  price: { type: Number, required: true},
   rating : Number,
   serviceCharge : Number,
   zone: String,

@@ -6,7 +6,7 @@ const {
 } =require("./service")
 
   exports.places = async (req, res ) => {
-    const { status, code, message, places } = await getPlaces({...req.params});
+    const { status, code, message, places } = await getPlaces({});
     res.status(code).json({ code, status, message, places });
   };
   
@@ -15,6 +15,6 @@ exports.place = async (req, res ) => {
   res.status(code).json({ code, status, message, place });
 };
 exports.searchPlace = async (req, res ) => {
-  const { status, code, message, places } = await search({ q : req.query});
-  res.status(code).json({ code, status, message, places });
+  const { status, code, message, places, total } = await search({ q : req.query});
+  res.status(code).json({ code, status, message, places, total });
 };

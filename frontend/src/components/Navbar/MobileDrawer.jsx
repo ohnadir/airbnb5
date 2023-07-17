@@ -49,83 +49,83 @@ const MobileDrawer = ({drawer, setDrawer, setAuthModal})  => {
             placement="right" closable={false}
             open={drawer}
         >
-        <div className='mobile-bottom-nav mobile-drawer' >
-            <div className="brand">
-                <FaAirbnb size={38} style={{color : "#ff385c"}} />
-                <div className='close-icon' onClick={()=>setDrawer(false)}>
-                    <GrFormClose size={18}/>
+            <div className='mobile-bottom-nav mobile-drawer' >
+                <div className="brand">
+                    <FaAirbnb size={38} style={{color : "#ff385c"}} />
+                    <div className='close-icon' onClick={()=>setDrawer(false)}>
+                        <GrFormClose size={18}/>
+                    </div>
                 </div>
-            </div>
-            <main>
-                <div className='input-slider'>
-                    <p className="text-[18px] font-semibold text-black m-0">Price range</p>
-                    <p className='text-[14px] text-[#717171]'>The average nightly price is 764</p>
+                <main>
+                    <div className='input-slider'>
+                        <p className="text-[18px] font-semibold text-black m-0">Price range</p>
+                        <p className='text-[14px] text-[#717171]'>The average nightly price is 764</p>
 
-                    <div className='px-10'>
-                        <Slider className='slider' onChange={handleRange}  range={{draggableTrack: true,}}defaultValue={[0, 1000]}/>
-                    </div>
-                    <div className="range-details mt-5 flex items-center justify-between gap-5 px-10">
-                        <div className="min-range">
-                            <p className='m-0'>min price</p>
-                            $ {Min}
+                        <div className='px-10'>
+                            <Slider className='slider' onChange={handleRange}  range={{draggableTrack: true,}}defaultValue={[0, 1000]}/>
                         </div>
-                        <div>-</div>
-                        <div className="max-range">
-                            <p className='m-0'>max price</p>
-                            $ {Max}
+                        <div className="range-details mt-5 flex items-center justify-between gap-5 px-10">
+                            <div className="min-range">
+                                <p className='m-0'>min price</p>
+                                $ {Min}
+                            </div>
+                            <div>-</div>
+                            <div className="max-range">
+                                <p className='m-0'>max price</p>
+                                $ {Max}
+                            </div>
                         </div>
                     </div>
+                </main>
+                <div className="drawer-links">
+                    <div className='nav-item' tabIndex="1" onClick={()=>handleRoute("home")}>
+                        <BiHomeAlt2 className='icon icons'/>
+                        <p>Home</p>
+                    </div>
+                    {
+                        user?.role === "user"
+                        ?
+                        <div className='nav-item' tabIndex="2" onClick={()=>handleRoute("wish")}>
+                            <IoMdHeartEmpty className='icon'/>
+                            <p>Wishlists</p>
+                        </div>
+                        :
+                        null
+                    }
+                    {
+                        user?.role === "user"
+                        ?
+                        <div className='nav-item' tabIndex="3" onClick={()=>handleRoute("trip")}>
+                            <FaAirbnb className='icon'/>
+                            <p>Trips</p>
+                        </div>
+                        :
+                        null
+                    }
+                    {
+                        isAuthenticated 
+                        ?
+                        null
+                        :
+                        <div className='nav-item' tabIndex="4" onClick={()=>handleRoute("login")}>
+                            <FiUser className='icon'/>
+                            <p>Log in</p>
+                        </div>
+                    }
+                    
+                    {
+                        isAuthenticated
+                        ?
+                        <div className='nav-item' tabIndex="5" onClick={()=>handleRoute("profile")}>
+                            <FiUser className='icon'/>
+                            <p>Profile</p>
+                        </div>
+                        :
+                        null
+                    }
+                    
                 </div>
-            </main>
-            <div className="drawer-links">
-                <div className='nav-item' tabIndex="1" onClick={()=>handleRoute("home")}>
-                    <BiHomeAlt2 className='icon icons'/>
-                    <p>Home</p>
-                </div>
-                {
-                    user?.role === "user"
-                    ?
-                    <div className='nav-item' tabIndex="2" onClick={()=>handleRoute("wish")}>
-                        <IoMdHeartEmpty className='icon'/>
-                        <p>Wishlists</p>
-                    </div>
-                    :
-                    null
-                }
-                {
-                    user?.role === "user"
-                    ?
-                    <div className='nav-item' tabIndex="3" onClick={()=>handleRoute("trip")}>
-                        <FaAirbnb className='icon'/>
-                        <p>Trips</p>
-                    </div>
-                    :
-                    null
-                }
-                {
-                    isAuthenticated 
-                    ?
-                    null
-                    :
-                    <div className='nav-item' tabIndex="4" onClick={()=>handleRoute("login")}>
-                        <FiUser className='icon'/>
-                        <p>Log in</p>
-                    </div>
-                }
-                
-                {
-                    isAuthenticated
-                    ?
-                    <div className='nav-item' tabIndex="5" onClick={()=>handleRoute("profile")}>
-                        <FiUser className='icon'/>
-                        <p>Profile</p>
-                    </div>
-                    :
-                    null
-                }
-                
             </div>
-        </div>
         </Drawer>
     )
 }

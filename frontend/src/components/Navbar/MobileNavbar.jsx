@@ -47,17 +47,13 @@ const MobileNavbar = (setAuthModal) => {
     };
     let guest = (options.adult + options.children) ? (options.adult + options.children) : 1;
     const handleSearch=()=>{
-        if(guest > 0 && startDate){
-            navigate('/search-place')
-            setOpen1(false)
-            setItem("")
-        } else if(search){
+        if(search){
             navigate(`/search-place/${search}`)
             setOpen1(false)
             setItem("")
         }
         else{
-            setOpen1(!open)
+            setOpen1(false)
             setItem("")
         }
         const booking = {
@@ -71,7 +67,7 @@ const MobileNavbar = (setAuthModal) => {
         }
     }
     
-      const settings = {
+    const settings = {
         dots: false,
         arrows: true,
         slidesToShow: 5,
@@ -109,7 +105,12 @@ const MobileNavbar = (setAuthModal) => {
             }
           } 
         ]
-      }
+    }
+
+    const handleRegional=(e)=>{
+        navigate(`/regional/${e}`)
+        setOpen1(false)
+    }
     return (
         <div className=' md:hidden mobile-navbar-container px-5 flex gap-5 items-center'>
             
@@ -158,7 +159,7 @@ const MobileNavbar = (setAuthModal) => {
                                             <Slider {...settings}>
                                                 {
                                                     Region.map((item, index)=>
-                                                        <div key={index} className='region-map'>
+                                                        <div key={index} className='region-map' onClick={()=>handleRegional(item.name)}>
                                                             <img src={item?.photo} alt="" />
                                                             <p>{item.name}</p>
                                                         </div>

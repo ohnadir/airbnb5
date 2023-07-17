@@ -13,7 +13,7 @@ import {
 const baseUrl = "https://airbnb5.vercel.app"
 // const baseUrl = "http://localhost:5003"
 
-export const getPlaces = ( q="",  region) => async (dispatch) => {
+export const getPlaces = ( keyword="",  region) => async (dispatch) => {
     try {
         
         dispatch({ type: PLACES_REQUEST })
@@ -23,9 +23,9 @@ export const getPlaces = ( q="",  region) => async (dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-        let link = `${baseUrl}/api/v1/place?q=${q}`;
+        let link = `${baseUrl}/api/v1/place?q=${keyword}`;
         if(region){
-            link = `${baseUrl}/api/v1/place?q=${q}&zone=${region}`            
+            link = `${baseUrl}/api/v1/place?q=${keyword}&zone=${region}`            
         }
         const { data } = await axios.get( link , config);
         dispatch({

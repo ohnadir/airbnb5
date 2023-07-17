@@ -57,7 +57,6 @@ exports.search= async ( {q} ) => {
     };
   
     try {
-        console.log(q)
         const apiFeatures = new APIFeatures(Place.find(), q).search().filter();  
         const data = await apiFeatures.query;
         if (data.length === 0) {
@@ -67,6 +66,7 @@ exports.search= async ( {q} ) => {
             return response
         }
         response.places = data;
+        response.total = data.length;
         return response;
     } catch (error) {
         response.code = 500;
