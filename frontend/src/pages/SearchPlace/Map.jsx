@@ -26,11 +26,11 @@ const Maps = ({places}) => {
                 :
                 <div>
                     <Map
-                            {...viewport}
-                            style={{width: "100%", height: "85vh"}}
-                            mapboxAccessToken={api}
-                            mapStyle="mapbox://styles/mapbox/streets-v9"
-                            onViewportChange={nextViewport => setViewport(nextViewport)}
+                        {...viewport}
+                        style={{width: "100%", height: "85vh"}}
+                        mapboxAccessToken={api}
+                        mapStyle="mapbox://styles/mapbox/streets-v9"
+                        onViewportChange={nextViewport => setViewport(nextViewport)}
                         >
                             {
                                 places?.map((p, index)=>(
@@ -53,7 +53,7 @@ const Maps = ({places}) => {
                                             </div>
                                         </Marker>
                                     </>
-                                ))}
+                            ))}
                     </Map>
                 </div>
             }

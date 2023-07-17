@@ -49,7 +49,8 @@ exports.getBooking =async({id})=>{
         message:"Fetch booking details"
     };
     try {
-        const result = await Booking.findOne({ _id : id});
+        console.log(id)
+        const result = await Booking.findOne({ _id:  id});
         if(!result){
             response.code = 404;
             response.status = 'failed';

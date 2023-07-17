@@ -8,12 +8,15 @@ import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { FaStar } from 'react-icons/fa';
 import Spinner from "../../components/Spinner"
 import Map from './Map';
-import {useNavigate} from "react-router-dom"
+import {useNavigate, useParams} from "react-router-dom"
 
 const SearchPlace = () => {
     const [Switch, setSwitch] = useState(false)
+    const [zone, setZone] = useState("")
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const { keyword } = useParams();
+    console.log(keyword);
     const { loading, places } = useSelector(state => state.places);
     useEffect(() => {
       const inputElement = document.getElementById('switch');

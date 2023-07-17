@@ -3,15 +3,16 @@ import { Result } from 'antd';
 import { useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
+import { bookingDetails } from "../../Redux/actions/booking"
 
-const Confirmation = ({booking}) => {
+const Confirmation = () => {
     const {id} = useParams();
     const navigate = useNavigate()
     const dispatch = useDispatch();
-    // const { booking } = useSelector(state=> state.bookingDetails)
+    const { booking } = useSelector(state=> state.bookingDetails)
     useEffect(()=>{
-        // dispatch(orderDetails(id))
-    },[id])
+        dispatch(bookingDetails(id))
+    },[id, dispatch]);
     const handleHome=()=>{
         navigate('/')
         window.location.reload();

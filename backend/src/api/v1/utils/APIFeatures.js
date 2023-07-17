@@ -9,7 +9,7 @@ class APIFeatures {
         let query = {};
         if (q !== 'undefined' || q !== undefined || q) {
             let regex = new RegExp(q, 'i');
-            query = { ...query, $or: [{ name: regex }, { category: regex }] };
+            query = { ...query, $or: [{ name: regex }, { zone: regex }]  };
         }
         this.query = this.query.find(query);
         return this;
@@ -17,10 +17,14 @@ class APIFeatures {
     filter() {
 
         const queryCopy = { ...this.queryString };
+        
         // Removing fields from the query
         const removeFields = ['q']
         removeFields.forEach(el => delete queryCopy[el]);
+
+        // filter for price
         let queryStr = JSON.stringify(queryCopy)
+        queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => `$${match}`)
 
         this.query = this.query.find(JSON.parse(queryStr));
         return this;

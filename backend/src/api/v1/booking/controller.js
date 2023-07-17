@@ -15,7 +15,7 @@ exports.bookings = async (req, res) => {
 };
 
 exports.booking = async (req, res) => {
-    const { status, code, message, booking } = await getBooking(  {id:req.params.id} );
+    const { status, code, message, booking } = await getBooking({ id:req.params.id } );
     res.status(code).json({ code, status, message, booking });
 };
 

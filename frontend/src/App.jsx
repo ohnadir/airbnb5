@@ -18,6 +18,7 @@ import PrivateRoute from './components/PrivateRoute';
 // aos animation
 import 'aos/dist/aos.css';
 import AOS from 'aos';
+import RegionalPlace from './pages/RegionalPlace';
 
 function App() {
   const [authModal, setAuthModal] = useState(false);
@@ -69,7 +70,7 @@ function App() {
             <Trip/>
           </PrivateRoute>
         }/>
-        <Route path='/search-place/:keyword' element={<SearchPlace/>} />
+        <Route path='/regional/:region' element={<RegionalPlace/>} />
         <Route path='/search-place' element={<SearchPlace/>} />
       </Routes>
     </>

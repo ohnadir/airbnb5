@@ -4,7 +4,7 @@ const { placeValidator, updateValidator, id } = require('../place/validator');
 const validationResult = require('../validators');
 
 
-router.get('/', places);
+// router.get('/', places);
 router.get('/:id', place);
-router.get('/search', searchPlace);
+router.get('/', searchPlace);
 module.exports = router;

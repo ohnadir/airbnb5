@@ -25,15 +25,17 @@ const Place = () => {
                 
             <BiChevronLeft/>
         </button>
-      );
-      const ArrowRight = ({ currentSlide, slideCount, ...props }) => (
+    );
+
+    const ArrowRight = ({ currentSlide, slideCount, ...props }) => (
         <button
           {...props}
           style={{visibility: currentSlide === 4 ? "hidden" : "visible"}}
           className="next">
             <BiChevronRight/>
         </button>
-      );
+    );
+    
     const settings = {
         arrows: true,
         dots: true,

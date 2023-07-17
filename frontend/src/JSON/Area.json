@@ -12,12 +12,12 @@
     {
         "id": 3,
         "photo": "https://res.cloudinary.com/ddqovbzxy/image/upload/v1675174321/united-kingdom_y7lmnj.webp",
-        "name" : "United Kingdom"
+        "name" : "United-Kingdom"
     },
     {
         "id": 4,
         "photo": "https://res.cloudinary.com/ddqovbzxy/image/upload/v1675174321/southeast-asia_ecconv.webp",
-        "name" : "Southeast Asia"
+        "name" : "Southeast-Asia"
     },
     {
         "id": 5,
@@ -27,6 +27,6 @@
     {
         "id": 6,
         "photo": "https://res.cloudinary.com/ddqovbzxy/image/upload/v1675174321/middle-east_fxi49j.webp",
-        "name" : "Middle East"
+        "name" : "Middle-East"
     }
 ]

@@ -31,6 +31,7 @@ export const  register = (validUser)=> async(dispatch)=>{
             }
         }
         const { data } = await axios.post(`${baseUrl}/api/v1/user/signup`, validUser, config)
+        console.log(data);
         if(data.token){
             localStorage.setItem("token", JSON.stringify(data.token));
         }

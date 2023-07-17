@@ -49,7 +49,7 @@ exports.getPlace = async ({id}) => {
     }
 }
 
-exports.search= async ({ q }) => {
+exports.search= async ( {q} ) => {
     const response = {
       code: 200,
       status: 'success',
@@ -57,9 +57,9 @@ exports.search= async ({ q }) => {
     };
   
     try {
-        const apiFeatures = new APIFeatures(Place.find(), q).search().filter()
-  
-        const data = await apiFeatures.query
+        console.log(q)
+        const apiFeatures = new APIFeatures(Place.find(), q).search().filter();  
+        const data = await apiFeatures.query;
         if (data.length === 0) {
             response.code = 404;
             response.status = 'failed';

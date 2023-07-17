@@ -4,7 +4,7 @@ import { message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from "../../Redux/actions/user"
 
-const RegisterCheckout = ({ input, passInput }) => {
+const  RegisterCheckout = ({ input, passInput }) => {
     const {  user, error } = useSelector(state => state.auth);
     const [messageApi, contextHolder] = message.useMessage();
     const [auth, setAuth] = useState("");

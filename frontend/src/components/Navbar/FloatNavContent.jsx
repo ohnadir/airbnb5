@@ -51,8 +51,8 @@ const FloatNavContent = ({open, setOpen, click, setClick}) => {
         const booking = {
             check_in: String(date[0]?.startDate)?.slice(4, 16), 
             check_out: String(date[0]?.endDate)?.slice(4, 16),
-            night: differenceInDays(date[0].endDate, date[0].startDate),
-            guest: Number(options.adult) + Number(options.children) 
+            night: (differenceInDays(date[0].endDate, date[0].startDate)) ? (differenceInDays(date[0].endDate, date[0].startDate)) : 1,
+            guest: (Number(options.adult) + Number(options.children)) ? (Number(options.adult) + Number(options.children)) : 1 
         }
         addDate(booking);
     }
@@ -60,7 +60,10 @@ const FloatNavContent = ({open, setOpen, click, setClick}) => {
     const handleClick=(e)=>{ 
         setClick(e)
     }
-    
+    const handleRegional=(e)=>{
+        navigate(`/regional/${e}`)
+        setOpen(false)
+    }
     
     return (
         <div className="destination">
@@ -86,7 +89,7 @@ const FloatNavContent = ({open, setOpen, click, setClick}) => {
                                 <div className='grid grid-cols-3 gap-5 w-[550px] p-5'>
                                     {
                                         Area.map((item) => <div key={item.id} className="">
-                                            <img onClick={()=>navigate(`/search/${item.name}`)} className='border  rounded-[10px]' src={item.photo} alt={item.name} />
+                                            <img onClick={()=>handleRegional(`${item.name}`)} className='border  rounded-[10px]' src={item.photo} alt={item.name} />
                                             <p className='m-0 text-black'>{item.name}</p>
                                         </div>)
                                     }

@@ -29,7 +29,7 @@ const options = {
 const Checkout = () => {
     const [address, setAddress] = useState('');
     const { place, loading } = useSelector(state=> state.place);
-    const { isAuthenticated, user} = useSelector(state => state.auth);
+    const { isAuthenticated, user, error, messages    } = useSelector(state => state.auth);
     const { client_secret } = useSelector(state => state.payment);
     const { booking } = useSelector(state => state.booking);
     const [messageApi, contextHolder] = message.useMessage();
@@ -51,6 +51,7 @@ const Checkout = () => {
     const date = getDate();
     
     const total = ((place?.price * (date?.night ? date?.night : 1)) + place?.serviceCharge)
+    console.log(total)
     const paymentAmount = {
         amount: Math.round(total * 100)
     }
@@ -101,7 +102,7 @@ const Checkout = () => {
             name: user?.firstName + " " + user?.lastName,
             email: user?.email,
             phone: user?.phone,
-            totalPrice : total,
+            total : Number(total),
             address : address,
             transactionId : data?.paymentIntent?.id,
             paymentStatus : data?.paymentIntent?.status
@@ -118,7 +119,18 @@ const Checkout = () => {
                 navigate(`/confirmation/${booking?.newBooking?._id}`)
               }, 1000);
         }
-    },[booking])
+    },[booking]);
+    useEffect(()=>{
+        if (messages=== "login successfully") {
+            messageApi.success(messages);
+        }
+        if (messages=== "Registration successfully") {
+            messageApi.success(messages);
+        }
+        if(error === "Incorrect credential"){
+            messageApi.warning("Incorrect credential");
+        }
+    },[error, user])
     return (
         <>
             {contextHolder}

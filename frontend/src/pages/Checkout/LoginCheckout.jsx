@@ -100,7 +100,7 @@ const AuthCheckout = () => {
                         
                         {/* login button start */}
                         <div className="btn mt-4">
-                            <button disabled={!input} onClick={handleSubmit} className="auth-btn">Continue</button>
+                            <button disabled={!input} onClick={handleSubmit} className="auth--btn">Continue</button>
                         </div>
 
                         {/* divider start */}

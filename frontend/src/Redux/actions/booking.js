@@ -15,8 +15,8 @@ import {
     CLEAR_ERRORS
 } from "../constants/booking";
 
-// const baseUrl = "https://airbnb5.vercel.app"
-const baseUrl = "http://localhost:5003"
+const baseUrl = "https://airbnb5.vercel.app"
+// const baseUrl = "http://localhost:5003"
 export const makeBooking = (booking) => async (dispatch) => {
     try {
 

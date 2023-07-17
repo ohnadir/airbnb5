@@ -45,14 +45,13 @@ const MobileNavbar = (setAuthModal) => {
           };
         });
     };
-    let guest = options.adult + options.children
+    let guest = (options.adult + options.children) ? (options.adult + options.children) : 1;
     const handleSearch=()=>{
         if(guest > 0 && startDate){
             navigate('/search-place')
             setOpen1(false)
             setItem("")
         } else if(search){
-            console.log(search)
             navigate(`/search-place/${search}`)
             setOpen1(false)
             setItem("")
@@ -64,8 +63,8 @@ const MobileNavbar = (setAuthModal) => {
         const booking = {
             check_in: String(date[0]?.startDate)?.slice(4, 16), 
             check_out: String(date[0]?.endDate)?.slice(4, 16),
-            night: differenceInDays(date[0].endDate, date[0].startDate),
-            guest: Number(options.adult) + Number(options.children) 
+            night: (differenceInDays(date[0].endDate, date[0].startDate)) ? (differenceInDays(date[0].endDate, date[0].startDate)) : 1,
+            guest: guest 
         }
         if(booking){
             addDate(booking);
@@ -144,7 +143,7 @@ const MobileNavbar = (setAuthModal) => {
                                 <span>Experiences</span>
                             </div>
                         </div>
-                        <div className="mask-content">
+                        <div className="mask-content" >
                             <div data-aos="fade-down" data-aos-delay="200" className='options' onClick={()=>setItem("location")}>
                                 {
                                     item === "location"
