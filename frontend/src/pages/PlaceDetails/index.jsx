@@ -63,7 +63,7 @@ const PlaceDetails = () => {
       setShowNavbar(false)
     }
 
-    if (window.scrollY > 650) {
+    if (window.scrollY > 1400) {
       setShowReserveBtn(true)
     } else {
     setShowReserveBtn(false)
