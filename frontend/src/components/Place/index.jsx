@@ -8,6 +8,7 @@ import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { FaStar } from 'react-icons/fa';
 import Spinner from "../Spinner"
 import { useNavigate } from "react-router-dom"
+import { BsFillMapFill } from 'react-icons/bs';
 
 const Place = () => {
     const dispatch = useDispatch();
@@ -63,6 +64,11 @@ const Place = () => {
                 <Spinner/>
                 :
                 <div className="place">
+                    <section>
+                        <div className="location-tiger">
+                            <div className="map" onClick={()=>navigate('/map')}> <span>Show map</span> <BsFillMapFill size={18} /></div>
+                        </div>
+                    </section>
                     <div className='switch-container'>
                         <div className="switch-tag">
                             <h1>Display total price</h1>

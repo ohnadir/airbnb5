@@ -4,16 +4,28 @@ import { useNavigate } from 'react-router-dom';
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import { FaStar } from 'react-icons/fa';
 import Slider from "react-slick";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPlaces } from "../../Redux/actions/place"
+import { BsFillMapFill, BsListUl } from 'react-icons/bs';
 
 const Map = () => {
     const [name, setName] = useState("")
+    const { loading, places} = useSelector(state=> state.places);
+    const filter = places?.find((item)=> item?._id === name);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [viewport, setViewport] = useState({
         latitude: 45.833858,
         longitude: 6.163890,
         zoom: 2
     });
+
+    useEffect(()=>{
+        dispatch(getPlaces())
+    },[dispatch]);
+
+
     const ArrowLeft = (props) => (
         <button
             {...props}
@@ -45,20 +57,26 @@ const Map = () => {
     };
     return (
         <div className='map-container'>
+            <section>
+                <div className="location-tiger">
+                    <div className="map" onClick={()=>navigate('/')}> <span>Show map</span> <BsListUl size={18} /></div>
+                </div>
+          </section>
             <ReactMapGL
                     {...viewport}
-                    style={{width: "100%", height: 500}}
+                    style={{width: "100%", height: "85vh"}}
                     mapboxAccessToken="pk.eyJ1Ijoib2huYWRpciIsImEiOiJjbGYzbXB2cG4wcjNsM3FuZGkyeXgzaGp3In0.UW7J5lIaWc-P3nXa2WmRxQ"
                     mapStyle="mapbox://styles/mapbox/streets-v9"
                     onViewportChange={nextViewport => setViewport(nextViewport)}
                 >
                     {
-                        place?.map((p, index)=>(
+                        places?.map((p, index)=>(
                             <>
                                 <Marker
+                                    key={index}
                                     latitude={p.latitude}
                                     longitude={p.longitude}
-                                    onClick={()=>setName(p.name)}
+                                    onClick={()=>setName(p._id)}
                                 >
                                     <div >
                                         <svg
@@ -90,21 +108,20 @@ const Map = () => {
                                             dynamicPosition={true}
                                             >
                                             <div className="popup">
-                                                <div className="cardItem">
-                                                    <div className="relative">
-                                                        
+                                                <div className=" card-item">
+                                                    <div className="img-container">
                                                         <Slider {...settings}>
                                                         {
-                                                            filter?.img?.map((another)=>
-                                                            <img  className="rounded-xl " src={another} alt="" />
+                                                            filter?.img?.map((another, index)=>
+                                                                <img key={index} src={another} alt="" />
                                                             )
                                                         }
                                                         </Slider>
                                                     </div>
-                                                    <div className='informationContainer' onClick={()=>navigate(`/placeDetails/${filter?._id}`)}>
-                                                        <div className="flex mt-3 items-center justify-between  font-bold">
-                                                        <p style={{"fontSize":"15px"}}  className="m-0">{filter?.name}</p>
-                                                        <div className="flex items-center gap-1">
+                                                    <div className='info-container' onClick={()=>navigate(`/placeDetails/${filter?._id}`)}>
+                                                        <div className="flex mt-3 items-center justify-between">
+                                                        <p>{filter?.name}</p>
+                                                        <div className="flex items-center gap-1 font-bold">
                                                             <FaStar className="text-[13px]"/>
                                                             <span className="text-[14px] font-semibold">{filter?.rating}</span>
                                                         </div>
@@ -112,8 +129,8 @@ const Map = () => {
                                                         <p style={{"fontSize":"14px", "color": "#717175"}} className="m-0">3,390 kilometers away</p>
                                                         <p style={{"fontSize":"14px", "color": "#717175"}} className="m-0">Nov 7-12</p>
                                                         <div className="flex items-center gap-1">
-                                                        <span className="text-[14px] font-bold">${filter?.price}</span>
-                                                        <span className='text-[14px]'>night </span>
+                                                            <span className="text-[14px] font-bold">${filter?.price}</span>
+                                                            <span className='text-[14px]'>night </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -122,8 +139,8 @@ const Map = () => {
                                     )
                                 }
                             </>
-                        ))}
-                </ReactMapGL>
+                    ))}
+            </ReactMapGL>
         </div>
     )
 }

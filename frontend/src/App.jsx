@@ -19,6 +19,7 @@ import PrivateRoute from './components/PrivateRoute';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import RegionalPlace from './pages/RegionalPlace';
+import Map from './pages/Map';
 
 function App() {
   const [authModal, setAuthModal] = useState(false);
@@ -29,7 +30,7 @@ function App() {
     if(token){
       dispatch(loadUser(token));
     }
-  },[token]);
+  },[token, dispatch]);
   AOS.init({ duration : 1000});
 
   const id = JSON.parse(localStorage.getItem("placeId"));
@@ -73,6 +74,7 @@ function App() {
         <Route path='/regional/:region' element={<RegionalPlace/>} />
         <Route path='/search-place/:keyword' element={<SearchPlace/>} />
         <Route path='/search' element={<SearchPlace/>} />
+        <Route path='/map' element={<Map/>} />
       </Routes>
     </>
   )
