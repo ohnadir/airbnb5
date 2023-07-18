@@ -8,6 +8,8 @@ import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import Slider from "react-slick";
 import { useEffect, useState } from 'react';
 import FilterModal from './FilterModal';
+
+
 const Category = () => {
   const [keyword, setKeyword] = useState("");
   const [open, setOpen] = useState(false);

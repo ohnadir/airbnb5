@@ -1,8 +1,9 @@
 import './Checkout.scss'
 import { useDispatch, useSelector } from "react-redux";
-import { placeDetails } from "../../Redux/actions/place"
-import { makePayment } from "../../Redux/actions/payment"
-import { makeBooking } from "../../Redux/actions/booking"
+import { placeDetails } from "../../Redux/actions/place";
+import { makePayment } from "../../Redux/actions/payment";
+import { makeBooking } from "../../Redux/actions/booking";
+import { putBookedDate } from "../../Redux/actions/place";
 import { useEffect, useState } from 'react';
 import {  FaStar } from 'react-icons/fa';
 import Spinner from "../../components/Spinner"
@@ -13,9 +14,10 @@ import {CardElement} from '@stripe/react-stripe-js';
 import AuthCheckout from './LoginCheckout';
 import { message } from 'antd';
 import { useNavigate, useParams } from "react-router-dom"
-import { getDate } from "../../utils/LocalStorage"
+import { getDate, bookingDate } from "../../utils/LocalStorage"
 import ChangeDate from './ChangeDate';
 import ChangeGuest from './ChangeGuest';
+
 const options = {
     style: {
         base: {
@@ -49,6 +51,8 @@ const Checkout = () => {
     
 
     const date = getDate();
+    const bookedDate = bookingDate()
+
     
     const total = ((place?.price * (date?.night ? date?.night : 1)) + place?.serviceCharge)
     console.log(total)
@@ -109,6 +113,9 @@ const Checkout = () => {
         }
         if(data.paymentIntent?.id){
             dispatch(makeBooking(booking))
+        }
+        if(bookingDate){
+            dispatch(putBookedDate(bookedDate))
         }
     }
     useEffect(()=>{

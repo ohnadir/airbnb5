@@ -2,7 +2,8 @@ const {
   getPlaces,
   getPlace,
   search,
-  filter
+  filter,
+  putBookedDate
 } =require("./service")
 
   exports.places = async (req, res ) => {
@@ -17,4 +18,8 @@ exports.place = async (req, res ) => {
 exports.searchPlace = async (req, res ) => {
   const { status, code, message, places, total } = await search({ q : req.query});
   res.status(code).json({ code, status, message, places, total });
+};
+exports.putBookingDate = async (req, res) => {
+  const { status, code, message, newBooking } = await putBookedDate({ id:req.params.id, booking :req.body});
+  res.status(code).json({ code, status, message, newBooking });
 };

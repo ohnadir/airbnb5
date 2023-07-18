@@ -5,6 +5,9 @@ import {
     PLACE_REQUEST,
     PLACE_SUCCESS,
     PLACE_FAIL,
+    BOOKED_DATE_PUT_REQUEST,
+    BOOKED_DATE_PUT_SUCCESS,
+    BOOKED_DATE_PUT_FAIL,
     CLEAR_ERRORS
 } from "../constants/place";
 
@@ -63,6 +66,32 @@ export const placeReducer = (state = { place: {} }, action) => {
                 error: null
             }
 
+        default:
+            return state;
+    }
+}
+
+export const putBookingDateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case BOOKED_DATE_PUT_REQUEST:
+            return {
+                loading: true
+            }
+        case BOOKED_DATE_PUT_SUCCESS:
+            return {
+                loading: false,
+                booking: action.payload.message
+            }
+        case BOOKED_DATE_PUT_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
         default:
             return state;
     }

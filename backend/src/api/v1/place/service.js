@@ -75,3 +75,29 @@ exports.search= async ( {q} ) => {
         return response;
     }
 };
+
+exports.putBookedDate=async({ id, booking })=>{
+    const response = {
+        code: 200,
+        status: true,
+        message:"Put Booking Date Successfully"
+    };
+    try {
+        const place = await Place.findOne({_id : id});
+        if(!place){
+            response.code = 404;
+            response.status = 'failed';
+            response.message = 'No Place found by this id';
+            return response;
+        }
+        place.bookingDate = booking;
+        await place.save();
+        response.newBooking = place;
+        return response;
+    } catch (error) {
+        response.code = 500;
+        response.status = 'failed';
+        response.message = 'Error. Try again';
+        return response;
+    }
+}

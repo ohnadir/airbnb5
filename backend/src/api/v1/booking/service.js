@@ -18,6 +18,7 @@ exports.booking=async({booking})=>{
         return response;
     }
 }
+
 exports.getBookings =async()=>{
     const response = {
         code: 200,

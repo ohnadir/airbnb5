@@ -2,7 +2,7 @@ const {
     booking,
     getBookings,
     getBooking,
-    emailBooking
+    emailBooking,
 } = require("./service")
 
 exports.newBooking = async (req, res) => {

@@ -1,7 +1,7 @@
 import './Place.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPlaces } from "../../Redux/actions/place";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import Slider from "react-slick";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
@@ -13,9 +13,11 @@ const Place = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const { loading, places } = useSelector(state => state.places);
+    const [Switch, setSwitch] = useState(false)
+    console.log(Switch)
     useEffect(() => {
         dispatch(getPlaces());
-    }, []);
+    }, [dispatch]);
 
     const ArrowLeft = ({ currentSlide, slideCount, ...props }) => (
         <button
@@ -48,6 +50,12 @@ const Place = () => {
           </div>
         )
     };
+    useEffect(() => {
+        const inputElement = document.getElementById('switch');
+        inputElement.addEventListener('change', function(){
+          setSwitch(inputElement.checked);
+        });
+      }, []);
     return (
         <>
             {
@@ -56,6 +64,19 @@ const Place = () => {
                 <Spinner/>
                 :
                 <div className="place">
+                    <div className='switch-container'>
+                        <div className="switch-tag">
+                            <h1>Display total price</h1>
+                            <div className='divider'></div>
+                            <p>Includes all fees, before tax&apos;s</p>
+                        </div>
+                        <div>
+                            <label className="switch">
+                                <input type="checkbox" readOnly  id="switch" />
+                                <span className="slider"></span>
+                            </label>
+                        </div>
+                    </div>
                     <div className="place-container">
                         {
                             places?.map((item, index)=> 
@@ -78,12 +99,28 @@ const Place = () => {
                                                 <span className="text-[14px] font-semibold">{item.rating}</span>
                                             </div>
                                         </div>
-                                        
-                                        <p>Nov 7-12</p>
-                                        <div className="flex items-center gap-1">
-                                        <span className="text-[14px] font-bold">${item.price}</span>
-                                        <span className='text-[14px]'>night </span>
-                                        </div>
+                                        <p> 
+                                            {
+                                                (!item?.bookingDate)
+                                                ?
+                                                "No Booked Yet!"
+                                                :
+                                                (`${item?.bookingDate?.month} ${item?.bookingDate?.days[0]}-${item?.bookingDate?.days[item?.bookingDate?.days.length - 1]}` )
+                                            }
+                                        </p>
+                                        {
+                                                Switch
+                                                ?
+                                                <p className='text-black text-[15px]'>
+                                                    <span className="font-bold">${Number(item?.price) + Number(item?.serviceCharge)} </span>
+                                                    <span>total before taxes</span>
+                                                </p>
+                                                :
+                                                <p className='text-black text-[15px]'>
+                                                    <span className="font-bold">${item?.price} </span>
+                                                    <span >night </span>
+                                                </p>
+                                            }
                                     </div>
                                 </div>
                             )

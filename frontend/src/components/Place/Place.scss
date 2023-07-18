@@ -30,6 +30,81 @@
   max-width: 1280px;
   padding: 30px 24px 55px 24px;
   margin: 0 auto;
+  .switch-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px 12px;
+    margin: 0 auto 30px auto ;
+    .switch-tag{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      height: fit-content;
+      h1{
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .divider{
+        width: 1px;
+        height: 15px;
+        background-color: #ddd;
+      }
+      p{
+        font-size: 15px;
+        color: #808080;
+      }
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+      input[type="checkbox"] {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          transition: 0.4s;
+          border-radius: 34px;
+        }
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 23px;
+          width: 23px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          transition: all  0.4s ease;
+          font-size: 18px;
+          font-weight: 900;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+        }
+        input:checked + .slider {
+          background-color: #222222;
+        }
+        input:checked + .slider:before {
+          content: "🗸";
+          transform: translateX(26px);
+        }
+    }
+}
   .place-container{
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -54,6 +129,7 @@
         }
       }
       .info-container{
+        cursor: pointer;
         h1{
           font-size: 15px;
           font-weight: 700;
@@ -90,6 +166,9 @@
 
 @media screen and (min-width: 1024px) {
   .place{
+    .switch-container{
+      width: 70%;
+    }
     .place-container{
       grid-template-columns: repeat(5, minmax(0, 1fr));
     }

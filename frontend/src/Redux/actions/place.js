@@ -6,6 +6,9 @@ import {
     PLACE_REQUEST,
     PLACE_SUCCESS,
     PLACE_FAIL,
+    BOOKED_DATE_PUT_REQUEST,
+    BOOKED_DATE_PUT_SUCCESS,
+    BOOKED_DATE_PUT_FAIL,
     CLEAR_ERRORS
 } from "../constants/place";
 
@@ -60,6 +63,31 @@ export const placeDetails = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: PLACE_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+export const putBookedDate = (id, booking) => async (dispatch) => {
+    try {
+
+        dispatch({ type: BOOKED_DATE_PUT_REQUEST})
+        const config = {
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`
+            }
+        }
+        const { data } = await axios.put(`${baseUrl}/api/v1/place/put/${id}`, booking, config)
+        dispatch({
+            type: BOOKED_DATE_PUT_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: BOOKED_DATE_PUT_FAIL,
             payload: error.response.data.message
         })
     }
