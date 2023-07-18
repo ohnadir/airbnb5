@@ -14,7 +14,6 @@ const Place = () => {
     const navigate = useNavigate()
     const { loading, places } = useSelector(state => state.places);
     const [Switch, setSwitch] = useState(false)
-    console.log(Switch)
     useEffect(() => {
         dispatch(getPlaces());
     }, [dispatch]);
@@ -50,12 +49,12 @@ const Place = () => {
           </div>
         )
     };
-    useEffect(() => {
-        const inputElement = document.getElementById('switch');
+    const inputElement = document.getElementById('switch');
+    if(inputElement){
         inputElement.addEventListener('change', function(){
-          setSwitch(inputElement.checked);
+            setSwitch(inputElement.checked);
         });
-      }, []);
+    }
     return (
         <>
             {
@@ -99,7 +98,7 @@ const Place = () => {
                                                 <span className="text-[14px] font-semibold">{item.rating}</span>
                                             </div>
                                         </div>
-                                        <p> 
+                                        <p className='booking-list'> 
                                             {
                                                 (!item?.bookingDate)
                                                 ?

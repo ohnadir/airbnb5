@@ -55,7 +55,6 @@ const Checkout = () => {
 
     
     const total = ((place?.price * (date?.night ? date?.night : 1)) + place?.serviceCharge)
-    console.log(total)
     const paymentAmount = {
         amount: Math.round(total * 100)
     }
@@ -115,7 +114,7 @@ const Checkout = () => {
             dispatch(makeBooking(booking))
         }
         if(bookingDate){
-            dispatch(putBookedDate(bookedDate))
+            dispatch(putBookedDate(place?._id, bookedDate))
         }
     }
     useEffect(()=>{

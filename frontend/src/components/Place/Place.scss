@@ -129,15 +129,19 @@
         }
       }
       .info-container{
+        padding: 5px;
         cursor: pointer;
         h1{
           font-size: 15px;
           font-weight: 700;
         }
-        p{
+        .booking-list{
           font-size: 14px;
           color: #717175;
           margin: 0;
+        }
+        &:hover{
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
         }
       }
       &:hover  .next, &:hover .prev{
