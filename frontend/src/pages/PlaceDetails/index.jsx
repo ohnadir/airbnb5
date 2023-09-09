@@ -78,7 +78,7 @@ const PlaceDetails = () => {
 
   const date = getDate();
   const handleCheckout=(id)=>{
-    if(date?.check_in === ""){
+    if(!date?.check_in){
       setModal1Open("date");
     }else{
       navigate(`/checkout/${id}`)

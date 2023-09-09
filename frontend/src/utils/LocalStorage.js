@@ -21,9 +21,9 @@ const bookingDate =()=>{
 
     const bookingDate = [];
     const date = JSON.parse(localStorage.getItem('date'));
-    const firstIndex = date.check_in?.slice(4, 6)
-    const lastIndex = date.check_out?.slice(4, 6)
-    const middleIndex = date.check_in?.slice(0, 3);
+    const firstIndex = date?.check_in?.slice(4, 6)
+    const lastIndex = date?.check_out?.slice(4, 6)
+    const middleIndex = date?.check_in?.slice(0, 3);
     const bookedDate = {
         "month" : middleIndex,
         "days" : bookingDate
