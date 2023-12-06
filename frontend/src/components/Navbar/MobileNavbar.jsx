@@ -11,14 +11,11 @@ import { DateRange } from "react-date-range";
 import FilterModal from '../Category/FilterModal'
 import Slider from "react-slick";
 import {addDate } from "../../utils/LocalStorage"
-import { HiMenuAlt1 } from 'react-icons/hi';
-import MobileDrawer from './MobileDrawer'
 
-const MobileNavbar = (setAuthModal) => {
+
+const MobileNavbar = () => {
     const [open1, setOpen1] = useState(false);
     const [open, setOpen] = useState(false);
-    console.log(open)
-    const [drawer, setDrawer] = useState(false);
     const [item, setItem] = useState("")
     const [search, setSearch] = useState("")
     const [date, setDate] = useState([
@@ -36,7 +33,7 @@ const MobileNavbar = (setAuthModal) => {
         pets: 0
     });
 
-    const startDate = `${format(date[0].startDate, "dd/MM/yyyy")}`
+    // const startDate = `${format(date[0].startDate, "dd/MM/yyyy")}`
 
     const handleOption = (name, operation) => {
         setOptions((prev) => {

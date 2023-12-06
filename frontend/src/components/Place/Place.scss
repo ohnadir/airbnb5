@@ -236,6 +236,12 @@
         flex-direction: column;
         align-items: start;
         gap: 3px;
+        h1{
+          font-size: 15px;
+        }
+        p{
+          font-size: 14px;
+        }
         .divider{
           display: none;
         }
