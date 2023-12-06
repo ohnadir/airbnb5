@@ -17,6 +17,7 @@ import MobileDrawer from './MobileDrawer'
 const MobileNavbar = (setAuthModal) => {
     const [open1, setOpen1] = useState(false);
     const [open, setOpen] = useState(false);
+    console.log(open)
     const [drawer, setDrawer] = useState(false);
     const [item, setItem] = useState("")
     const [search, setSearch] = useState("")
@@ -112,7 +113,7 @@ const MobileNavbar = (setAuthModal) => {
         setOpen1(false)
     }
     return (
-        <div className=' md:hidden mobile-navbar-container px-5 flex gap-5 items-center'>
+        <div className=' md:hidden mobile-navbar-container px-5 flex gap-3 items-center'>
             
             <div className='mobile-navbar-content w-full'>
                 <div className='mobile-search-label cursor-pointer w-full' onClick={()=>setOpen1(true)}>
@@ -125,10 +126,9 @@ const MobileNavbar = (setAuthModal) => {
                         </ul>
                     </div>
                 </div>
-                <CgOptions onClick={()=>setOpen(true)} className='filter-icon' />
             </div>
             <div>
-                <HiMenuAlt1 onClick={()=>setDrawer(true)} size={30} className='cursor-pointer'/>
+                <CgOptions onClick={()=>setOpen(true)} className='filter-icon'/>
             </div>
             {
                 open1
@@ -309,9 +309,6 @@ const MobileNavbar = (setAuthModal) => {
                 <FilterModal open={open} setOpen={setOpen}/>
                 :
                 null
-            }
-            {
-                drawer && <MobileDrawer drawer={drawer} setDrawer={setDrawer} setAuthModal={setAuthModal}/>
             }
         </div>
     )

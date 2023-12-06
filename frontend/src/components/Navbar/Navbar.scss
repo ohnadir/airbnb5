@@ -152,9 +152,6 @@
 }
 
 .mobile-navbar-content{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     border: 1px solid #eee;
     padding: 0 16px;
     border-radius: 50px;
@@ -179,16 +176,15 @@
             padding-right: 8px;
         }
     }
-    .filter-icon{
-        font-size: 36px;
-        line-height: 40px;
-        cursor: pointer;
-        font-weight: 700;
-        border-radius: 50%;
-        border: 1px solid #eee;
-        padding: 8px;
-    }
-    
+}
+.filter-icon{
+    font-size: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    padding: 8px;
 }
 .navbar-mask{
     background-color: #f7f7f7;

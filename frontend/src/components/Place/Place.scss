@@ -55,7 +55,7 @@
       cursor: pointer;
       padding: 12px 21px;
     } 
-}
+  }
   .switch-container{
     width: 100%;
     display: flex;
@@ -225,6 +225,21 @@
   .place{
     .place-container{
       grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+}
+
+@media screen and (max-width: 503px) {
+  .place{
+    .switch-container{
+      .switch-tag{
+        flex-direction: column;
+        align-items: start;
+        gap: 3px;
+        .divider{
+          display: none;
+        }
+      }
     }
   }
 }
