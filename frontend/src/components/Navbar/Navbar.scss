@@ -374,72 +374,38 @@
     }
 }
   
-
+// css for mobile drawer start
+.ant-drawer-content-wrapper{
+    border-radius: 15px 15px 0 0 !important;
+}
+.ant-drawer-content{
+    border-radius: 15px 15px 0 0 !important;
+}
 .mobile-drawer{
-    width: 100%;
-    height: 100vh;
     position: relative;
-    background-color: white;
-    
-    .brand{
+    .header{
         display: flex;
-        align-items: center;
-        justify-content: space-between;
         border-bottom: 1px solid #eee;
-        padding: 10px 20px;
-        .close-icon{
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #eee;
-            cursor: pointer;
-            transition: all 0.1s ease;
-            &:hover{
-                background-color: #ff385c;
-                color: white !important;
-            }
-        }
-    }
-    .drawer-links{
+        border-radius: 15px 15px 0 0 !important;
+        padding: 16px 20px;
+        position: fixed;
         width: 100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-top: 1px solid #eee;
-        padding: 10px 20px;
-        .nav-item{
-            color : #b0b0b0;
-            cursor: pointer;
-            .icon{
-                font-size: 24px;
-                margin: 0 auto 3px auto;
-                font-weight: 900;   
-            }
-            p{
-                font-size: 11px;
-                margin: 0;
-                font-weight: 600;
-            }
-            &:focus .icon{
-                color: rgb(255, 56, 92);
-            }
-            &:focus p{
-                color: black;
-            }
-        }
+        top: 17px; 
+        background-color: white;
+        z-index: 2;
     }
     .input-slider{
         padding: 10px 20px;
         .range-details{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .min-range, .max-range{
+                width: 40% !important;
+            }
             p{
                 margin: 0;
-                font-size: 12px;
+                font-size: 14px;
                 font-weight: 400;
                 color: #717171;
             }
@@ -447,21 +413,107 @@
                 width: 100%;
                 border: 1px solid #ddd;
                 border-radius: 6px;
-                padding: 0 10px;
+                padding: 10px;
+            }
+        }
+    }
+    .rooms-and-beds{
+        padding: 10px 20px;
+        width: 100%;
+        .room-item{
+            display: flex;
+            gap: 8px;
+            margin: 12px 0;
+            overflow-x: auto;
+            
+        }
+        .room-item::-webkit-scrollbar{
+            display: none;
+        }
+        .button{
+            font-size: 15px;
+            padding: 2px 20px;
+            margin: 0;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+          }
+        .button:hover{
+            border: 1px solid black;
+        }
+    }
+    .property-types{
+        padding: 10px 20px;
+        .type{
+            display: grid;
+            grid-template-columns:  repeat(2, minmax(0, 1fr));
+            .contain{
+                cursor: pointer;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 10px;
+                transition: border 0.3s ease;
+                img{
+                  margin: 0 auto;
+                  padding-bottom: 10px;
+                  width: 30px;
+                }
+                p{
+                  text-align: center;
+                }
+                :hover{
+                    border: 1px solid black;
+                }
+            }
+        } 
+        
+    }
+    .filter-footer{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        border-top: 1px solid #ddd;
+        position: fixed;
+        width: 100%;
+        bottom: 0; 
+        background-color: white;
+        .clear-btn{
+            background-color: transparent;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            :hover{
+                background-color: #ddd;
+            }
+        }
+        .show-btn{
+            background-color: #222222;
+            color: white;
+            padding: 10px 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            .show-btn:hover{
+                background-color: black; 
             }
         }
     }
     .ant-slider-rail{
-        height: 8px !important;
+        height: 10px !important;
     }
     .ant-slider-track-1{
-        height: 8px !important;
+        height: 10px !important;
         background-color: rgba(255, 56, 92, 0.702) !important;
     }
     .ant-slider .ant-slider-handle::after{
-        box-shadow: 0 0 0 4px #ff385cb3 !important;
+        top: 2px !important;
+        box-shadow: 0 0 0 5px #ff385cb3 !important;
     }
 }
+// css for mobile drawer end
 
 // navbar float bar
 .destination{

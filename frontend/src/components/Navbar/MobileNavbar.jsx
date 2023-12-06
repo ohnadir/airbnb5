@@ -11,6 +11,7 @@ import { DateRange } from "react-date-range";
 import FilterModal from '../Category/FilterModal'
 import Slider from "react-slick";
 import {addDate } from "../../utils/LocalStorage"
+import MobileDrawer from './MobileDrawer'
 
 
 const MobileNavbar = () => {
@@ -303,7 +304,7 @@ const MobileNavbar = () => {
             {
                 open
                 ?
-                <FilterModal open={open} setOpen={setOpen}/>
+                <MobileDrawer open={open} setOpen={setOpen}/>
                 :
                 null
             }
