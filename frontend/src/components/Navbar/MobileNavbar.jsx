@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Navbar.scss'
 import { BiSearch } from 'react-icons/bi'
 import { CgOptions } from 'react-icons/cg'
@@ -14,11 +14,16 @@ import {addDate } from "../../utils/LocalStorage"
 import MobileDrawer from './MobileDrawer'
 
 
+function getCurrentDimension(){
+    return window.innerWidth
+}
+
 const MobileNavbar = () => {
     const [open1, setOpen1] = useState(false);
     const [open, setOpen] = useState(false);
     const [item, setItem] = useState("")
     const [search, setSearch] = useState("")
+    const [screenSize, setScreenSize] = useState(getCurrentDimension());
     const [date, setDate] = useState([
         {
         startDate: new Date(), 
@@ -110,6 +115,18 @@ const MobileNavbar = () => {
         navigate(`/regional/${e}`)
         setOpen1(false)
     }
+
+    useEffect(() => {
+        const updateDimension = () => {
+          setScreenSize(getCurrentDimension())
+        }
+        window.addEventListener('resize', updateDimension);
+        
+        return(() => {
+            window.removeEventListener('resize', updateDimension);
+        })
+    }, [screenSize])
+    
     return (
         <div className=' md:hidden mobile-navbar-container px-5 flex gap-3 items-center'>
             
@@ -304,7 +321,9 @@ const MobileNavbar = () => {
             {
                 open
                 ?
-                <MobileDrawer open={open} setOpen={setOpen}/>
+                screenSize < 768 ? <MobileDrawer open={open} setOpen={setOpen}/>
+                :
+                <FilterModal  open={open} setOpen={setOpen}/>
                 :
                 null
             }
